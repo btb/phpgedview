@@ -3,7 +3,7 @@
  * Mail specific functions
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -129,7 +129,8 @@ function pgvMail($to, $from, $subject, $message, $bulkMail=false, $fromFullName=
 	if ($PGV_SMTP_ACTIVE  && ( $PGV_SMTP_HOST && $PGV_SMTP_PORT ) ) {
 		require_once PGV_ROOT.'includes/PHPMailer/PHPMailerAutoload.php';
 		$mail_object = new PHPMailer();
-		$mail_object->IsSMTP();
+		$mail_object->IsSMTP();					// Tell PHPMailer to use SMTP
+		$mail_object->SMTPDebug = 0;			// 0:off; 1:client messages; 2:client and server messages
 		$mail_object->SetLanguage('en','');		// PHPMailer errors are in English only
 		$mail_object->ShowWikiURL = false;		// Don't show Wiki URL on PHPMailer connect errors
 		if ( $PGV_SMTP_AUTH && ( $PGV_SMTP_AUTH_USER && $PGV_SMTP_AUTH_PASS ) ) {
@@ -141,7 +142,8 @@ function pgvMail($to, $from, $subject, $message, $bulkMail=false, $fromFullName=
 			$mail_object->SMTPSecure = 'ssl';
 		} else if ($PGV_SMTP_SSL=='tls') {
 			$mail_object->SMTPSecure = 'tls';
-		}
+		} else $mail_object->SMTPSecure = '';
+		$mail_object->SMTPAutoTLS = false;		// Don't use TLS encryption automatically even if the server supports it
 		$mail_object->Host = $PGV_SMTP_HOST;
 		$mail_object->Port = $PGV_SMTP_PORT;
 		$mail_object->Hostname = $PGV_SMTP_HELO;
@@ -173,7 +175,7 @@ function pgvMail($to, $from, $subject, $message, $bulkMail=false, $fromFullName=
 		}
 		$mail_object->Body = $message;
 		// attempt to send mail
-		$success = $mail_object->Send();
+		$success = $mail_object->send();
 		if (!$success) {
 			echo '<span class="error">', $pgv_lang["message_error"], $mail_object->ErrorInfo, '</span><br />';
 		}
