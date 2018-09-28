@@ -5,7 +5,7 @@
  * This block prints a form that will allow a user to login
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,8 +45,10 @@ $PGV_BLOCKS["print_login_block"]["config"]		= array("cache"=>0);
  * Prints a block allowing the user to login to the site directly from the portal
  */
 function print_login_block($block = true, $config="", $side, $index) {
-	global $pgv_lang, $QUERY_STRING, $USE_REGISTRATION_MODULE, $LOGIN_URL;
+	global $pgv_lang, $QUERY_STRING, $USE_REGISTRATION_MODULE, $LOGIN_URL, $SEARCH_SPIDER;
 	global $TEXT_DIRECTION;
+
+	if ($SEARCH_SPIDER) return;		// Don't show this block to search engines
 
 	if (PGV_USER_ID) {
 		$id="logout_block";

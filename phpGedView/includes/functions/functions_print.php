@@ -448,26 +448,6 @@ function print_header($title, $head="", $use_alternate_styles=true) {
 	global $PGV_IMAGES, $TEXT_DIRECTION, $ONLOADFUNCTION, $REQUIRE_AUTHENTICATION, $SHOW_SOURCES, $ENABLE_RSS, $RSS_FORMAT;
 	global $META_AUTHOR, $META_PUBLISHER, $META_COPYRIGHT, $META_DESCRIPTION, $META_PAGE_TOPIC, $META_AUDIENCE, $META_PAGE_TYPE, $META_ROBOTS, $META_REVISIT, $META_KEYWORDS, $META_TITLE;
 
-	// TODO: Shouldn't this be in session.php?
-	// If not on allowed list, dump the spider onto the redirect page.
-	// This kills recognized spiders in their tracks.
-	// To stop unrecognized spiders, see META_ROBOTS below.
-	if ($SEARCH_SPIDER) {
-		if (
-			!(PGV_SCRIPT_NAME=='individual.php' ||
-			PGV_SCRIPT_NAME=='indilist.php' ||
-			PGV_SCRIPT_NAME=='login.php' ||
-			PGV_SCRIPT_NAME=='family.php' ||
-			PGV_SCRIPT_NAME=='famlist.php' ||
-			PGV_SCRIPT_NAME=='help_text.php' ||
-			PGV_SCRIPT_NAME=='source.php' ||
-			PGV_SCRIPT_NAME=='search_engine.php' ||
-			PGV_SCRIPT_NAME=='index.php')
-		) {
-			header("Location: search_engine.php");
-			exit;
-		}
-	}
 	header("Content-Type: text/html; charset=$CHARACTER_SET");
 
 	if (empty($META_TITLE)) $metaTitle = ' - '.PGV_PHPGEDVIEW;
@@ -641,6 +621,7 @@ function print_footer() {
 	global $pgv_lang, $view;
 	global $SHOW_STATS, $QUERY_STRING, $footerfile, $print_footerfile, $ALLOW_CHANGE_GEDCOM, $printlink;
 	global $PGV_IMAGE_DIR, $theme_name, $PGV_IMAGES, $TEXT_DIRECTION, $footer_count;
+	global $SEARCH_SPIDER, $SHOW_SPIDER_TAGLINE;
 
 	$view = safe_get('view');
 
@@ -648,6 +629,9 @@ function print_footer() {
 	else $footer_count++;
 	echo "<!-- begin footer -->";
 	if ($view!="preview") {
+		if($SEARCH_SPIDER && $SHOW_SPIDER_TAGLINE) {
+			echo '<div class="center"><br />', $pgv_lang["label_search_engine_detected"].": ".$SEARCH_SPIDER, '</div>';
+		}
 		require $footerfile;
 	} else {
 		require $print_footerfile;

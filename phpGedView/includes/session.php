@@ -3,7 +3,7 @@
  * Startup and session logic
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -275,11 +275,18 @@ if (isset($_REQUEST['NEWLANGUAGE'])) {
 if (empty($_SERVER['QUERY_STRING'])) {
 	$QUERY_STRING='';
 } else {
-	$QUERY_STRING=str_ireplace(
-		array('&','<', 'show_context_help=no', 'show_context_help=yes'),
-		array('&amp;','&lt;', '', ''),
-		urldecode($_SERVER['QUERY_STRING'])
+	$temp = urldecode($_SERVER['QUERY_STRING']);
+	$temp=str_ireplace(
+		array('&','<'),
+		array('&amp;','&lt;'),
+		$temp
 	);
+	$temp=str_ireplace(
+		array('&amp;show_context_help=no', '&amp;show_context_help=yes'),
+		array('', ''),
+		$temp
+	);
+	$QUERY_STRING=$temp;
 }
 //-- The original query string will be checked for script injection
 //   during the hacking check in session_spider.php
@@ -372,6 +379,7 @@ if (!$SEARCH_SPIDER && !isset($_SESSION['initiated']) && !isset($_SESSION['SOAP_
 	// A new session, so prevent session fixation attacks by choosing a new PHPSESSID.
 	session_regenerate_id(true);
 	$_SESSION['initiated']=true;
+	$_SESSION['IPAddress'] = $_SERVER['REMOTE_ADDR'];		// Save this so we can determine who originated a given session file
 } else {
 	// An existing session
 }

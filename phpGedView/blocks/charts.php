@@ -5,7 +5,7 @@
  * This block prints pedigree, descendency, or hourglass charts for the chosen person
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,7 +49,10 @@ $PGV_BLOCKS["print_charts_block"]["config"]		= array(
 
 function print_charts_block($block = true, $config="", $side, $index) {
 	global $PGV_BLOCKS, $pgv_lang, $ctype, $PGV_IMAGE_DIR, $PGV_IMAGES, $PEDIGREE_ROOT_ID, $PEDIGREE_FULL_DETAILS;
+	global $SEARCH_SPIDER;
 	global $show_full, $bwidth, $bheight;
+
+	if ($SEARCH_SPIDER) return;		// Don't show this block to search engines
 
 	if (empty($config)) $config = $PGV_BLOCKS["print_charts_block"]["config"];
 	if (empty($config['details'])) $config['details'] = 'no';
