@@ -6,7 +6,7 @@
 * about the GEDCOM.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2017 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2018 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -976,45 +976,6 @@ class stats {
 			." ORDER BY d_julianday1 {$life_dir}, d_type",
 			1
 		);
-		//testing
-		/*
-		$rows=self::_runSQL(''
-			.' SELECT'
-				.' d2.d_year,'
-				.' d2.d_type,'
-				.' d2.d_fact,'
-				.' d2.d_gid'
-			.' FROM'
-				." {$TBLPREFIX}dates AS d2"
-			.' WHERE'
-				." d2.d_file={$this->_ged_id} AND"
-				." d2.d_fact IN ({$query_field}) AND"
-				.' d2.d_julianday1=('
-					.' SELECT'
-						." {$dmod}(d_julianday1)"
-					.' FROM'
-						." {$TBLPREFIX}dates"
-					.' JOIN ('
-						.' SELECT'
-							.' d1.d_gid, MIN(d1.d_julianday1) as date'
-						.' FROM'
-							."  {$TBLPREFIX}dates AS d1"
-						.' WHERE'
-							." d1.d_fact IN ({$query_field}) AND"
-							." d1.d_file={$this->_ged_id} AND"
-							.' d1.d_julianday1!=0'
-						.' GROUP BY'
-							.' d1.d_gid'
-					.') AS d3'
-					.' WHERE'
-						." d_file={$this->_ged_id} AND"
-						." d_fact IN ({$query_field}) AND"
-						.' d_julianday1=date'
-				.' )'
-			.' ORDER BY'
-				." d_julianday1 {$life_dir}, d_type"
-		);
-		*/
 		if (!isset($rows[0])) {return '';}
 		$row=$rows[0];
 		$record=GedcomRecord::getInstance($row['d_gid']);
@@ -1532,33 +1493,10 @@ class stats {
 			.' ORDER BY'
 				.' age DESC'
 		, 1);
-		//testing
-		/*
-		$rows=self::_runSQL(''
-			.' SELECT'
-				.' i_id AS id,'
-				.' death.d_julianday2-birth.d_julianday1 AS age'
-			.' FROM'
-				.' (SELECT d_gid, d_file, MIN(d_julianday1) AS birth_jd'
-					.' FROM {$TBLPREFIX}date'
-					." WHERE d_fact IN ('BIRT', 'CHR', 'BAPM', '_BRTM') AND d_julianday1>0"
-					.' GROUP BY d_gid, d_file'
-				.' ) AS birth'
-			.' JOIN ('
-				.' SELECT d_gid, d_file, MIN(d_julianday1) AS death_jd'
-					.' FROM {$TBLPREFIX}date'
-					." WHERE d_fact IN ('DEAT', 'BURI', 'CREM') AND d_julianday1>0"
-					.' GROUP BY d_gid, d_file'
-				.' ) AS death USING (d_gid, d_file)'
-			.' JOIN {$TBLPREFIX}individuals ON (d_gid=i_id AND d_file=i_file)'
-			.' WHERE'
-				." i_file={$this->_ged_id} AND"
-				.$sex_search
-			.' ORDER BY'
-				.' age DESC'
-		, 1);
-		*/
-		if (!isset($rows[0])) {return '';}
+		if (!isset($rows[0])) {
+			if ($type = 'age') return 0;	// Make sure we don't return an empty age
+			return '';
+		}
 		$row = $rows[0];
 		$person=Person::getInstance($row['id']);
 		switch($type) {
@@ -2098,7 +2036,10 @@ class stats {
 			.' ORDER BY'
 				." married.d_julianday2-birth.d_julianday1 {$age_dir}"
 		, 1);
-		if (!isset($rows[0])) {return '';}
+		if (!isset($rows[0])) {
+			if ($type = 'age') return 0;	// Make sure we don't return an empty age
+			return '';
+		}
 		$row=$rows[0];
 		if (isset($row['famid'])) $family=Family::getInstance($row['famid']);
 		if (isset($row['i_id'])) $person=Person::getInstance($row['i_id']);
