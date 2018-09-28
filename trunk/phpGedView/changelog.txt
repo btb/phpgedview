@@ -9,6 +9,7 @@
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Age-related statistics should return zero when the database produces no results (canajun2eh)
  - Changed: Use better-quality favicon.ico from Cloudy theme in all other themes (canajun2eh)
  - Fixed: SMTP mail ignores "no TLS or SSL" authentication configuration when shared server supports TLS (canajun2eh)
  - Changed: Deleted Changelog files from /languages directory (they are no longer useful) (canajun2eh)
