@@ -3,7 +3,7 @@
  * Top-of-page menus for Wood theme
  *
  * PhpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2010  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -70,7 +70,7 @@ if($menu->link != "") {
 	$menu->printMenu();
 }
 $menu = $menubar->getClippingsMenu();
-if((!is_null($menu)) && ($menu->link != "")) {
+if($menu->link != "") {
 	print "<br />\n";
 	$menu->addLabel("", "right");
 	$menu->printMenu();

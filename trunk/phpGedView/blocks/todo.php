@@ -49,6 +49,9 @@ $PGV_BLOCKS['print_todo']['config']   =array(
 // this block prints a list of _TODO events in your gedcom
 function print_todo($block=true, $config='', $side, $index) {
 	global $pgv_lang, $factarray, $ctype, $PGV_IMAGE_DIR, $PGV_IMAGES, $PGV_BLOCKS;
+	global $SEARCH_SPIDER;
+
+	if ($SEARCH_SPIDER) return;		// Don't show this block to search engines
 
 	$block=true; // Always restrict this block's height
 

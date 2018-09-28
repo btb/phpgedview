@@ -5,7 +5,7 @@
  * This block prints statistical information for the currently active gedcom
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -66,6 +66,7 @@ $PGV_BLOCKS['print_gedcom_stats']['config']   =array(
 
 function print_gedcom_stats($block=true, $config='', $side, $index) {
 	global $PGV_BLOCKS, $pgv_lang, $ALLOW_CHANGE_GEDCOM, $ctype, $COMMON_NAMES_THRESHOLD, $PGV_IMAGE_DIR, $PGV_IMAGES, $MULTI_MEDIA;
+	global $SEARCH_SPIDER;
 	global $top10_block_present;
 
 	if (empty($config)) $config = $PGV_BLOCKS['print_gedcom_stats']['config'];
@@ -215,7 +216,7 @@ function print_gedcom_stats($block=true, $config='', $side, $index) {
 		$content .= '</tr>';
 	}
 	$content .= '</table></td></tr></table>';
-	if ($config['stat_link']=='yes') {
+	if ($config['stat_link']=='yes' && !$SEARCH_SPIDER) {
 		$content .= '<a href="statistics.php"><b>'.$pgv_lang['stat_link'].'</b></a><br />';
 	}
 	// NOTE: Print the most common surnames

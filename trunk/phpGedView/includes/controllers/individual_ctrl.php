@@ -3,7 +3,7 @@
 * Controller for the Individual Page
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2017 PGV Development Team. All rights reserved.
+* Copyright (C) 2002 to 2018 PGV Development Team. All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -87,7 +87,7 @@ class IndividualControllerRoot extends BaseController {
 	*/
 	function init() {
 		global $USE_RIN, $MAX_ALIVE_AGE, $GEDCOM, $GEDCOM_DEFAULT_TAB, $pgv_changes, $pgv_lang, $CHARACTER_SET;
-		global $USE_QUICK_UPDATE, $pid;
+		global $USE_QUICK_UPDATE, $pid, $SEARCH_SPIDER;
 		global $Fam_Navigator;
 
 		$this->sexarray["M"] = $pgv_lang["male"];
@@ -145,11 +145,13 @@ class IndividualControllerRoot extends BaseController {
 		if (strstr($this->action, 'ra_')!==false) $this->default_tab = 6;
 
 		//-- set the default tab from a request parameter
-		if (isset($_REQUEST['tab'])) {
-			$this->default_tab = $_REQUEST['tab'];
-		}
+		if (isset($_GET['tab'])) {
+			$this->default_tab = safe_GET_integer('tab', -2, 9, $GEDCOM_DEFAULT_TAB);
 
-		if ($this->default_tab<-2 || $this->default_tab>9) $this->default_tab=0;
+			if ($SEARCH_SPIDER) {		// Don't let search engines request "all" or "last" tabs
+				if ($this->default_tab < 0) $this->default_tab = 0;
+			}
+		}
 
 		$this->indi = new Person($indirec, false);
 		$this->indi->ged_id=PGV_GED_ID; // This record is from a file

@@ -3,7 +3,7 @@
  * Footer for Ocean theme
  *
  * PhpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,8 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	exit;
 }
 
+global $SEARCH_SPIDER;
+
 echo "</div> <!-- closing div id=\"content\" -->\n";
 echo "<div id=\"footer\" class=\"$TEXT_DIRECTION\">";
 echo "\n\t<div align=\"center\" style=\"width:99%;\">";
@@ -38,16 +40,18 @@ echo "<br />";
 echo contact_links();
 echo '<br /><a href="', PGV_PHPGEDVIEW_URL, '" target="_blank"><img src="', $PGV_IMAGE_DIR, '/', $PGV_IMAGES['gedview']['other'], '" width="100" height="45" border="0" alt="', PGV_PHPGEDVIEW, PGV_USER_IS_ADMIN? (" - " .PGV_VERSION_TEXT): "" , '" title="', PGV_PHPGEDVIEW , PGV_USER_IS_ADMIN? (" - " .PGV_VERSION_TEXT): "" , '" /></a><br />';
 echo "\n\t<br />";
-$query = '&amp;' . get_query_string();
-if ($query == '&amp;') $query = '';		// Make sure the URL doesn't end with an orphan ampersand
-print_help_link("preview_help", "qm");
-echo '<a href="', PGV_SCRIPT_NAME, '?view=preview', $query, '">', $pgv_lang['print_preview'], '</a>';
-echo "<br />";
-if ($SHOW_STATS || PGV_DEBUG) {
-	echo execution_stats();
-}
-if (exists_pending_change()) {
-	echo "<br />", $pgv_lang["changes_exist"], " <a href=\"javascript:;\" onclick=\"window.open('edit_changes.php', '_blank', 'width=600, height=500, resizable=1, scrollbars=1'); return false;\">", $pgv_lang["accept_changes"], "</a>\n";
+if (empty($SEARCH_SPIDER)) {	// Don't show "Printer-friendly version" link, execution stats, or pending changes link to search engines
+	$query = '&amp;' . get_query_string();
+	if ($query == '&amp;') $query = '';		// Make sure the URL doesn't end with an orphan ampersand
+	print_help_link("preview_help", "qm");
+	echo '<a href="', PGV_SCRIPT_NAME, '?view=preview', $query, '">', $pgv_lang['print_preview'], '</a>';
+	echo "<br />";
+	if ($SHOW_STATS || PGV_DEBUG) {
+		echo execution_stats();
+	}
+	if (exists_pending_change()) {
+		echo "<br />", $pgv_lang["changes_exist"], " <a href=\"javascript:;\" onclick=\"window.open('edit_changes.php', '_blank', 'width=600, height=500, resizable=1, scrollbars=1'); return false;\">", $pgv_lang["accept_changes"], "</a>\n";
+	}
 }
 echo "</div>";
 echo "</div> <!-- close div id=\"footer\" -->\n";

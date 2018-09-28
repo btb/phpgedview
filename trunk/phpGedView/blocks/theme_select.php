@@ -5,7 +5,7 @@
  * This block will print a form that allows the visitor to change the theme
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,6 +42,9 @@ $PGV_BLOCKS["print_block_theme_select"]["config"]		= array("cache"=>-1);
 function print_block_theme_select($style=0, $config="", $side, $index) {
 	global $pgv_lang;
 	global $ALLOW_THEME_DROPDOWN, $ALLOW_USER_THEMES, $THEME_DIR, $pgv_lang, $themeformcount;
+	global $SEARCH_SPIDER;
+
+	if ($SEARCH_SPIDER) return;		// Don't show this block to search engines
 
 	$id="theme_select";
 	$title = $pgv_lang["change_theme"];

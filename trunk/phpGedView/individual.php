@@ -5,7 +5,7 @@
 * Display all of the information about an individual
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -686,12 +686,6 @@ echo 'alert("phpgedview.js: A javascript function is missing.  Please clear your
 echo '}';
 echo PGV_JS_END;
 
-if ($SEARCH_SPIDER) {
-	if($SHOW_SPIDER_TAGLINE)
-		echo $pgv_lang["label_search_engine_detected"], ": ", $SEARCH_SPIDER;
-	echo "</div></body></html>";
-} else {
-	print_footer();
-}
+print_footer();
 
 ?>

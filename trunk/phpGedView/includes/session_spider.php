@@ -32,7 +32,7 @@ if (!defined('PGV_PHPGEDVIEW')) {
 define('PGV_SESSION_SPIDER_PHP', '');
 
 /**
- * Changes the session same for known spiders
+ * Changes the session name for known spiders
  * session names are limited to alphanum upper and lower only.
  * $outname = '__Spider-name-:/alphanum_only__';
  * Example  =  sess_xxGOOGLEBOTfsHTTPcffWWWdGOOGLxx
@@ -119,6 +119,7 @@ $SEARCH_SPIDER = false;		// set empty at start
 $ua = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : "";
 
 $worms = array(
+	'archive.org_bot',		// Doesn't respect robots.txt
 	'PageBot',
 	'PictureBot',
 	'ContextAd',
@@ -316,23 +317,32 @@ $real_browsers = array(
 	'W3C_Validator'
 	);
 
+// Here we list the scripts that search engines are allowed to access.
+// Anything else will result in an HTTP 403 error.
+$searchEngineAllowed = array(
+	'individual.php',
+	'indilist.php',
+	'family.php',
+	'famlist.php',
+	'source.php',
+	'index.php'
+);
+
 // Here we list the search engines whose accesses we don't need to log.
 // This avoids cluttering the log files with useless entries
 $known_spiders = array(
-	'Vagabondo',
-	'UP.Browser',
-	'Seznam',
-	'NetcraftSurveyAgent',
-	'Ezooms',
-	'Googlebot',
-	'Yahoo Slurp',
-	'msnbot',
-	'bingbot',
+	'Applebot',
 	'Ask Jeeves',
-	'Mediapartners-Google',
+	'bingbot',
+	'Ezooms',
 	'Feedfetcher-Google',
+	'Googlebot',
+	'Mediapartners-Google',
+	'NetcraftSurveyAgent',
+	'Seznam',
 	'Twiceler',
-	'archive.org_bot'
+	'UP.Browser',
+	'Vagabondo'
 );
 
 // We overlay the following name with carefully selected characters.
@@ -343,6 +353,7 @@ $spider_name = '                                                                
 $real = false;
 
 if($ua != "") {
+	$bot_name = $ua;
 	foreach($real_browsers as $browser_check) {
 		if (strpos($ua, $browser_check)!==false) {
 			$real = true;
@@ -360,22 +371,36 @@ if($ua != "") {
 			}
 		}
 	}
+	// Check for search engines with browser names in their UAs.  For example:
+	// "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Safari/537.36"
+	// instead of:
+	// "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+	foreach($known_spiders as $spider_check) {
+		if (strpos($ua, $spider_check)!==false) {
+			$real = false;
+			$bot_name = $spider_check;		// Use a friendly name for known search engines
+			break;
+		}
+	}
 }
 else {
 	// For the people who firewall identifying information
 	// Switch real to false if you wish to restrict these connections.
-	$ua = "Browser User Agent Empty";
+	$ua = 'Browser User Agent Empty';
+	$bot_name = 'Unknown';
 	$real = true;
 }
 
 if(!$real) {
-	$bot_name = $ua;
 	// strip out several common strings that clutter the User Agent.
-	$bot_name = preg_replace("/Mozilla\/... \(compatible;/i", "", $bot_name);
-	$bot_name = preg_replace("/Mozilla\/... /i", "", $bot_name);
-	$bot_name = preg_replace("/Windows NT/i", "", $bot_name);
-	$bot_name = preg_replace("/Windows; U;/i", "", $bot_name);
-	$bot_name = preg_replace("/Windows/i", "", $bot_name);
+	$bot_name = preg_replace("~AppleWebKit.* ~iU", "", $bot_name);
+	$bot_name = preg_replace("~ Safari.*~i", "", $bot_name);
+	$bot_name = preg_replace("~KHTML, like Gecko;~i", "", $bot_name);
+	$bot_name = preg_replace("~compatible;~i", "", $bot_name);
+	$bot_name = preg_replace("~Mozilla.* ~iU", "", $bot_name);
+	$bot_name = preg_replace("~Windows NT~i", "", $bot_name);
+	$bot_name = preg_replace("~Windows; U;~i", "", $bot_name);
+	$bot_name = preg_replace("~Windows~i", "", $bot_name);
 
 	// Copy in characters, stripping out unwanteds until we are full, stopping at 70.
 	$y = 0;
@@ -443,20 +468,6 @@ if(!$real) {
 	session_id($bot_session);
 }
 
-// stop spiders from accessing certain parts of the site
-$bots_not_allowed = array(
-'/reports/',
-'/includes/',
-'config',
-'clippings',
-'gedrecord.php'
-);
-if ($SEARCH_SPIDER && in_array(PGV_SCRIPT_NAME, $bots_not_allowed)) {
-	header("HTTP/1.0 403 Forbidden");
-	print "Sorry, this page is not available for search engine bots.";
-	exit;
-}
-
 // Manual Search Engine IP Address tagging
 //   Allow an admin to mark IP addresses as known search engines even if
 //   they are not automatically detected above.   Setting his own IP address
@@ -485,6 +496,15 @@ try {
 	// Initial installation?  Site Down?  Fail silently.
 }
 
+	// If this script is not in allowed list, spiders should get an HTTP 403 error
+	if ($SEARCH_SPIDER) {
+		if (!in_array(PGV_SCRIPT_NAME, $searchEngineAllowed)) {
+			header("HTTP/1.0 403 Forbidden");
+			print "Sorry, this page is not available for search engine bots.";
+			exit;
+		}
+	}
+
 if((empty($SEARCH_SPIDER)) && (!empty($_SESSION['last_spider_name']))) // user following a search engine listing in,
 session_regenerate_id();
 
@@ -496,7 +516,7 @@ if(!empty($SEARCH_SPIDER)) {
 	$outstr = str_replace(' - ', ' ', $outstr);            // Don't allow ' - ' because that is the log separator
 	$logSpider = true;
 	foreach ($known_spiders as $spider) {
-		if (strpos($outstr, $spider) !== false) {
+		if (strpos($ua, $spider) !== false) {
 			$logSpider = false;
 			break;
 		}

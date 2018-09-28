@@ -5,7 +5,7 @@
  * This block will print a list of the users who are currently logged in
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,7 +49,9 @@ $PGV_BLOCKS["print_logged_in_users"]["config"]		= array("cache"=>0);
  * prints a list of other users who are logged in
  */
 function print_logged_in_users($block = true, $config = "", $side, $index) {
-	global $pgv_lang, $PGV_SESSION_TIME, $TEXT_DIRECTION;
+	global $pgv_lang, $PGV_SESSION_TIME, $TEXT_DIRECTION, $SEARCH_SPIDER;
+
+	if ($SEARCH_SPIDER) return;		// Don't show this block to search engines
 
 	$block = true; // Always restrict this block's height
 

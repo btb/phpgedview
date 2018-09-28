@@ -5,7 +5,7 @@
  * You must supply a $famid value with the identifier for the family.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2010  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -96,7 +96,7 @@ else $align = 'right';
 		<div id="optionsmenu" class="sublinks_table">
 			<div class="list_label <?php echo $TEXT_DIRECTION; ?>"><?php echo $pgv_lang["fams_charts"]; ?></div>
 				<ul class="sublinks_cell <?php echo $TEXT_DIRECTION; ?>">
-		<?php } 
+		<?php }
 					$menu = $controller->getChartsMenu(); $menu->printMenu();
 					if (file_exists(PGV_ROOT.'reports/familygroup.xml')) :
 					?>
@@ -129,7 +129,7 @@ else $align = 'right';
 		<?php } else { ?>
 				</ul>
 		</div>
-		<?php } 
+		<?php }
 			}	// view != preview
 			?>
 		</td>
@@ -186,10 +186,7 @@ else $align = 'right';
 </table>
 <br />
 <?php
-if(empty($SEARCH_SPIDER))
-	print_footer();
-else {
-	if($SHOW_SPIDER_TAGLINE)
-		echo $pgv_lang["label_search_engine_detected"].": ".$SEARCH_SPIDER;
-	echo "\n</div>\n\t</body>\n</html>";
-}
+
+print_footer();
+
+?>
