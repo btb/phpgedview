@@ -9,6 +9,7 @@
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Array to string conversion error in Advanced HTML block (canajun2eh)
  - Changed: Improve blocking of search engines from certain parts of the site (canajun2eh)
  - Added: Save IP address as a session variable (canajun2eh)
  - Changed: Don't let search engines see changes or request Print Preview mode (canajun2eh)
