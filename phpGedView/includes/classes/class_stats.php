@@ -210,10 +210,11 @@ class stats {
 			if ($tags[$i][0] == '_' || in_array($tags[$i], self::$_not_allowed)) {continue;}
 
 			// Generate the replacement value for the tag
-			if (method_exists($this, $tags[$i]))
+			$funcName = $tags[$i];
+			if (method_exists($this, $funcName))
 			{
 				$new_tags[] = "#{$full_tag}#";
-				$new_values[] = $this->$tags[$i]($params);
+				$new_values[] = $this->$funcName($params);
 			}
 			elseif ($tags[$i] == 'help')
 			{
