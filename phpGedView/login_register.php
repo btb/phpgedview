@@ -3,7 +3,7 @@
  * Register as a new User or request new password if it is lost
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -464,13 +464,14 @@ switch ($action) {
 					$message["created"] = $time;
 					$message["method"] = $SUPPORT_METHOD;
 					$message["no_from"] = true;
+					$message['bulkMail'] = false;
 					addMessage($message);
 
 					// switch language to user's settings
 					if ($LANGUAGE != $user_language) loadLanguage($user_language, true);
 					?>
 					<table class="center facts_table">
-						<tr><td class="wrap <?php print $TEXT_DIRECTION; ?>"><?php print str_replace("#user_fullname#", $user_firstname." ".$user_lastname, $pgv_lang["thankyou"]);?><br /><br />
+						<tr><td class="wrap <?php print $TEXT_DIRECTION; ?>"><?php print str_replace("#user_fullname#", $fullName, $pgv_lang["thankyou"]);?><br /><br />
 						<?php
 						if ($REQUIRE_ADMIN_AUTH_REGISTRATION) print str_replace("#user_email#", $user_email, $pgv_lang["pls_note06"]);
 						else print str_replace("#user_email#", $user_email, $pgv_lang["pls_note06a"]);
@@ -584,6 +585,7 @@ switch ($action) {
 				$message["created"] = $time;
 				$message["method"] = $SUPPORT_METHOD;
 				$message["no_from"] = true;
+				$message['bulkMail'] = false;
 				addMessage($message);
 
 				if ($LANGUAGE != $oldLanguage) loadLanguage($oldLanguage, true);		// Reset language
