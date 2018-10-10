@@ -5,7 +5,7 @@
  * -> NEVER manually delete or edit this file <-
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -817,23 +817,53 @@ $language_settings['vietnamese']=array(
 'COLLATION'=>'utf8_unicode_ci'
 );
 
-//-- settings for chinese
+//-- settings for chinese (traditional)
 $language_settings['chinese']=array(
 'pgv_langname'=>'chinese',
 'pgv_lang_use'=>false,
-'pgv_lang_self'=>'繁體中文',
+'pgv_lang_self'=>'繁体中文',
 'lang_short_cut'=>'zh',
 'langcode'=>'zh;zh-cn;zh-hk;zh-mo;zh-sg;zh-tw;',
 'pgv_language'=>'languages/lang.zh.php',
 'confighelpfile'=>'languages/configure_help.zh.php',
 'helptextfile'=>'languages/help_text.zh.php',
-'flagsfile'=>'images/flags/china.gif',
+'flagsfile'=>'images/flags/taiwan.gif',
 'factsfile'=>'languages/facts.zh.php',
 'adminfile'=>'languages/admin.zh.php',
 'editorfile'=>'languages/editor.zh.php',
 'countryfile'=>'languages/countries.zh.php',
 'faqlistfile'=>'languages/faqlist.zh.php',
 'extrafile'=>'languages/extra.zh.php',
+'DATE_FORMAT'=>'Y年 m月 d日',
+'TIME_FORMAT'=>'g:i:sa',
+'WEEK_START'=>'0',
+'TEXT_DIRECTION'=>'ltr',
+'NAME_REVERSE'=>true,
+'ALPHABET_upper'=>'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+'ALPHABET_lower'=>'abcdefghijklmnopqrstuvwxyz',
+'MULTI_LETTER_ALPHABET'=>'',
+'MULTI_LETTER_EQUIV'=>'',
+'DICTIONARY_SORT'=>false,
+'COLLATION'=>'utf8_unicode_ci'
+);
+
+//-- settings for chinese (simplified)
+$language_settings['chinese-cn']=array(
+'pgv_langname'=>'chinese-cn',
+'pgv_lang_use'=>false,
+'pgv_lang_self'=>'简体中文',
+'lang_short_cut'=>'zh-cn',
+'langcode'=>'zh;zh-cn;zh-hk;zh-mo;zh-sg;zh-tw;',
+'pgv_language'=>'languages/lang.zh-cn.php',
+'confighelpfile'=>'languages/configure_help.zh-cn.php',
+'helptextfile'=>'languages/help_text.zh-cn.php',
+'flagsfile'=>'images/flags/china.gif',
+'factsfile'=>'languages/facts.zh-cn.php',
+'adminfile'=>'languages/admin.zh-cn.php',
+'editorfile'=>'languages/editor.zh-cn.php',
+'countryfile'=>'languages/countries.zh-cn.php',
+'faqlistfile'=>'languages/faqlist.zh-cn.php',
+'extrafile'=>'languages/extra.zh-cn.php',
 'DATE_FORMAT'=>'Y年 m月 d日',
 'TIME_FORMAT'=>'g:i:sa',
 'WEEK_START'=>'0',

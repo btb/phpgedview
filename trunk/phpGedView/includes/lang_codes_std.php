@@ -68,7 +68,8 @@ $lng_codes["ca"]    = array("Catalan (Valencian)", "Spain");
 $lng_codes["ch"]    = array("Chamorro", "Guam");
 $lng_codes["ce"]    = array("Chechen", "Russia");
 $lng_codes["ny"]    = array("Chichewa", "Malawi");
-$lng_codes["zh"]    = array("Chinese", "China");
+$lng_codes["zh"]    = array("Chinese (Traditional)", "Taiwan");
+$lng_codes["zh-cn"] = array("Chinese (Simplified)", "China");
 $lng_codes["cv"]    = array("Chuvash", "Russia");
 $lng_codes["kw"]    = array("Cornish", "United Kingdom");
 $lng_codes["co"]    = array("Corsican", "France");
@@ -241,7 +242,7 @@ $lng_codes["zu"]    = array("Zulu", "South Africa");
  */
 
 $lng_synonyms["ar"]	= "ar-ae;ar-bh;ar-dz;ar-eg;ar-iq;ar-jo;ar-kw;ar-lb;ar-ly;ar-ma;ar-om;ar-qa;ar-sa;ar-sy;ar-tn;ar-ye;";
-$lng_synonyms["zh"]	= "zh-cn;zh-hk;zh-mo;zh-sg;zh-tw;";
+$lng_synonyms["zh"]	= "zh-hk;zh-mo;zh-sg;zh-tw;";
 $lng_synonyms["nl"]	= "nl-be;";
 $lng_synonyms["cs"]	= "cz;";
 $lng_synonyms["en"]	= "en-au;en-bz;en-ca;en-gb;en-ie;en-jm;en-nz;en-tt;en-us;en-za;";
