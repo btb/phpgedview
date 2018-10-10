@@ -1,6 +1,6 @@
 <?php
 /**
- * Chinese (Traditional) texts
+ * Chinese (Simplified) texts
  *
  * phpGedView: Genealogy Viewer
  * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.

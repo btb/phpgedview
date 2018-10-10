@@ -9,6 +9,7 @@
 =====================================================================
 
 Version 4.3.1
+ - Added: Support for the Chinese (Simplified) language (canajun2eh and xiaofo)
  - Fixed: Language code field to small on Language Settings page (canajun2eh)
  - Fixed: PHP function srand() used incorrectly in editlang_edit.php and editlang_edit_settings.php (canajun2eh)
  - Fixed: New user's full name not reversed in Thank You message when new user has registered in a "Reverse Name" language (xiaofo)
