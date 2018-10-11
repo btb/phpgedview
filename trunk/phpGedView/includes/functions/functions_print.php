@@ -1770,9 +1770,9 @@ function PrintReady($text, $InHeaders=false, $trim=true) {
 			}
 			$thisLang = whatLanguage($tempText);
 			if (isset($TEXT_DIRECTION_array[$thisLang]) && ($TEXT_DIRECTION_array[$thisLang]=="ltr" || ($TEXT_DIRECTION=="ltr" && $TEXT_DIRECTION_array[$thisLang]=="rtl")) && $thisLang!="russian" && $thisLang!="greek") {
-				$newText .= getRLM() . $thisChar . $tempText . $tempChar . getRLM();
-			} else {
 				$newText .= getLRM() . $thisChar . $tempText . $tempChar . getLRM();
+			} else {
+				$newText .= getRLM() . $thisChar . $tempText . $tempChar . getRLM();
 			}
 		} else {
 			$newText .= $thisChar;

@@ -1,7 +1,7 @@
 <?php
 /**
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2007 to 2008  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2007 to 2018  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -105,20 +105,26 @@ $UTF8_ranges[] = array("russian",	0x000400, 0x00052F);	// Cyrillic
 $UTF8_ranges[] = array("hebrew",	0x000590, 0x0005FF);	// Hebrew
 $UTF8_ranges[] = array("arabic",	0x000600, 0x0006FF);	// Arabic
 $UTF8_ranges[] = array("arabic",	0x000750, 0x0007FF);	// Arabic
-$UTF8_ranges[] = array("thai",	  0x000E00, 0x000E7F);	// Thai
+$UTF8_ranges[] = array("thai",	  	0x000E00, 0x000E7F);	// Thai
+$UTF8_ranges[] = array("chinese",	0x001100, 0x0011FF);	// Chinese
 $UTF8_ranges[] = array("vietnamese", 0x001E00, 0x001EFF);	// Vietnamese (assumption!!!)
 $UTF8_ranges[] = array("greek",		0x001F00, 0x001FFF);	// Greek
 $UTF8_ranges[] = array("chinese",	0x002E80, 0x002FDF);	// Chinese
 $UTF8_ranges[] = array("chinese",	0x003190, 0x00319F);	// Chinese
 $UTF8_ranges[] = array("chinese",	0x0031C0, 0x0031EF);	// Chinese
-$UTF8_ranges[] = array("chinese",	0x003400, 0x004DBF);	// Chinese
-$UTF8_ranges[] = array("chinese",	0x004E00, 0x009FBF);	// Chinese
+$UTF8_ranges[] = array("chinese",	0x003400, 0x004DB5);	// Chinese
+$UTF8_ranges[] = array("chinese",	0x004E00, 0x009FEF);	// Chinese
+$UTF8_ranges[] = array("chinese",	0x00AC00, 0x00D7AF);	// Chinese
 $UTF8_ranges[] = array("chinese",	0x00F900, 0x00FAFF);	// Chinese
 $UTF8_ranges[] = array("other",		0x00FB00, 0x00FB06);	// Latin ligatures
 $UTF8_ranges[] = array("hebrew",	0x00FB1D, 0x00FB4F);	// Hebrew ligatures
 $UTF8_ranges[] = array("arabic",	0x00FB50, 0x00FDFF);	// Arabic
 $UTF8_ranges[] = array("arabic",	0x00FE70, 0x00FEFF);	// Arabic
-$UTF8_ranges[] = array("chinese",	0x020000, 0x02A6DF);	// Chinese
+$UTF8_ranges[] = array("chinese",	0x020000, 0x02A6D6);	// Chinese
+$UTF8_ranges[] = array("chinese",	0x02A700, 0x02B734);	// Chinese
+$UTF8_ranges[] = array("chinese",	0x02B740, 0x02B81D);	// Chinese
+$UTF8_ranges[] = array("chinese",	0x02B820, 0x02CEA1);	// Chinese
+$UTF8_ranges[] = array("chinese",	0x02CEB0, 0x02EBE0);	// Chinese
 $UTF8_ranges[] = array("chinese",	0x02F800, 0x02FA1F);	// Chinese
 
 // Numbers:  These are always rendered in LTR, even when the rest of the text is RTL
