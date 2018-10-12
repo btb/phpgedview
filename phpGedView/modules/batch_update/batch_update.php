@@ -3,7 +3,7 @@
  * Batch Update module for phpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2008  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2008 to 2018  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -98,8 +98,8 @@ class batch_update {
 
 					$html.=
 						'</table><br/><table class="list_table width100"><tr valign="middle"><td class="list_label center width20">'.
-						self::createSubmitButton($pgv_lang['prev'], $this->prev_xref).
-						self::createSubmitButton($pgv_lang['next'], $this->next_xref).
+						self::createSubmitButton($pgv_lang['previous_page'], $this->prev_xref).
+						self::createSubmitButton($pgv_lang['next_page'], $this->next_xref).
 						'</td><td class="optionbox width80"><h1><a href="'.$object->getLinkUrl().'">'.$object->getFullName().'</a>'.
 						'</h1></td>'.
 						'</tr><tr><td valign="top" class="list_label center width20">'.

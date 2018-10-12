@@ -6,7 +6,7 @@
  * routines and sorting functions.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -723,8 +723,8 @@ function get_gedcom_value($tag, $level, $gedrec, $truncate='', $convert=true) {
 	$tags = explode(':', $tag);
 	$origlevel = $level;
 	if ($level==0) {
-		$level = 1 + $gedrec{0};	// non-numeric level of incoming record should be treated as zero
-									// (see PHP manual topic "String conversion to numbers")
+		$level = 1 + (int)$gedrec{0};	// non-numeric level of incoming record should be treated as zero
+										// (see PHP manual topic "String conversion to numbers")
 	}
 
 	$subrec = $gedrec;
