@@ -375,7 +375,7 @@ session_start();
 
 // check whether it is necessary to regenerate a new session, destroying the current one
 // added SOAP_CONNECTED for SOAP session persistence (otherwise only one request per authentication is allowed)
-if (!$SEARCH_SPIDER && !isset($_SESSION['initiated']) && !isset($_SESSION['SOAP_CONNECTED'])) {
+if (empty($SEARCH_SPIDER) && !isset($_SESSION['initiated']) && !isset($_SESSION['SOAP_CONNECTED'])) {
 	// A new session, so prevent session fixation attacks by choosing a new PHPSESSID.
 	session_regenerate_id(true);
 	$_SESSION['initiated']=true;
@@ -691,7 +691,7 @@ define('PGV_THEME_DIR', $THEME_DIR);
 require PGV_THEME_DIR.'theme.php';
 
 // Page hit counter - load after theme, as we need theme formatting
-if ($SHOW_COUNTER && !$SEARCH_SPIDER) {
+if ($SHOW_COUNTER && empty($SEARCH_SPIDER)) {
 	require PGV_ROOT.'includes/hitcount.php';
 } else {
 	$hitCount='';
@@ -725,7 +725,7 @@ if (substr(PHP_SAPI, 0, 3) == 'cgi') {  // cgi-mode, should only be writable by 
 }
 
 // Lightbox needs custom integration in many places.  Only check for the module once.
-define('PGV_USE_LIGHTBOX', !$SEARCH_SPIDER && $MULTI_MEDIA && file_exists(PGV_ROOT.'modules/lightbox.php') && is_dir(PGV_ROOT.'modules/lightbox'));
+define('PGV_USE_LIGHTBOX', empty($SEARCH_SPIDER) && $MULTI_MEDIA && file_exists(PGV_ROOT.'modules/lightbox.php') && is_dir(PGV_ROOT.'modules/lightbox'));
 
 // Definitions to enable site activity tracking
 if ((isset($USE_GOOGLE_ANALYTICS) && $USE_GOOGLE_ANALYTICS) && !empty($PGV_GOOGLE_ANALYTICS)) {
