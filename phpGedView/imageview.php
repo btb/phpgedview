@@ -3,7 +3,7 @@
  * Popup window for viewing images
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -176,7 +176,7 @@ if (!$isExternal && !media_exists($filename) ) {
 	print "<center><font size=\"6\"><a href=\"javascript:;\" onclick=\"zoomin(); return false;\">+</a> <a href=\"javascript:;\" onclick=\"zoomout();\">&ndash;</a> </font>";
 	print "<input type=\"text\" size=\"2\" name=\"zoomval\" id=\"zoomval\" value=\"100\" />%\n";
 	print "<input type=\"button\" value=\"".$pgv_lang["reset"]."\" onclick=\"resetimage(); return false;\" />\n";
-	print "<br /><a href=\"javascript:;\" onclick=\"window.opener.location='mediaviewer.php?filename=".encrypt(str_replace($MEDIA_DIRECTORY, "", $filename))."'; window.close();\">".$pgv_lang['view_img_details']."</a>\n";
+	print "<br /><a href=\"javascript:;\" onclick=\"window.opener.location.href='mediaviewer.php?filename=".encrypt(str_replace($MEDIA_DIRECTORY, "", $filename))."'; window.close();\">".$pgv_lang['view_img_details']."</a>\n";
 	print "</center>\n";
 	$imgsize = findImageSize($filename);
 	$imgwidth = $imgsize[0]+2;

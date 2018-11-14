@@ -3,7 +3,7 @@
 * List branches by surname
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2011  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -159,10 +159,14 @@ function print_fams($person, $famid=null) {
 				$sosa2 = "<a dir=$TEXT_DIRECTION target=\"_blank\" class=\"details1 {$spouse->getBoxStyle()}\" title=\"Sosa\" href=\"relationship.php?pid2=".PGV_USER_ROOT_ID."&pid1=".$spouse->getXref()."\">&nbsp;{$sosa2}&nbsp;</a>".sosa_gen($sosa2);
 			}
 			if ($family->getMarriageYear()) {
-				$txt .= "&nbsp;<span dir=$TEXT_DIRECTION class='details1' title=\"".strip_tags($family->getMarriageDate()->Display())."\">".PGV_ICON_RINGS.$family->getMarriageYear()."</span>&nbsp;";
+				$txt .= "&nbsp;&nbsp;&nbsp;<span dir=$TEXT_DIRECTION class='details1' title=\"".strip_tags($family->getMarriageDate()->Display())."\">";
+				$txt .= "<a target='_blank' title='".$family->getXref()."' href='{$family->getLinkUrl()}'>".PGV_ICON_RINGS.$family->getMarriageYear()."</a>";
+				$txt .= "</span>&nbsp;&nbsp;";
 			}
 			else if ($family->getMarriage()) {
-				$txt .= "&nbsp;<span dir=$TEXT_DIRECTION class='details1' title=\"".$pgv_lang["yes"]."\">".PGV_ICON_RINGS."</span>&nbsp;";
+				$txt .= "&nbsp;&nbsp;&nbsp;<span dir=$TEXT_DIRECTION class='details1' title=\"".$pgv_lang["yes"]."\">";
+				$txt .= "<a target='_blank' title='".$family->getXref()."' href='{$family->getLinkUrl()}'>".PGV_ICON_RINGS."</a>";
+				$txt .= "</span>&nbsp;&nbsp;";
 			}
 			$spouse_name = $spouse->getListName();
 			foreach ($spouse->getAllNames() as $n=>$name) {
@@ -178,8 +182,7 @@ function print_fams($person, $famid=null) {
 			}
 			list($surn2, $givn2) = explode(", ", $spouse_name.", x");
 			$txt .= $spouse->getSexImage().
-				"<a target=\"_blank\" class=\"{$class}\" title=\"".$family->getXref()."\" href=\"{$family->getLinkUrl()}\">".PrintReady($givn2)."</a> ".
-				"<a class=\"{$class}\" title=\"{$surn2}\" href=\"javascript:document.surnlist.surn.value='{$surn2}';document.surnlist.submit();\">".PrintReady($surn2)."</a> ".
+				"<a class='{$class}' title='{$surn2}' href=\"javascript:document.surnlist.surn.value='{$surn2}';document.surnlist.submit();\">".PrintReady($spouse->getFullName())."</a> ".
 				$spouse->getBirthDeathYears()." {$sosa2}";
 		}
 		echo $txt;
