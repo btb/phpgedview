@@ -2013,7 +2013,7 @@ function get_relationship($pid1, $pid2, $followspouse=true, $maxlength=0, $ignor
 			for ($i=0; $i<$ct; $i++) {
 				$child = $match[$i][1];
 				if (!empty($child)) {
-					if (isset($NODE_CACHE["$pid1-$child"])) {
+					if (isset($NODE_CACHE["$pid1-$child"]) && $NODE_CACHE["$pid1-$child"]!='NOT FOUND') {
 						if (($maxlength==0)||(count($NODE_CACHE["$pid1-$child"]["path"])+1<=$maxlength)) {
 							$node1 = $NODE_CACHE["$pid1-$child"];
 							if ($node1!="NOT FOUND") {
