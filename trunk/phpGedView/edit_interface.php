@@ -3,7 +3,7 @@
 * PopUp Window to provide editing features.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -181,7 +181,7 @@ echo PGV_JS_START;
 
 	function edit_close(newurl) {
 		if (newurl)
-			window.opener.location=newurl;
+			window.opener.location.href = newurl;
 		else
 			if (window.opener.showchanges)
 				window.opener.showchanges();

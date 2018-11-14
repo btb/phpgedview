@@ -9,6 +9,8 @@
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Spouse name in Branches list does not obey "surname first" configuration option (canajun2eh)
+ - Fixed: Review Changes "View Change Diff" link does not work in some Safari and Chrome browsers (xiaofo)
  - Fixed: Review Changes shows original GEDCOM record instead of changed record (canajun2eh)
  - Deleted: ajax_block.php no longer used (canajun2eh)
  - Fixed: Undefined variable $SEARCH_SPIDER in session.php (canajun2eh)
