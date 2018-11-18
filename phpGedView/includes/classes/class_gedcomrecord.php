@@ -3,7 +3,7 @@
 * Base class for all gedcom records
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2017 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2018 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -650,12 +650,19 @@ class GedcomRecord {
 		} else {
 			$href=encode_url($this->getLinkUrl());
 		}
-		$html='<a href="'.$href.'" class="list_item"><b>'.PrintReady($name).'</b>';
+		$html  = '<'.$tag.' class="'.$dir.'" dir="'.$dir.'">';
+		$html .= '<a href="'.$href.'" class="list_item"><b>'.PrintReady($name).'</b>';
 		if ($SHOW_ID_NUMBERS) {
 			$html.=' '.PGV_LPARENS.$this->getXref().PGV_RPARENS;
 		}
-		$html.=$this->format_list_details();
-		$html='<'.$tag.' class="'.$dir.'" dir="'.$dir.'">'.$html.'</a></'.$tag.'>';
+		$html .= '</a>';
+		if ($tag=='li' && method_exists($this,'getPrimaryParentsNames')) {
+			$html .= PrintReady($this->getPrimaryParentsNames('indent'));
+			$html .= substr($this->format_list_details(),6);	// drop the '<br />' at the start of the list details
+		} else {
+			$html .= $this->format_list_details();
+		}
+		$html .= '</'.$tag.'>';
 		return $html;
 	}
 

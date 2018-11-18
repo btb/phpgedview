@@ -9,6 +9,7 @@
 =====================================================================
 
 Version 4.3.1
+ - Changed: Show parents' names in search results list of individuals (canajun2eh)
  - Fixed: Illegal string offset 'path' in functions.php (canajun2eh)
  - Fixed: Spouse name in Branches list does not obey "surname first" configuration option (canajun2eh)
  - Fixed: Review Changes "View Change Diff" link does not work in some Safari and Chrome browsers (xiaofo)
