@@ -1,9 +1,9 @@
 <?php
 /**
- * Dutch texts
+ * Dutch language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,6 +30,9 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;
 }
+$pgv_lang["label_timedban_servers"]	= "Getimede toegangsweigering";
+$pgv_lang["enter_banexpiry"]		= "Voer de verloopdatum en tijd voor toegangsweigering als volgt in:<br />2012.12.31@23:59";
+
 
 $pgv_lang["module_admin"]			= "Module Beheer";
 $pgv_lang["mod_admin_installed"]	= "Geïnstalleerde Modules";
@@ -311,11 +314,11 @@ $pgv_lang["invalid_dates"]			= "Ongeldig datumformaat gevonden. Bij het opschone
 $pgv_lang["BOM_detected"]			= "Een Byte Order Mark (BOM) is gedetecteerd aan het begin van het bestand.  Deze speciale zal worden verwijderd tijdens cleanup.";
 $pgv_lang["invalid_header"]			= "GEDCOM-regels aanwezig voor de kopregel (0 HEAD). Deze worden bij het opschonen verwijderd.";
 $pgv_lang["label_added_servers"]	= "Toegevoegde gekoppelde servers";
-$pgv_lang["label_banned_servers"]   = "Geblokkeerde sites";
+$pgv_lang["label_banned_servers"]   = "Toegangsweigering";
 $pgv_lang["label_families"]         = "Gezinnen";
 $pgv_lang["label_gedcom_id2"]       = "GEDCOM-ID:";
 $pgv_lang["label_individuals"]      	= "Personen";
-$pgv_lang["label_manual_search_engines"]   = "Handmatig zoekmachines markeren op basis van IP adres";
+$pgv_lang["label_manual_search_engines"]   = "Handmatig zoekmachines markeren";
 $pgv_lang["label_new_server"]       	= "Site toevoegen";
 $pgv_lang["label_password_id"]		= "Wachtwoord";
 $pgv_lang["label_server_info"]      = "Alle personen gekoppeld via deze site:";

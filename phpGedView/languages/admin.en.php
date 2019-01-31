@@ -1,9 +1,9 @@
 <?php
 /**
- * English texts
+ * English language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;
 }
-$pgv_lang["label_timedban_servers"]	= "Timed Access Denial by IP";
+$pgv_lang["label_timedban_servers"]	= "Timed Access Denial";
 $pgv_lang["enter_banexpiry"]		= "Enter expiry date & time of access denial like this:<br />2012.12.31@23:59";
 
 $pgv_lang["analytics_config"]		= "Web Analytics";
@@ -314,7 +314,7 @@ $pgv_lang["gedcom_not_imported"]				= "This GEDCOM has not yet been imported.";
 $pgv_lang["ibase"]								= "InterBase";
 $pgv_lang["ifx"]								= "Informix";
 $pgv_lang["img_admin_settings"]					= "Edit Image Manipulation Configuration";
-$pgv_lang["autoContinue"]						= "Automatically press «Continue» button";
+$pgv_lang["autoContinue"]						= "Automatically press Â«ContinueÂ» button";
 $pgv_lang["import_complete"]					= "Import complete";
 $pgv_lang["import_options"]						= "Import Options";
 $pgv_lang["import_progress"]					= "Import Progress...";
@@ -326,11 +326,11 @@ $pgv_lang["invalid_dates"]						= "Detected invalid date formats, on cleanup the
 $pgv_lang["BOM_detected"]						= "A Byte Order Mark (BOM) was detected at the beginning of the file. On cleanup, this special code will be removed.";
 $pgv_lang["invalid_header"]						= "Detected lines before the GEDCOM header <b>0&nbsp;HEAD</b>.  On cleanup, these lines will be removed.";
 $pgv_lang["label_added_servers"]				= "Remote Servers";
-$pgv_lang["label_banned_servers"]				= "Access Denial by IP";
+$pgv_lang["label_banned_servers"]				= "Access Denial";
 $pgv_lang["label_families"]						= "Families";
 $pgv_lang["label_gedcom_id2"]					= "Database ID:";
 $pgv_lang["label_individuals"]					= "Individuals";
-$pgv_lang["label_manual_search_engines"]		= "Manually mark Search Engines by IP";
+$pgv_lang["label_manual_search_engines"]		= "Manually mark Search Engines";
 $pgv_lang["label_new_server"]					= "Add new site";
 $pgv_lang["label_password_id"]					= "Password";
 $pgv_lang["label_server_info"]					= "All people and families who are remotely linked through the site: ";

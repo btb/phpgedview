@@ -1,9 +1,9 @@
 <?php
 /**
- * French Language file for PhpGedView.
+ * French language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +27,9 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;
 }
+$pgv_lang["label_timedban_servers"]		= "Refus d'accès chronométré";
+$pgv_lang["enter_banexpiry"]			= "Entrez la date et l'heure d'expiration du refus d'accès comme suit :<br />2012.12.31@23:59";
+$pgv_lang["enter_comment"]				= "Vous pouvez entrer un commentaire ici.";
 $pgv_lang["upload_a_gedcom"]            = "Charger un fichier GEDCOM";
 $pgv_lang["start_entering"]             = "Commencer la saisie des données";
 $pgv_lang["add_gedcom_from_path"]       = "Ajouter un GEDCOM à partir d'un emplacement de fichier";
@@ -254,11 +257,11 @@ $pgv_lang["invalid_dates"]              = "Les dates de mauvais format seront tr
 $pgv_lang["BOM_detected"]               = "Marqueur Byte Order Mark (BOM) trouvé en début de fichier. Il sera supprimé.";
 $pgv_lang["invalid_header"]             = "Lignes trouvées avant le premier marqueur GEDCOM (0 HEAD). Au chargement, elles seront supprimées.";
 $pgv_lang["label_added_servers"]        = "Serveurs distants ajoutés";
-$pgv_lang["label_banned_servers"]       = "Liste noire";
+$pgv_lang["label_banned_servers"]       = "Refus d'accès";
 $pgv_lang["label_families"]             = "Familles";
 $pgv_lang["label_gedcom_id2"]           = "ID base de données";
 $pgv_lang["label_individuals"]          = "Individus";
-$pgv_lang["label_manual_search_engines"]= "Marquez manuellement les moteurs de recherche avec leur adresse IP";
+$pgv_lang["label_manual_search_engines"]= "Marquez manuellement les moteurs de recherche";
 $pgv_lang["label_new_server"]           = "Ajouter un site";
 $pgv_lang["label_password_id"]          = "Mot de passe";
 $pgv_lang["label_server_info"]          = "Toutes les personnes qui sont liées à distance à votre site :";

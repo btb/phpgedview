@@ -1,9 +1,9 @@
 <?php
 /**
- * German texts
+ * German language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	exit;
 }
 
-$pgv_lang["label_timedban_servers"]	= "IP Adressen bis zu bestimmten Zeiten sperren";
+$pgv_lang["label_timedban_servers"]	= "Zugang bis zu bestimmten Zeiten sperren";
 $pgv_lang["enter_banexpiry"]		= "Beispiel des Ablaufdatums und Zeit:<br />2012.12.31@23:59";
 
 $pgv_lang["analytics_config"]		= "Webanalysen";
@@ -330,11 +330,11 @@ $pgv_lang["invalid_dates"]			= "Ungültige Datums Formate entdeckt. Diese werden
 $pgv_lang["BOM_detected"]			= "Byte Order Mark (BOM-Zeichen) am Anfang der Datei entdeckt.  Bei der Korrektur wird das besondere Zeichen entfernt.";
 $pgv_lang["invalid_header"]			= "In der Datei wurden Zeilen vor dem GEDCOM-Header <b>0&nbsp;HEAD</b> entdeckt. Beim Korrigieren werden diese Zeilen gelöscht.";
 $pgv_lang["label_added_servers"]	= "Fremde Server";
-$pgv_lang["label_banned_servers"]	= "IP Adressen sperren";
+$pgv_lang["label_banned_servers"]	= "Zugang sperren";
 $pgv_lang["label_families"]			= "Familien";
 $pgv_lang["label_gedcom_id2"]		= "Datenbank ID:";
 $pgv_lang["label_individuals"]		= "Personen";
-$pgv_lang["label_manual_search_engines"]	= "Manuelles Markieren der IP für Suchmaschinen";
+$pgv_lang["label_manual_search_engines"]	= "Suchmaschinen manuell markieren";
 $pgv_lang["label_new_server"]		= "Neuen Server hinzufügen";
 $pgv_lang["label_password_id"]		= "Kennwort";
 $pgv_lang["label_server_info"]		= "Alle Personen und Familien, die durch diesen Server verbunden sind: ";

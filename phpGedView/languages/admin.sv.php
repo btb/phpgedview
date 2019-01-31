@@ -1,9 +1,9 @@
 <?php
 /**
- * English texts
+ * Swedish language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,6 +31,9 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	exit;
 }
 
+$pgv_lang["label_timedban_servers"]	= "Tidsbegränsad åtkomstavslag";
+$pgv_lang["enter_banexpiry"]		= "Ange utgångsdatum och tidpunkt för tidsbegränsad åtkomstavslag så här:<br />2012.12.31@23:59";
+$pgv_lang["enter_comment"]	= "Skriva in en kommentar här.";
 $pgv_lang["user"]					= "Inloggade användare";
 $pgv_lang["thumbnail_deleted"]		= "Miniatyrbild raderades.";
 $pgv_lang["thumbnail_not_deleted"]	= "Miniatyrbild kunde inte raderas.";
@@ -175,15 +178,14 @@ $pgv_lang["invalid_dates"]			= "Upptäckte ogiltigt datumformat, vid upprensning
 $pgv_lang["BOM_detected"] 						= "Ett Byte Order Mark(BOM) hittades i början av filen. Denna speciella kod kommer att tas bort vid rensning.";
 $pgv_lang["invalid_header"]		= "Upptäckt rader före GEDCOM-headern (0 HEAD). Dessa rader kommer att raderas vid städning.";
 $pgv_lang["label_added_servers"]	= "Lagt till server";
-$pgv_lang["label_banned_servers"]   = "Förbjud sajter via IP";
+$pgv_lang["label_banned_servers"]   = "Förbjud sajter";
 $pgv_lang["label_families"]         = "Familjer";
 $pgv_lang["label_gedcom_id2"]       = "DatabasID:";
 $pgv_lang["label_individuals"]      = "Personer";
-$pgv_lang["label_manual_search_engines"]   = "Markera manuellt Sökmotorspindlar via IP-adress";
+$pgv_lang["label_manual_search_engines"]   = "Markera manuellt Sökmotor";
 $pgv_lang["label_new_server"]       = "Lägg till ny sajt";
 $pgv_lang["label_password_id"]		= "Lösenord";
 $pgv_lang["label_remove_ip"]		= "Förbjud IPAdress(t.ex. 198.128.*.*): ";
-$pgv_lang["label_remove_search"]	= "Markera IP-Adress som en sökmotorspindel: ";
 $pgv_lang["label_server_info"]      = "Alla personer som är länkade från andra sajter:";
 $pgv_lang["label_server_url"]       = "Sajt URL/IP";
 $pgv_lang["label_username_id"]		= "Användarnamn";

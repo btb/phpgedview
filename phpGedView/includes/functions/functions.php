@@ -6,7 +6,7 @@
  * routines and sorting functions.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -3628,8 +3628,7 @@ function loadLanguage($desiredLanguage="english", $forceLoad=false) {
  *
  *	There are two sets of tables, one for the Upper Case version of a UTF8 character
  *	and the other for the lower-case version.  The two tables are not necessarily
- *	identical.  For example, the Turkish dotless i doesn't exist in the Upper case
- *	table.
+ *	identical.
  *
  *	Within each set, there are three lists which MUST have a one-to-one relationship.
  *	The "DiacritStrip" list gives the base letter of the corresponding "DiacritWhole"
@@ -3941,6 +3940,78 @@ function pathinfo_utf($path) {
 	}
 
 	return array('dirname'=>$dirname, 'basename'=>$basename, 'extension'=>$extension, 'filename'=>$filename);
+}
+
+/**
+ * This function will ensure that the input IPv6 address is formatted consistently.
+ *
+ * This is important when, for various reasons, the session_spider.php script has to compare remote
+ * IPv6 addresses supplied by the server with user-supplied addresses retrieved from the ip_address
+ * database table.
+ *
+ * The manageservers.php script allows the user to populate the ip_address database table.  This
+ * function is used to ensure consistent formatting of those IPv6 addresses.
+ */
+function normalizeIPv6($inputIP) {
+
+	if (strstr($inputIP, ':') === false) {
+		return $inputIP;		// Don't do anything if this isn't an IPv6 address
+	}
+
+	$inputIP = strtolower($inputIP);		// Make sure all hexadecimal digits are lower-case
+	if (strstr($inputIP, '::') !== false) {
+		// Replace first "::" with a series of zeros
+		$segments = explode('::', $inputIP, 2);
+		$leftHalf = explode(':', $segments[0]);
+		$rightHalf = explode(':', $segments[1]);
+		$middleSize = 8 - count($leftHalf) - count($rightHalf);
+		if ($middleSize > 0) {
+			$leftHalf = array_pad($leftHalf, count($leftHalf)+$middleSize, '0');
+		}
+		$segments = array_merge($leftHalf, $rightHalf);
+	} else {
+		$segments = explode(':', $inputIP);
+	}
+
+	if (count($segments) > 8) {
+		$segments = array_slice($segments, 0, 8);		// IPv6 addresses can only have 8 hexadecimal segments
+	}
+
+	$fixedSegments = array();
+	foreach ($segments as $segment) {
+		// Eliminate up to 3 leading zeros in each 4-digit segment of the address
+		$segment = substr('0000'.$segment, -4);			// Pad each segment with leading zeros to a length of 4
+		if (substr($segment, 0, 3) == '000') {
+			$segment = substr($segment, -1);			// 3 leading zeros: pick off the last digit
+		} else if (substr($segment, 0, 2) == '00') {
+			$segment = substr($segment, -2);			// 2 leading zeros: pick off the last 2 digits
+		} else if (substr($segment, 0, 1) == '0') {
+			$segment = substr($segment, -3);			// 1 leading zero: pick off the last 3 digits
+		}
+		$fixedSegments[] = $segment;
+	}
+
+	$IPv6Address = ':' . implode(':', $fixedSegments);		// Glue all the pieces back together
+	$startConsecutiveZeros = strpos($IPv6Address, ':0:0');	// Look for an opportunity to compress consecutive zeros
+	if ($startConsecutiveZeros === false) {
+		return substr($IPv6Address, 1);
+	}
+
+	// Compress consecutive zeros
+	// Beginning at the starting ':0' identified above, look for the first field that isn't ':0'
+	$endConsecutiveZeros = $startConsecutiveZeros;
+	while (true) {
+		$endConsecutiveZeros += 2;		// Advance over the first ':0' of the series
+		if (substr($IPv6Address, $endConsecutiveZeros, 2) != ':0') break;
+	}
+	if ($startConsecutiveZeros == 0) {
+		$compressedIPv6Address = ':';
+	} else {
+		$compressedIPv6Address = substr($IPv6Address, 1, $startConsecutiveZeros);
+	}
+	$compressedIPv6Address .= substr($IPv6Address, $endConsecutiveZeros);
+
+	return $compressedIPv6Address;
 }
 
 // optional extra file

@@ -1,9 +1,9 @@
 <?php
 /**
- * Catalan texts
+ * Catalan language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,6 +30,9 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;
 }
+
+$pgv_lang["label_timedban_servers"]	= "Denegació d'accés temporitzat";
+$pgv_lang["enter_banexpiry"]		= "Introduïu la data i l'hora de caducitat de denegació d'accés com aquesta:<br />2012.12.31@23:59";
 
 $pgv_lang["sanity_err0"]			= "Errors:";
 $pgv_lang["sanity_err1"]			= "Us cal disposar de la versió de PHP #PGV_REQUIRED_PHP_VERSION#  o superior.";
@@ -188,11 +191,11 @@ $pgv_lang["invalid_dates"]			= "Detectats formats de data incorrectes, netejant-
 $pgv_lang["BOM_detected"] 						= "S'ha detectat una Marca d'Ordre de Bytes (en anglès BOM) al començament del fitxer. Netejant-lo aquest caràcter especial s'eliminarà";
 $pgv_lang["invalid_header"] 		= "Detectades línees abans de la capçalera del GEDCOM <b>0&nbsp;HEAD</b>. Netejant-les s'eliminaran.";
 $pgv_lang["label_added_servers"]	= "Servidors remots";
-$pgv_lang["label_banned_servers"]  	= "Rebutgeu llocs per llur IP";
+$pgv_lang["label_banned_servers"]  	= "Rebutgeu llocs";
 $pgv_lang["label_families"]         = "Famílies";
 $pgv_lang["label_gedcom_id2"]       = "ID de la Base de Dades:";
 $pgv_lang["label_individuals"]      = "Persones";
-$pgv_lang["label_manual_search_engines"]	= "Entreu manualment Motors de Recerca pel llur IP";
+$pgv_lang["label_manual_search_engines"]	= "Entreu manualment Motors de Recerca";
 $pgv_lang["label_new_server"]     	= "Habiliteu un nou servidor";
 $pgv_lang["label_password_id"]		= "Contrasenya";
 $pgv_lang["label_server_info"]     	= "Totes les persones i famílies estan enllaçades remotament mitjançant el lloc:";

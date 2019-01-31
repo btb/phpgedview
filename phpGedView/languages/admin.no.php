@@ -1,9 +1,9 @@
 <?php
 /**
- * Norwegian texts
+ * Norwegian language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,6 +31,9 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;
 }
+$pgv_lang["label_timedban_servers"]	= "Tidsbestemt nektelse av tilgang";
+$pgv_lang["enter_banexpiry"]		= "Angi utløpsdato og tidspunkt for nektelse av tilgang som dette:<br />2012.12.31@23:59";
+$pgv_lang["enter_comment"]			= "Du kan skrive inn en kommentar her.";
 
 $pgv_lang["upload_a_gedcom"] 		= "Last opp en GEDCOM-fil";
 $pgv_lang["start_entering"] 		= "Begynn å legge inn data";
@@ -265,11 +268,11 @@ $pgv_lang["invalid_dates"]			= "Oppdaget ugyldig dato-format. Ved rydding vil di
 $pgv_lang["BOM_detected"] 						= "En Byte Order Mark (BOM) ble oppdaget ved begynnelsen av filen. Ved cleanup, vil denne spesialkoden bli fjernet.";
 $pgv_lang["invalid_header"]			= "Oppdaget at det er linjer før startlinjen (0 HEAD) i slektsfilen.  Under oppryddingen vil disse linjene bli fjernet.";
 $pgv_lang["label_added_servers"]	= "Eksterne nettsteder som er lagt til";
-$pgv_lang["label_banned_servers"]   = "Bannlys nettsteder ved IP";
+$pgv_lang["label_banned_servers"]   = "Bannlys nettsteder";
 $pgv_lang["label_families"]         = "Familier";
 $pgv_lang["label_gedcom_id2"]       = "GEDCOM-ID:";
 $pgv_lang["label_individuals"]      = "Personer";
-$pgv_lang["label_manual_search_engines"]   = "Merk søkemaskiner manuelt ved IP";
+$pgv_lang["label_manual_search_engines"]   = "Merk søkemaskiner";
 $pgv_lang["label_new_server"]       = "Legg til nytt nettsted";
 $pgv_lang["label_password_id"]		= "Passord";
 $pgv_lang["label_server_info"]      = "Alle personer som har en kobling til dette nettstedet:";

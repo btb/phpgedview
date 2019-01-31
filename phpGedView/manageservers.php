@@ -5,7 +5,7 @@
 *  Allow a user the ability to manage servers i.e. allowing, banning, deleting
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2012  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -90,19 +90,43 @@ if (!empty($deleteServer)) { // A "remove remote server" button was pushed
 if (empty($action)) $action = 'showForm';
 
 /*
-* Validate input string to be an IP address
-*/
-function validIP($address) {
-	if (!preg_match('/^\d{1,3}\.(\d{1,3}|\*)\.(\d{1,3}|\*)\.(\d{1,3}|\*)$/', $address)) return false;
-	$pieces = explode('.', $address);
-	foreach ($pieces as $number) {
-		if ($number!="*" && $number>255) return false;
+ * Validate input string to be an IP address.
+ */
+function validateIP($address) {
+	$address = str_replace(' ', '', $address);		// Get rid of embedded blanks
+	if (strpos($address, ':') === false) {
+		// We're dealing with an IPv4 address
+		$address .= '.*.*.*';		// Add missing wild segments (if any)
+		$address = str_replace('..', '.*.', $address);
+		$segments = explode('.', $address);
+		$segments = array_slice($segments, 0, 4);	// IPv4 addresses have only 4 segments
+		foreach ($segments as $segment) {
+			if ($segment != '*') {
+				if (!preg_match('~^\d{1,3}$~', $segment)) return false;		// Each IPv4 address segment must be 1, 2, or 3 digits
+				if (intval($segment) > 255) return false;					//   and can't be greater than 255
+			}
+		}
+		$address = implode('.', $segments);			// Glue everything back together
+		if ($address == '*.*.*.*') return false;	// "Match all addresses" is not allowed
+		return $address;
+	} else {
+		// We're dealing with an IPv6 address
+		$address = normalizeIPv6($address);					// Validate the IPv6 address
+		if ($address == '*:*:*:*:*:*:*:*') return false;	// "Match all addresses" is not allowed
+		$segments = explode(':', $address);
+		foreach ($segments as $segment) {					// Validate each segment to be a hexadecimal number
+			if (($segment == '') || ($segment == '*')) continue;
+			if (!ctype_xdigit($segment)) return false;		// Not a valid hex number
+		}
+		return $address;
 	}
-	return true;
 }
 
+$prevAction = $action;
 if ($action=='addBanned' || $action=='addTimedBan' || $action=='addSearch' || $action=='deleteBanned' || $action=='deleteTimedBan' || $action=='deleteSearch') {
-	if (validIP($address)) {
+	$prevAction = $action;
+	$address = validateIP($address);
+	if ($address !== false) {
 		// Even if we are adding a new record, we must delete the existing one first.
 		PGV_DB::prepare(
 			"DELETE FROM {$TBLPREFIX}ip_address WHERE ip_address=?"
@@ -259,7 +283,7 @@ function showSite(siteID) {
 				echo $pgv_lang["remove"];
 			}
 			echo '</button>';
-		echo '</td><td><span dir="ltr"><input type="text" name="address', ++$index, '" size="16" value="', $ip_address, '" readonly /></span></td>';
+		echo '</td><td><span dir="ltr"><input type="text" name="address', ++$index, '" size="40" value="', $ip_address, '" readonly /></span></td>';
 		echo '<td><input type="text" name="comment', ++$index, '" size="60" value="', $ip_comment, '" readonly /></td></tr>';
 	}
 	echo '<tr><td valign="top"><input name="action" type="hidden" value="addSearch"/>';
@@ -268,7 +292,7 @@ function showSite(siteID) {
 	} else {
 		echo '<input type="submit" value="', $pgv_lang['add'], '" />';
 	}
-	echo '</td><td valign="top"><span dir="ltr"><input type="text" id="txtAddIp" name="address" size="16"  value="', empty($errorSearch) ? '':$address, '" /></span></td>';
+	echo '</td><td valign="top"><span dir="ltr"><input type="text" id="txtAddIp" name="address" size="40"  value="', empty($errorSearch) ? '':$address, '" /></span></td>';
 	echo '<td><input type="text" id="txtAddComment" name="comment" size="60"  value="" />';
 	echo '<br />', $pgv_lang["enter_comment"], '</td></tr>';
 
@@ -277,6 +301,12 @@ function showSite(siteID) {
 		print $errorSearch;
 		print '</span></td></tr>';
 		$errorSearch = '';
+	}
+	if (!empty($errorBanned) && ($prevAction =='addSearch')) {
+		print '<tr><td colspan="2"><span class="warning">';
+		print $errorBanned;
+		print '</span></td></tr>';
+		$errorBanned = '';
 	}
 	echo '</table></td></tr></table></form></td></tr></table>';
 ?>
@@ -308,7 +338,7 @@ function showSite(siteID) {
 				echo $pgv_lang["remove"];
 			}
 			echo '</button>';
-		echo '</td><td><span dir="ltr"><input type="text" name="address', ++$index, '" size="16" value="', $ip_address, '" readonly /></span></td>';
+		echo '</td><td><span dir="ltr"><input type="text" name="address', ++$index, '" size="40" value="', $ip_address, '" readonly /></span></td>';
 		echo '<td><input type="text" name="comment', ++$index, '" size="60" value="', $ip_comment, '" readonly /></td></tr>';
 	}
 	echo '<tr><td valign="top"><input name="action" type="hidden" value="addBanned"/>';
@@ -317,11 +347,11 @@ function showSite(siteID) {
 	} else {
 		echo '<input type="submit" value="', $pgv_lang['add'], '" />';
 	}
-	echo '</td><td valign="top"><span dir="ltr"><input type="text" id="txtAddIp" name="address" size="16"  value="', empty($errorBanned) ? '':$address, '" /></span></td>';
+	echo '</td><td valign="top"><span dir="ltr"><input type="text" id="txtAddIp" name="address" size="40"  value="', empty($errorBanned) ? '':$address, '" /></span></td>';
 	echo '<td><input type="text" id="txtAddComment" name="comment" size="60"  value="" />';
 	echo '<br />', $pgv_lang["enter_comment"], '</td></tr>';
 
-	if (!empty($errorBanned)) {
+	if (!empty($errorBanned) && ($prevAction == 'addBanned')) {
 		print '<tr><td colspan="2"><span class="warning">';
 		print $errorBanned;
 		print '</span></td></tr>';
@@ -357,7 +387,7 @@ function showSite(siteID) {
 				echo $pgv_lang["remove"];
 			}
 			echo '</button>';
-		echo '</td><td><span dir="ltr"><input type="text" name="address', ++$index, '" size="16" value="', $ip_address, '" readonly /></span></td>';
+		echo '</td><td><span dir="ltr"><input type="text" name="address', ++$index, '" size="40" value="', $ip_address, '" readonly /></span></td>';
 		echo '<td><input type="text" name="comment', ++$index, '" size="60" value="', $ip_comment, '" readonly /></td></tr>';
 	}
 	echo '<tr><td valign="top"><input name="action" type="hidden" value="addTimedBan"/>';
@@ -366,11 +396,11 @@ function showSite(siteID) {
 	} else {
 		echo '<input type="submit" value="', $pgv_lang['add'], '" />';
 	}
-	echo '</td><td valign="top"><span dir="ltr"><input type="text" id="txtAddIp" name="address" size="16"  value="', empty($errorBanned) ? '':$address, '" /></span></td>';
+	echo '</td><td valign="top"><span dir="ltr"><input type="text" id="txtAddIp" name="address" size="40"  value="', empty($errorBanned) ? '':$address, '" /></span></td>';
 	echo '<td><input type="text" id="txtAddComment" name="comment" size="60"  value="" />';
 	echo '<br />', $pgv_lang["enter_banexpiry"], '</td></tr>';
 
-	if (!empty($errorBanned)) {
+	if (!empty($errorBanned) && ($prevAction == 'addTimedBan')) {
 		print '<tr><td colspan="2"><span class="warning">';
 		print $errorBanned;
 		print '</span></td></tr>';
@@ -510,7 +540,7 @@ if (empty($errorServer)) {
 		</td>
 		<td class="facts_value">
 			<input type="text" size="66" name="serverURL" value="<?php echo PrintReady($serverURL);?>" />
-			<br /><?php echo $pgv_lang["example"];?>&nbsp;&nbsp;http://www.remotesite.com/phpGedView/genservice.php?wsdl
+			<br /><?php echo $pgv_lang["example"];?>&nbsp;&nbsp;https://www.remotesite.com/phpGedView/genservice.php?wsdl
 		</td>
 		</tr>
 		<tr>

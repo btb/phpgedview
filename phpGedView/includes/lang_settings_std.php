@@ -5,7 +5,7 @@
  * -> NEVER manually delete or edit this file <-
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -179,7 +179,7 @@ $language_settings['german']=array(
 'WEEK_START'=>'1',
 'TEXT_DIRECTION'=>'ltr',
 'NAME_REVERSE'=>false,
-'ALPHABET_upper'=>'AÄBCDEFGHIJKLMNOÖPQRSßTUÜVWXYZ',
+'ALPHABET_upper'=>'AÄBCDEFGHIJKLMNOÖPQRSẞTUÜVWXYZ',
 'ALPHABET_lower'=>'aäbcdefghijklmnoöpqrsßtuüvwxyz',
 'MULTI_LETTER_ALPHABET'=>'',
 'MULTI_LETTER_EQUIV'=>'',
@@ -264,36 +264,6 @@ $language_settings['spanish']=array(
 'countryfile'=>'languages/countries.es.php',
 'faqlistfile'=>'languages/faqlist.es.php',
 'extrafile'=>'languages/extra.es.php',
-'DATE_FORMAT'=>'D M Y',
-'TIME_FORMAT'=>'g:i:sa',
-'WEEK_START'=>'0',
-'TEXT_DIRECTION'=>'ltr',
-'NAME_REVERSE'=>false,
-'ALPHABET_upper'=>'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ',
-'ALPHABET_lower'=>'abcdefghijklmnñopqrstuvwxyz',
-'MULTI_LETTER_ALPHABET'=>'',
-'MULTI_LETTER_EQUIV'=>'',
-'DICTIONARY_SORT'=>true,
-'COLLATION'=>'utf8_spanish_ci'
-);
-
-//-- settings for spanish-ar
-$language_settings['spanish-ar']=array(
-'pgv_langname'=>'spanish-ar',
-'pgv_lang_use'=>false,
-'pgv_lang_self'=>'Español Latinoamericano',
-'lang_short_cut'=>'es-ar',
-'langcode'=>'es;es-ar;es-bo;es-cl;es-co;es-cr;es-do;es-ec;es-sv;es-gt;es-hn;es-mx;es-ni;es-pa;es-py;es-pe;es-pr;es-us;es-uy;es-ve;',
-'pgv_language'=>'languages/lang.es-ar.php',
-'confighelpfile'=>'languages/configure_help.es-ar.php',
-'helptextfile'=>'languages/help_text.es-ar.php',
-'flagsfile'=>'images/flags/argentina.gif',
-'factsfile'=>'languages/facts.es-ar.php',
-'adminfile'=>'languages/admin.es-ar.php',
-'editorfile'=>'languages/editor.es-ar.php',
-'countryfile'=>'languages/countries.es-ar.php',
-'faqlistfile'=>'languages/faqlist.es-ar.php',
-'extrafile'=>'languages/extra.es-ar.php',
 'DATE_FORMAT'=>'D M Y',
 'TIME_FORMAT'=>'g:i:sa',
 'WEEK_START'=>'0',

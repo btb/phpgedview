@@ -1,7 +1,7 @@
 <?php
 /**
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2007 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2007 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ define('PGV_SORT_TABLES_UTF8_PHP', '');
 
 /**********************************************************************************
  *                                                                                *
- *	To prevent loss of some characters, this file MUST be saved in UTF-8 mode     *
+ *	To prevent loss of some characters, this file MUST be saved in UTF-8 mode *
  *                                                                                *
  ********************************************************************************** */
 
@@ -43,8 +43,7 @@ define('PGV_SORT_TABLES_UTF8_PHP', '');
  *
  *		There are two sets of tables, one for the Upper Case version of a UTF8 character
  *		and the other for the lower-case version.  The two tables are not necessarily
- *		identical.  For example, the Turkish dotless i doesn't exist in the Upper case
- *		table.
+ *		identical.
  *
  *		Within each set, there are three lists which MUST have a one-to-one relationship.
  *		The "DiacritStrip" list gives the base letter of the corresponding "DiacritWhole"
@@ -107,7 +106,9 @@ $UTF8_ranges[] = array("arabic",	0x000600, 0x0006FF);	// Arabic
 $UTF8_ranges[] = array("arabic",	0x000750, 0x0007FF);	// Arabic
 $UTF8_ranges[] = array("thai",	  	0x000E00, 0x000E7F);	// Thai
 $UTF8_ranges[] = array("chinese",	0x001100, 0x0011FF);	// Chinese
-$UTF8_ranges[] = array("vietnamese", 0x001E00, 0x001EFF);	// Vietnamese (assumption!!!)
+$UTF8_ranges[] = array("vietnamese", 0x001E00, 0x001E9D);	// Vietnamese (assumption!!!)
+$UTF8_ranges[] = array("german", 	0x001E9E, 0x001E9E);	// German upper-case Eszett
+$UTF8_ranges[] = array("vietnamese", 0x001E9F, 0x001EFF);	// Vietnamese (assumption!!!)
 $UTF8_ranges[] = array("greek",		0x001F00, 0x001FFF);	// Greek
 $UTF8_ranges[] = array("chinese",	0x002E80, 0x002FDF);	// Chinese
 $UTF8_ranges[] = array("chinese",	0x003190, 0x00319F);	// Chinese
@@ -172,7 +173,7 @@ $UTF8_LC_letters = array (
 	'p'=>'P',
 	'q'=>'Q',
 	'r'=>'R', 'ŕ'=>'Ŕ', 'ŗ'=>'Ŗ', 'ř'=>'Ř',
-	's'=>'S', 'ś'=>'Ś',
+	's'=>'S', 'ś'=>'Ś', 'ß'=>'ẞ',
 	't'=>'T',
 	'u'=>'U', 'ù'=>'Ù', 'ú'=>'Ú', 'û'=>'Û', 'ü'=>'Ü', 'ŭ'=>'Ŭ', 'ů'=>'Ů', 'ű'=>'Ű', 'ų'=>'Ų', 'ư'=>'Ư', 'ǔ'=>'Ǔ', 'ǖ'=>'Ǖ', 'ǘ'=>'Ǘ', 'ǚ'=>'Ǚ', 'ǜ'=>'Ǜ', 'ụ'=>'Ụ', 'ủ'=>'Ủ', 'ứ'=>'Ứ', 'ừ'=>'Ừ', 'ử'=>'Ử', 'ữ'=>'Ữ', 'ự'=>'Ự',
 	'v'=>'V',

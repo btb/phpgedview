@@ -3,7 +3,7 @@
  * Spanish language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -775,19 +775,19 @@ $pgv_lang["oct"]		= "octubre";
 $pgv_lang["nov"]		= "noviembre";
 $pgv_lang["dec"]		= "diciembre";
 
-$pgv_lang["vend"]         = "vendimiario";
-$pgv_lang["brum"]         = "brumario";
-$pgv_lang["frim"]         = "frimario";
-$pgv_lang["nivo"]         = "nivoso";
-$pgv_lang["pluv"]         = "pluvioso";
-$pgv_lang["vent"]         = "ventoso";
-$pgv_lang["germ"]         = "germinal";
-$pgv_lang["flor"]         = "floreal";
-$pgv_lang["prai"]         = "pradial";
-$pgv_lang["mess"]         = "mesidor";
-$pgv_lang["ther"]         = "termidor";
-$pgv_lang["fruc"]         = "fructidor";
-$pgv_lang["comp"]         = "días complementarios";
+$pgv_lang["vend"]                       = "Vendémiaire";
+$pgv_lang["brum"]                       = "Brumaire";
+$pgv_lang["frim"]                       = "Frimaire";
+$pgv_lang["nivo"]                       = "Nivôse";
+$pgv_lang["pluv"]                       = "Pluviôse";
+$pgv_lang["vent"]                       = "Ventôse";
+$pgv_lang["germ"]                       = "Germinal";
+$pgv_lang["flor"]                       = "Floréal";
+$pgv_lang["prai"]                       = "Prairial";
+$pgv_lang["mess"]                       = "Messidor";
+$pgv_lang["ther"]                       = "Thermidor";
+$pgv_lang["fruc"]                       = "Fructidor";
+$pgv_lang["comp"]                       = "jours complémentaires";
 
 $pgv_lang["tsh"]          = "Tishrei";
 $pgv_lang["csh"]          = "Jeshván";
@@ -1357,7 +1357,7 @@ $pgv_lang["message_email3"] 		= "Vd. envió el siguiente mensaje a un administra
 $pgv_lang["viewing_url"]			= "Este mensaje se envió mientras se visitaba la URL: ";
 $pgv_lang["messaging2_help"]		= "Cuando envíe este mensaje recibirá una copia del mismo en la dirección de correo suministrada.";
 $pgv_lang["random_picture"] 		= "Imagen al azar";
-$pgv_lang["message_instructions"]	= "<b>AVISO:</b> La información privada de las personas vivas solamente se facilitará a familiares cercanos y amigos íntimos.  Se le solicitará su relación de parentesco para poder recibir datos privados.  En ocasiones la información sobre personas ya fallecidas también puede ser privada.  Esto es así cuando no hay información suficiente para determinar con seguridad si estas personas están vivas o no, por otra parte probablemente no dispongamos de más informaci??n sobre ellas.<br /><br />Antes de hacer una solicitud, revise todos los datos de la persona, fechas, lugares y detalles personales para asegurarse de que efectivamente sea la persona de su interés.  Si está enviando modificaciones sobre los datos genealógicos, no se olvide de incluir las fuentes de donde obtuvo la información.<br /><br />";
+$pgv_lang["message_instructions"]	= "<b>AVISO:</b> La información privada de las personas vivas solamente se facilitará a familiares cercanos y amigos íntimos.  Se le solicitará su relación de parentesco para poder recibir datos privados.  En ocasiones la información sobre personas ya fallecidas también puede ser privada.  Esto es así cuando no hay información suficiente para determinar con seguridad si estas personas están vivas o no, por otra parte probablemente no dispongamos de más información sobre ellas.<br /><br />Antes de hacer una solicitud, revise todos los datos de la persona, fechas, lugares y detalles personales para asegurarse de que efectivamente sea la persona de su interés.  Si está enviando modificaciones sobre los datos genealógicos, no se olvide de incluir las fuentes de donde obtuvo la información.<br /><br />";
 $pgv_lang["sending_to"] 			= "Este mensaje se enviará a #TO_USER#";
 $pgv_lang["preferred_lang"] 		= "Este usuario prefiere recibir mensajes en #USERLANG#";
 $pgv_lang["gedcom_created_using"]	= "Este GEDCOM se creó usando <b>#CREATED_SOFTWARE# #CREATED_VERSION#</b>";

@@ -11,7 +11,7 @@
  * customised their local copy of this file.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -885,5 +885,6 @@ $level2_tags=array(
 // The order of name parts, when generating names
 $STANDARD_NAME_FACTS=array('NAME', 'NPFX', 'GIVN', 'SPFX', 'SURN', 'NSFX');
 $REVERSED_NAME_FACTS=array('NAME', 'NPFX', 'SPFX', 'SURN', 'GIVN', 'NSFX');
+$CHINESE_NAME_FACTS=array('SURN', 'NPFX', 'GIVN', 'NAME');
 
-
+?>

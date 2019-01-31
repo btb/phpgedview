@@ -1,9 +1,9 @@
-<?php
+﻿<?php
 /**
  * Swedish Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team
+ * Copyright (C) 2002 to 2019  PGV Development Team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -871,7 +871,7 @@ $pgv_lang["upcoming_events_descr"] 	= "Kommande händelser-blocket visar en list
 $pgv_lang["customize_page"]			= "Skräddarsy MyGedView-portalen";
 $pgv_lang["upcoming_events_block"] 	= "Kommande händelser-block";
 $pgv_lang["default_news_title"]		= "Välkommen till din släkt";
-$pgv_lang["default_news_text"]		= "Genealogiska informationen på denna sida drivs av <a href=\"http://www.phpgedview.net/\" target=\"_blank\">PhpGedView</a>. Denna sida tillhandahåller en introduktion och en översikt för denna genealogi. För att börja arbeta med datan, välj en av tavlorna från Tavelmenyn, gå till personlistan eller sök efter ett namn eller en ort.<br /><br />Om du har problem att använda sajten klicka på hjälpmenyn så får du hjälp om om hur du ska använda sidan du just nu ??r på.<br /><br />Tack för att du besöker denna sida.";
+$pgv_lang["default_news_text"]		= "Genealogiska informationen på denna sida drivs av <a href=\"http://www.phpgedview.net/\" target=\"_blank\">PhpGedView</a>. Denna sida tillhandahåller en introduktion och en översikt för denna genealogi. För att börja arbeta med datan, välj en av tavlorna från Tavelmenyn, gå till personlistan eller sök efter ett namn eller en ort.<br /><br />Om du har problem att använda sajten klicka på hjälpmenyn så får du hjälp om om hur du ska använda sidan du just nu år på.<br /><br />Tack för att du besöker denna sida.";
 $pgv_lang["reset_default_blocks"]	= "Återställ till standardområden";
 $pgv_lang["recent_changes"]			= "Senaste ändringar";
 $pgv_lang["recent_changes_block"]	= "Nyligen ändrade område";

@@ -3,7 +3,7 @@
  * Chinese (Simplified) texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2019 PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ if (!defined('PGV_PHPGEDVIEW')) {
 }
 
 $countries["ABW"]="阿鲁巴";
-$countries["ACA"]="Acadia";
+$countries["ACA"]="阿卡迪亚";
 $countries["AFG"]="阿富汗";
 $countries["AGO"]="安哥拉";
 $countries["AIA"]="安圭拉";
@@ -49,7 +49,7 @@ $countries["ATG"]="安提瓜和巴布达";
 $countries["AUS"]="澳大利亚";
 $countries["AUT"]="奥地利";
 $countries["AZE"]="阿塞拜疆";
-$countries["AZR"]="Azores";
+$countries["AZR"]="亚速尔群岛";
 $countries["BDI"]="布隆迪";
 $countries["BEL"]="比利时";
 $countries["BEN"]="贝宁";
@@ -73,10 +73,10 @@ $countries["BWA"]="博茨瓦纳";
 $countries["BWI"]="英属西印度群岛";
 $countries["CAF"]="中非共和国";
 $countries["CAN"]="加拿大";
-$countries["CAP"]="Cape Colony";
+$countries["CAP"]="开普殖民地";
 $countries["CCK"]="科科斯（基林）群岛";
 $countries["CHE"]="瑞士";
-$countries["CHI"]="Channel Islands";
+$countries["CHI"]="海峡群岛";
 $countries["CHL"]="智利";
 $countries["CHN"]="中国";
 $countries["CIV"]="象牙海岸";
@@ -111,7 +111,7 @@ $countries["EST"]="爱沙尼亚";
 $countries["ETH"]="埃塞俄比亚";
 $countries["FIN"]="芬兰";
 $countries["FJI"]="斐";
-$countries["FLD"]="Flanders";
+$countries["FLD"]="法兰德斯";
 $countries["FLK"]="福克兰群岛";
 $countries["FRA"]="法国";
 $countries["FRO"]="法罗群岛";
@@ -134,7 +134,7 @@ $countries["GTM"]="危地马拉";
 $countries["GUF"]="法属圭亚那";
 $countries["GUM"]="关岛";
 $countries["GUY"]="圭亚那";
-$countries["HKG"]="Hong Kong";
+$countries["HKG"]="香港";
 $countries["HMD"]="赫德岛和麦当劳群岛";
 $countries["HND"]="洪都拉斯";
 $countries["HRV"]="克罗地亚";
@@ -228,7 +228,7 @@ $countries["PSE"]="被占领的巴勒斯坦领土";
 $countries["PYF"]="法属波利尼西亚";
 $countries["QAT"]="卡塔尔";
 $countries["REU"]="会议";
-$countries["ROU"]="Romania";
+$countries["ROU"]="罗马尼亚";
 $countries["RUS"]="俄国";
 $countries["RWA"]="卢旺达";
 $countries["SAU"]="沙特阿拉伯";
@@ -288,7 +288,7 @@ $countries["VGB"]="英属维尔京群岛";
 $countries["VIR"]="美属维尔京群岛";
 $countries["VNM"]="越南";
 $countries["VUT"]="瓦努阿图";
-$countries["WAF"]="West Africa";
+$countries["WAF"]="西非";
 $countries["WLF"]="瓦利斯群岛和富图纳群岛";
 $countries["WLS"]="威尔士";
 $countries["WSM"]="萨摩亚";
