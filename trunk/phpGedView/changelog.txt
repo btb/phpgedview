@@ -9,6 +9,13 @@
 =====================================================================
 
 Version 4.3.1
+ - Changed: Edit Name is now sensitive to Chinese practice (no surname prefix or suffix) (canajun2eh and xiaofo)
+ - Added: German language file now supports upper-case Eszett -- New PhpGedView sites only -- (canajun2eh)
+ - Changed: Removed support for Spanish (Latin America) -- New PhpGedView sites only -- (canajun2eh)
+ - Added: Support for IPv6 addresses (canajun2eh)
+ - Changed: Remove Baidu from list of bad bots (xiaofo, canajun2eh)
+ - Fixed: Use client's real IP address instead of proxy's address (xiaofo, canajun2eh)
+ - Changed: Don't log accesses by search engines in the "Manual Tag" list (canajun2eh)
  - Changed: Show parents' names in search results list of individuals (canajun2eh)
  - Fixed: Illegal string offset 'path' in functions.php (canajun2eh)
  - Fixed: Spouse name in Branches list does not obey "surname first" configuration option (canajun2eh)

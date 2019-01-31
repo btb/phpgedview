@@ -3,7 +3,7 @@
  * Spanish language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,6 +31,8 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;
 }
+$pgv_lang["label_timedban_servers"]	= "Denegación de acceso programado";
+$pgv_lang["enter_banexpiry"]		= "Introduzca la fecha y la hora de vencimiento de la denegación de acceso<br />de esta manera: 2012.12.31@23:59";
 
 $pgv_lang["module_admin"]			= "Administración de módulos";
 $pgv_lang["mod_admin_installed"]	= "Módulos instalados";
@@ -312,11 +314,11 @@ $pgv_lang["invalid_dates"]						= "Se detectaron formatos de fecha inválidos, a
 $pgv_lang["BOM_detected"]						= "Se detectó una Marca de Orden de Octetos (BOM) al principio del archivo.  Al limpiar, este código especial se eliminará.";
 $pgv_lang["invalid_header"]						= "Se detectaron registros antes del encabezamiento GEDCOM <b>0&nbsp;HEAD</b>. Al realizar limpieza, estos registros se eliminarán.";
 $pgv_lang["label_added_servers"]				= "Servidores remotos";
-$pgv_lang["label_banned_servers"]				= "Excluir sitios por IP";
+$pgv_lang["label_banned_servers"]				= "Excluir sitios";
 $pgv_lang["label_families"]						= "Familias";
 $pgv_lang["label_gedcom_id2"]					= "ID de la base de datos:";
 $pgv_lang["label_individuals"]					= "Personas";
-$pgv_lang["label_manual_search_engines"]		= "Identificar manualmente motores de búsqueda por IP";
+$pgv_lang["label_manual_search_engines"]		= "Identificar manualmente motores de búsqueda";
 $pgv_lang["label_new_server"]					= "Agregar nuevo sitio";
 $pgv_lang["label_password_id"]					= "Contraseña";
 $pgv_lang["label_server_info"]					= "Todas las personas vinculadas remotamente a través de este sitio: ";

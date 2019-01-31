@@ -3,7 +3,7 @@
  * Startup and session logic for handling Bots and Spiders
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2008 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2008 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -70,6 +70,89 @@ function gen_spider_session_name($bot_name, $bot_language) {
 	}
 	return($outname);
 }
+
+/**
+ * Try to get the real IP address of the client.
+ *
+ * This is important when the client is hiding behind a series of proxies, and we need to
+ * refer to the client's IP address for some reason such as a ban by IP address.
+ *
+ * If we just use the REMOTE_ADDR value without checking for proxies, we'll end up using the
+ * last proxy's IP address instead of the real client address.  In the case of a timed ban by
+ * IP, everybody using that proxy would be blocked.
+ */
+
+if (isset($_SERVER)) {
+ 	// Use $_SERVER variables by preference
+ 	$HTTP_VARS = $_SERVER;
+} else if (isset($_ENV)) {
+ 	// Fallback to PHP environment variables
+ 	$HTTP_VARS = $_ENV;
+} else $HTTP_VARS = array();
+
+// Step through the captured $_SERVER or $_ENV array, ignoring the case of the keys.
+// (Some "authorities" indicate that the keys can be lower or mixed case!)
+$HTTP_VARS = array_change_key_case($HTTP_VARS, CASE_UPPER);		// Make sure all keys are upper-case
+while (true) {
+	if (array_key_exists('HTTP_X_REAL_IP', $HTTP_VARS)) {
+		$ipAddrList = $HTTP_VARS['HTTP_X_REAL_IP'];
+		break;
+	}
+	if (array_key_exists('HTTP_CLIENT_IP', $HTTP_VARS)) {
+		$ipAddrList = $HTTP_VARS['HTTP_CLIENT_IP'];
+		break;
+	}
+	if (array_key_exists('HTTP_FORWARDED', $HTTP_VARS)) {
+		// We're dealing with the new HTTP Forwarded: by=identifier; for=identifier; host=host; proto=protocol
+		// See: https://tools.ietf.org/html/rfc7239
+		$value = str_replace(' ', '', strtolower($HTTP_VARS['HTTP_FORWARDED']));	// Make everything lower-case and get rid of embedded blanks
+		$value = str_replace(',for=', ',', strtolower($value));						// Get rid of extraneous "for=" tags
+		$params = explode(';', $value);				// Separate the Forwarded: parameters into an array
+		foreach ($params as $key => $value) {
+			if (substr($value,0,4) == 'for=') {
+				$ipAddrList = substr($value,4);		// Everything after "for=" is now a comma-separated list of IPv4 or IPv6 addresses
+				break 2;
+			}
+		}
+	}
+	if (array_key_exists('HTTP_X_FORWARDED_FOR', $HTTP_VARS)) {
+		$ipAddrList = $HTTP_VARS['HTTP_X_FORWARDED_FOR'];
+		break;
+	}
+	if (array_key_exists('HTTP_X_FORWARDED', $HTTP_VARS)) {
+		$ipAddrList = $HTTP_VARS['HTTP_X_FORWARDED'];
+		break;
+	}
+	if (array_key_exists('HTTP_FORWARDED_FOR', $HTTP_VARS)) {
+		$ipAddrList = $HTTP_VARS['HTTP_FORWARDED_FOR'];
+		break;
+	}
+	if (array_key_exists('REMOTE_ADDR', $HTTP_VARS)) {
+		$ipAddrList = $HTTP_VARS['REMOTE_ADDR'];
+		break;
+	}
+	$ipAddrList = 'unknown';	//	None of the above: we can't determine the IP address
+	break;
+}
+
+$ipAddrList = str_replace(' ', '', $ipAddrList);	// Get rid of embedded blanks
+$ip = preg_replace('~,.*~', '', $ipAddrList);		// Trim everything after the first comma, leaving just the first IPv4 or IPv6 address
+
+$ip = str_replace(array('"', "'"), '', $ip);		// Get rid of quotation marks used in some addresses
+if (substr($ip,0,1) == '[') {
+	$ip = preg_replace('~\]:.*~', ']', $ip);		// Get rid of IPv6 port number that follows closing square bracket
+	$ip = str_replace(array('[', ']'), '', $ip);	// Get rid of square brackets enclosing IPv6 address
+	$ip = normalizeIPv6($ip);						// Make sure this IPv6 address has a consistent format
+} else {
+	$ip = preg_replace('~:.*~', '', $ip);			// Get rid of IPv4 port number that follows last digit of address
+}
+
+unset($HTTP_VARS, $params, $ipAddrList);			// We don't need these any more
+
+$ip = filter_var($ip, FILTER_VALIDATE_IP);			// Verify IP legitimacy
+if ($ip === false) $ip = 'unknown';
+$_SERVER['REMOTE_ADDR'] = $ip;
+
 
 // Clean up list of blocked IP addresses with expired timers
 try {
@@ -138,7 +221,7 @@ $worms = array(
 	'SearchmetricsBot',
 	'spbot',
 	'Synapse',
-	'Baidu',
+//	'Baidu',
 	'rarely used',
 	'curl',
 	'Mail.RU',
@@ -154,7 +237,6 @@ $worms = array(
 	'Python',
 	'MaMa',
 	'CaSpEr',
-	'Casper',
 	'oBot',
 	'Indy Library',
 	'XXX',
@@ -337,6 +419,7 @@ $known_spiders = array(
 	'Ezooms',
 	'Feedfetcher-Google',
 	'Googlebot',
+	'Manual Search Engine entry',
 	'Mediapartners-Google',
 	'NetcraftSurveyAgent',
 	'Seznam',
@@ -496,14 +579,14 @@ try {
 	// Initial installation?  Site Down?  Fail silently.
 }
 
-	// If this script is not in allowed list, spiders should get an HTTP 403 error
-	if ($SEARCH_SPIDER) {
-		if (!in_array(PGV_SCRIPT_NAME, $searchEngineAllowed)) {
-			header("HTTP/1.0 403 Forbidden");
-			print "Sorry, this page is not available for search engine bots.";
-			exit;
-		}
+// If this script is not in allowed list, spiders should get an HTTP 403 error
+if ($SEARCH_SPIDER) {
+	if (!in_array(PGV_SCRIPT_NAME, $searchEngineAllowed)) {
+		header("HTTP/1.0 403 Forbidden");
+		print "Sorry, this page is not available for search engine bots.";
+		exit;
 	}
+}
 
 if((empty($SEARCH_SPIDER)) && (!empty($_SESSION['last_spider_name']))) // user following a search engine listing in,
 session_regenerate_id();
@@ -516,7 +599,8 @@ if(!empty($SEARCH_SPIDER)) {
 	$outstr = str_replace(' - ', ' ', $outstr);            // Don't allow ' - ' because that is the log separator
 	$logSpider = true;
 	foreach ($known_spiders as $spider) {
-		if (strpos($ua, $spider) !== false) {
+//		if (strpos($ua, $spider) !== false) {
+		if (strpos($outstr, $spider) !== false) {
 			$logSpider = false;
 			break;
 		}

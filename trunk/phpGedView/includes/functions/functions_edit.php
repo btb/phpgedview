@@ -3,7 +3,7 @@
 * Various functions used by the Edit interface
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -404,8 +404,8 @@ function undo_change($cid, $index) {
 */
 function print_indi_form($nextaction, $famid, $linenum='', $namerec='', $famtag="CHIL", $sextag='') {
 	global $pgv_lang, $factarray, $pid, $PGV_IMAGE_DIR, $PGV_IMAGES, $WORD_WRAPPED_NOTES;
-	global $NPFX_accept, $SPFX_accept, $NSFX_accept, $FILE_FORM_accept, $NAME_REVERSE;
-	global $bdm, $TEXT_DIRECTION, $STANDARD_NAME_FACTS, $REVERSED_NAME_FACTS, $ADVANCED_NAME_FACTS, $ADVANCED_PLAC_FACTS, $SURNAME_TRADITION;
+	global $NPFX_accept, $SPFX_accept, $NSFX_accept, $FILE_FORM_accept, $NAME_REVERSE, $bdm, $TEXT_DIRECTION, $LANGUAGE;
+	global $STANDARD_NAME_FACTS, $REVERSED_NAME_FACTS, $CHINESE_NAME_FACTS, $ADVANCED_NAME_FACTS, $ADVANCED_PLAC_FACTS, $SURNAME_TRADITION;
 	global $QUICK_REQUIRED_FACTS, $QUICK_REQUIRED_FAMFACTS, $NO_UPDATE_CHAN;
 
 	$bdm = ''; // used to copy '1 SOUR' to '2 SOUR' for BIRT DEAT MARR
@@ -428,16 +428,15 @@ function print_indi_form($nextaction, $famid, $linenum='', $namerec='', $famtag=
 		add_simple_tag("0 PEDI");
 	}
 
-	// Populate the standard NAME field and subfields
+	// Populate the standard NAME field and subfields in sequence, according to language preferences
 	$name_fields=array();
-	if (!$NAME_REVERSE) {
-		foreach ($STANDARD_NAME_FACTS as $tag) {
-			$name_fields[$tag]=get_gedcom_value($tag, 0, $namerec);
-		}
-	} else {
-		foreach ($REVERSED_NAME_FACTS as $tag) {
-			$name_fields[$tag]=get_gedcom_value($tag, 0, $namerec);
-		}
+	if (($LANGUAGE=='chinese') || ($LANGUAGE=='chinese-cn')) {
+		$nameFacts = $CHINESE_NAME_FACTS;
+	} else if ($NAME_REVERSE) {
+		$nameFacts = $REVERSED_NAME_FACTS;
+	} else $nameFacts = $STANDARD_NAME_FACTS;
+	foreach ($nameFacts as $tag) {
+		$name_fields[$tag]=get_gedcom_value($tag, 0, $namerec);
 	}
 
 	$new_marnm='';
@@ -771,11 +770,11 @@ function print_indi_form($nextaction, $famid, $linenum='', $namerec='', $famtag=
 	// Generate a full name from the name components
 	function generate_name() {
 		var frm =document.forms[0];
-		var npfx=frm.NPFX.value;
-		var givn=frm.GIVN.value;
-		var spfx=frm.SPFX.value;
-		var surn=frm.SURN.value;
-		var nsfx=frm.NSFX.value;
+		if (frm.elements['NPFX']) {var npfx=frm.NPFX.value;} else {var npfx="";}
+		if (frm.elements['GIVN']) {var givn=frm.GIVN.value;} else {var givn="";}
+		if (frm.elements['SPFX']) {var spfx=frm.SPFX.value;} else {var spfx="";}
+		if (frm.elements['SURN']) {var surn=frm.SURN.value;} else {var surn="";}
+		if (frm.elements['NSFX']) {var nsfx=frm.NSFX.value;} else {var nsfx="";}
 		return trim(npfx+" "+givn+" /"+trim(spfx+" "+surn.replace(/ *, */, " "))+"/ "+nsfx);
 	}
 
@@ -786,11 +785,11 @@ function print_indi_form($nextaction, $famid, $linenum='', $namerec='', $famtag=
 		if (manualChange) return;
 		// Update NAME field from components and display it
 		var frm =document.forms[0];
-		var npfx=frm.NPFX.value;
-		var givn=frm.GIVN.value;
-		var spfx=frm.SPFX.value;
-		var surn=frm.SURN.value;
-		var nsfx=frm.NSFX.value;
+		if (frm.elements['NPFX']) {var npfx=frm.NPFX.value;} else {var npfx="";}
+		if (frm.elements['GIVN']) {var givn=frm.GIVN.value;} else {var givn="";}
+		if (frm.elements['SPFX']) {var spfx=frm.SPFX.value;} else {var spfx="";}
+		if (frm.elements['SURN']) {var surn=frm.SURN.value;} else {var surn="";}
+		if (frm.elements['NSFX']) {var nsfx=frm.NSFX.value;} else {var nsfx="";}
 		document.getElementById('NAME').value=generate_name();
 		document.getElementById('NAME_display').innerHTML=frm.NAME.value;
 		// Married names inherit some NSFX values, but not these

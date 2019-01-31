@@ -3,7 +3,7 @@
  * Greek Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2008  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -290,11 +290,11 @@ $pgv_lang["META_KEYWORDS_help"]						= "The value to place in the keywords meta 
 $pgv_lang["META_KEYWORDS_descr"]					= "The most common surnames list that appears in the GEDCOM statistics block on your welcome page will be appended to anything you enter here.";
 $pgv_lang["META_TITLE"]								= "Add to TITLE header tag";
 $pgv_lang["META_TITLE_help"]						= "Anything on this line will be added to the TITLE tag in the HTML page header after the regular page title and before the PhpGedView credit.";
-$pgv_lang["welcome_new"]							= "Welcome to your new PhpGedView website.  Since you are seeing this page you have successfully installed PhpGedView on your webserver and are ready to begin configuring it the way you want it.<br />";
+$pgv_lang["welcome_new"]							= "Welcome to your new PhpGedView website.  Since you are seeing this page you have successfully installed PhpGedView on your webserver and are ready to begin configuring it the way you want it.";
 $pgv_lang["welcome_new_help"]						= "This help window will help guide you through the configuration process.  As you enter different fields, this window will provide you with help information about the field you are in.  You may close this window, to open it again click on one of the \"?\" question marks next to the field label.";
-$pgv_lang["review_readme"]							= "You should first review the <a href=\"readme.txt\" target=\"_blank\">readme.txt</a> file before continuing to configure PhpGedView.<br /><br />";
-$pgv_lang["return_editconfig"]						= "You may return to this configuration at any time by pointing your browser to the editconfig.php file, or by clicking the link for <b>Configuration</b> on the <b>Adminstration</b> Page.<br />";
-$pgv_lang["return_editconfig_gedcom"]				= "You may return to this configuration at any time, by clicking the link: <b>Edit</b> in the <b>Current GEDCOMs</b> table, on the <b>GEDCOM Adminstration</b> Page, or by pointing your browser to the editconfig_gedcom.php file.<br />";
+$pgv_lang["review_readme"]							= "You should first review the <a href=\"readme.txt\" target=\"_blank\">readme.txt</a> file before continuing to configure PhpGedView.";
+$pgv_lang["return_editconfig"]						= "You may return to this configuration at any time by pointing your browser to the editconfig.php file, or by clicking the link for <b>Configuration</b> on the <b>Adminstration</b> Page.";
+$pgv_lang["return_editconfig_gedcom"]				= "You may return to this configuration at any time, by clicking the link: <b>Edit</b> in the <b>Current GEDCOMs</b> table, on the <b>GEDCOM Adminstration</b> Page, or by pointing your browser to the editconfig_gedcom.php file.";
 $pgv_lang["save_config"]							= "Save Configuration";
 $pgv_lang["download_here"]							= "Click here to download file.";
 $pgv_lang["download_gedconf"]						= "Download GEDCOM configuration.";
@@ -476,10 +476,10 @@ $pgv_lang["never"]									= "Ποτέ";
 
 //-- User Migration Tool messages
 $pgv_lang["um_header"]								= "User Information Migration Tool";
-$pgv_lang["um_proceed"]								= "Proceed with export of user data files?<br /><br />";
+$pgv_lang["um_proceed"]								= "Proceed with export of user data files?";
 $pgv_lang["um_creating"]							= "Creating";
 $pgv_lang["um_sql_index1"]							= "This tool will create .dat files in your index directory:";
-$pgv_lang["um_sql_index2"]							= "After succesful creation, you can switch to index mode with all current users and their messages, favorites, news and MyGedview layout available.<br />Note: After switching to index mode it will be neccessary to import your GEDCOM files(s) again.<br /><br />";
+$pgv_lang["um_sql_index2"]							= "After succesful creation, you can switch to index mode with all current users and their messages, favorites, news and MyGedview layout available.<br />Note: After switching to index mode it will be neccessary to import your GEDCOM files(s) again.";
 $pgv_lang["um_file_create_fail1"]					= "Creation of new file failed, a file with that name already exists:";
 $pgv_lang["um_file_create_fail2"]					= "Cannot create";
 $pgv_lang["um_file_create_fail3"]					= "Check access rights on this directory.";

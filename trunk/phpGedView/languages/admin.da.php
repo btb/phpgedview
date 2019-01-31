@@ -1,9 +1,9 @@
 <?php
 /**
- * Danish texts
+ * Danish language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,6 +30,8 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;
 }
+$pgv_lang["label_timedban_servers"]	= "Tidsmæssig nægtelse af adgang";
+$pgv_lang["enter_banexpiry"]		= "Indtast udløbsdato og tidspunkt for nægtelse af adgang som denne:<br />2012.12.31@23:59";
 
 $pgv_lang["clear_cache_succes"]		= "Midlertidige (cache-)filer er blevet fjernet.";
 $pgv_lang["clear_cache"]			= "Fjern midelertidige (cache-)filer";
@@ -190,11 +192,11 @@ $pgv_lang["invalid_dates"]			= "Opdaget ugyldig dato-format. Ved oprydning blive
 $pgv_lang["BOM_detected"] 						= "Specialtegn (BOM - byte order mark), som angiver hvordan specialkarakterer skal opfattes af programmer generelt, er fundet i starten af filen. Ved den automatiske oprydning i filen fjernes disse tegn.";
 $pgv_lang["invalid_header"]			= "Opdaget at der er linier før startlinien (0 HEAD) i GEDCOM-filen. Under oprydning vil disse linier blive fjernet.";
 $pgv_lang["label_added_servers"]  	= "Tilføjede eksterne hjemmesider";
-$pgv_lang["label_banned_servers"]   = "Udeluk hjemmesider ud fra IP-adresse";
+$pgv_lang["label_banned_servers"]   = "Nægtelse af adgang";
 $pgv_lang["label_families"]         = "Familier";
 $pgv_lang["label_gedcom_id2"]       = "GEDCOM-ID:";
 $pgv_lang["label_individuals"]      = "Personer";
-$pgv_lang["label_manual_search_engines"]		= "Markér manuelt IP-adresse som søgemaskiner";
+$pgv_lang["label_manual_search_engines"]		= "Markér manuelt som søgemaskiner";
 $pgv_lang["label_new_server"]       = "Tilføj ny ekstern hjemmeside";
 $pgv_lang["label_password_id"]	   	= "Adgangskode";
 $pgv_lang["label_server_info"]      = "Alle personer der er linket eksternt til via denne hjemmeside:";
