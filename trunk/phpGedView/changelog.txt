@@ -9,6 +9,7 @@
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Undefined index "bulkMail" in includes/authentication.php when confirming Admin approval to new user (canajun2eh)
  - Changed: Edit Name is now sensitive to Chinese practice (no surname prefix or suffix) (canajun2eh and xiaofo)
  - Added: German language file now supports upper-case Eszett -- New PhpGedView sites only -- (canajun2eh)
  - Changed: Removed support for Spanish (Latin America) -- New PhpGedView sites only -- (canajun2eh)
