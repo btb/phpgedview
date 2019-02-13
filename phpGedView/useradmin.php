@@ -3,7 +3,7 @@
  * Administrative User Interface.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -200,6 +200,7 @@ if ($action=='createuser' || $action=='edituser2') {
 					$message["body"]=str_replace("#SERVER_NAME#", $serverURL, $pgv_lang["admin_OK_message"]);
 					$message["created"]="";
 					$message["method"]="messaging2";
+					$message['bulkMail'] = false;
 					addMessage($message);
 					// and send a copy to the admin
 /*					$message=array();
@@ -210,6 +211,7 @@ if ($action=='createuser' || $action=='edituser2') {
 					$message["body"]=str_replace("#SERVER_NAME#", $serverURL, $pgv_lang["admin_OK_message"]);
 					$message["created"]="";
 					$message["method"]="messaging2";
+					$message['bulkMail'] = false;
 					addMessage($message); */
 				}
 				//-- update Gedcom record with new email address
