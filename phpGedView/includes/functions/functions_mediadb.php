@@ -4,7 +4,7 @@
 * Various functions used by the media DB interface
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2018 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2019 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -872,6 +872,8 @@ function check_media_depth($filename, $truncate = "FRONT", $noise = "VERBOSE") {
 function get_media_folders() {
 	global $MEDIA_DIRECTORY, $MEDIA_DIRECTORY_LEVELS;
 
+	$skipThese = array('.', '..', 'CVS', '.svn', 'thumbs');
+
 	$folderList = array ();
 	$folderList[0] = $MEDIA_DIRECTORY;
 	if ($MEDIA_DIRECTORY_LEVELS == 0)
@@ -890,17 +892,14 @@ function get_media_folders() {
 			$dir = dir($currentFolder);
 			while (true) {
 				$entry = $dir->read();
-				if (!$entry)
-					break;
-				if (is_dir($currentFolder . $entry . "/")) {
-					// Weed out some folders we're not interested in
-					if ($entry != "." && $entry != ".." && $entry != "CVS" && $entry != ".svn") {
-						if ($currentFolder . $entry . "/" != $MEDIA_DIRECTORY . "thumbs/") {
-							$folderList[$nextFolderNum] = $currentFolder . $entry . "/";
-							$nextFolderNum++;
-						}
-					}
-				}
+				if (!$entry) break;
+
+				// Weed out folders and files we're not interested in
+				if (in_array($entry, $skipThese)) continue;
+				if (is_file($currentFolder . $entry)) continue;
+
+				$folderList[$nextFolderNum] = $currentFolder . $entry . "/";
+				$nextFolderNum++;
 			}
 			$dir->close();
 		}
