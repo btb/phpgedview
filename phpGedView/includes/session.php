@@ -3,7 +3,7 @@
  * Startup and session logic
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -629,9 +629,9 @@ if (PGV_SCRIPT_NAME!='install.php' && PGV_SCRIPT_NAME!='editconfig_help.php') {
 			}
 			if ($LOGIN_URL) {
 				// Specify an absolute URL, as $LOGIN_URL could be anywhere
-				header('Location: '.$LOGIN_URL.'?url='.urlencode(PGV_SERVER_NAME.PGV_SCRIPT_PATH.$url));
+				header('Location: '.$LOGIN_URL.'?url='.encrypt(urlencode(PGV_SERVER_NAME.PGV_SCRIPT_PATH.$url)));
 			} else {
-				header('Location: login.php?url='.urlencode($url));
+				header('Location: login.php?url='.encrypt(urlencode($url)));
 			}
 			exit;
 		}

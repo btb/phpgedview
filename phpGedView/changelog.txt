@@ -9,6 +9,8 @@
 =====================================================================
 
 Version 4.3.1
+ - Fixed: "Require Authentication" option in GEDCOM configuration causes "You are not welcome here" error (canajun2eh)
+ - Changed: Added some additional checks for SQL injection (canajun2eh)
  - Fixed: Open_basedir restriction error while building the media directory list (canajun2eh)
  - Fixed: Undefined index "bulkMail" in includes/authentication.php when confirming Admin approval to new user (canajun2eh)
  - Changed: Edit Name is now sensitive to Chinese practice (no surname prefix or suffix) (canajun2eh and xiaofo)
