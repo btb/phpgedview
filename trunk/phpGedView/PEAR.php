@@ -148,7 +148,7 @@ class PEAR
      *        error objects, defaults to PEAR_Error.
      * @return void
      */
-    public function PEAR($error_class = null)
+    public function __construct($error_class = null)
     {
         $classname = strtolower(get_class($this));
         if ($this->_debug) {
@@ -825,7 +825,7 @@ class PEAR_Error
      * @param string $userinfo (optional) additional user/debug info
      *
      */
-    public function PEAR_Error($message = 'unknown error', $code = null,
+    public function __construct($message = 'unknown error', $code = null,
                         $mode = null, $options = null, $userinfo = null)
     {
         if ($mode === null) {

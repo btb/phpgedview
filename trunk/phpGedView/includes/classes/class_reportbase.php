@@ -5,7 +5,7 @@
  * used by the SAX parser to generate reports from the XML report file.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -555,7 +555,7 @@ class PGVRHtml extends PGVRElement {
 	public $attrs;
 	public $elements = array();
 
-	function PGVRHtml($tag, $attrs) {
+	function __construct($tag, $attrs) {
 		$this->tag = $tag;
 		$this->attrs = $attrs;
 		return 0;
@@ -689,7 +689,7 @@ class PGVRCell extends PGVRElement {
 	* @param string $bocolor Border color
 	* @param string $tcolor Text color
 	*/
-	function PGVRCell($width, $height, $border, $align, $bgcolor, $style, $ln, $top, $left, $fill, $stretch, $bocolor, $tcolor, $reseth) {
+	function __construct($width, $height, $border, $align, $bgcolor, $style, $ln, $top, $left, $fill, $stretch, $bocolor, $tcolor, $reseth) {
 		$this->align = $align;
 		$this->border = $border;
 		$this->bgcolor = $bgcolor;
@@ -852,7 +852,7 @@ class PGVRTextBox extends PGVRElement {
 	* @param boolean $padding
 	* @param boolean $reseth
 	*/
-	function PGVRTextBox($width, $height, $border, $bgcolor, $newline, $left, $top, $pagecheck, $style, $fill, $padding, $reseth) {
+	function __construct($width, $height, $border, $bgcolor, $newline, $left, $top, $pagecheck, $style, $fill, $padding, $reseth) {
 		$this->border = $border;
 		$this->bgcolor = $bgcolor;
 		$this->fill= $fill;
@@ -921,7 +921,7 @@ class PGVRText extends PGVRElement {
 	* @param string $style The name of the text style
 	* @param string $color HTML color code
 	*/
-	function PGVRText($style, $color) {
+	function __construct($style, $color) {
 		$this->text = "";
 		$this->color = $color;
 		$this->wrapWidthRemaining = 0;
@@ -987,7 +987,7 @@ class PGVRFootnote extends PGVRElement {
 	public $wrapWidthCell;
 	public $addlink;
 
-	function PGVRFootnote($style="") {
+	function __construct($style="") {
 		$this->text = "";
 		if (!empty($style)) {
 			$this->styleName = $style;
@@ -1065,7 +1065,7 @@ class PGVRPageHeader extends PGVRElement {
 		return 0;
 	}
 
-	function PGVRPageHeader() {
+	function __construct() {
 		$this->elements = array();
 		return 0;
 	}
@@ -1143,7 +1143,7 @@ class PGVRImage extends PGVRElement {
 	* @param string $align Placement of the image. L: left, C:center, R:right
 	* @param string $ln T:same line, N:next line
 	*/
-	function PGVRImage($file, $x, $y, $w, $h, $align, $ln) {
+	function __construct($file, $x, $y, $w, $h, $align, $ln) {
 		$this->file = $file;
 		$this->width = $w;
 		$this->height = $h;
@@ -1207,7 +1207,7 @@ class PGVRLine extends PGVRElement {
 	* @param mixed $x2
 	* @param mixed $y2
 	*/
-	function PGVRLine($x1, $y1, $x2, $y2) {
+	function __construct($x1, $y1, $x2, $y2) {
 		$this->x1 = $x1;
 		$this->y1 = $y1;
 		$this->x2 = $x2;
