@@ -5,7 +5,7 @@
  * used by the SAX parser to generate PDF reports from the XML report file.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -644,8 +644,8 @@ class PGVRCellPDF extends PGVRCell {
 	* @param string $tcolor Text color
 	* @param boolean $reseth
 	*/
-	function PGVRCellPDF($width, $height, $border, $align, $bgcolor, $style, $ln, $top, $left, $fill, $stretch, $bocolor, $tcolor, $reseth) {
-		parent::PGVRCell($width, $height, $border, $align, $bgcolor, $style, $ln, $top, $left, $fill, $stretch, $bocolor, $tcolor, $reseth);
+	function __construct($width, $height, $border, $align, $bgcolor, $style, $ln, $top, $left, $fill, $stretch, $bocolor, $tcolor, $reseth) {
+		parent::__construct($width, $height, $border, $align, $bgcolor, $style, $ln, $top, $left, $fill, $stretch, $bocolor, $tcolor, $reseth);
 	}
 
 	/**
@@ -770,8 +770,8 @@ class PGVRCellPDF extends PGVRCell {
 */
 class PGVRHtmlPDF extends PGVRHtml {
 
-	function PGVRHtmlPDF($tag, $attrs) {
-		parent::PGVRHtml($tag, $attrs);
+	function __construct($tag, $attrs) {
+		parent::__construct($tag, $attrs);
 	}
 
 	function render(&$pdf, $sub = false) {
@@ -827,8 +827,8 @@ class PGVRTextBoxPDF extends PGVRTextBox {
 	* @param boolean $padding
 	* @param boolean $reseth Reset the last height after this bos is done
 	*/
-	function PGVRTextBoxPDF($width, $height, $border, $bgcolor, $newline, $left, $top, $pagecheck, $style, $fill, $padding, $reseth) {
-		parent::PGVRTextBox($width, $height, $border, $bgcolor, $newline, $left, $top, $pagecheck, $style, $fill, $padding, $reseth);
+	function __construct($width, $height, $border, $bgcolor, $newline, $left, $top, $pagecheck, $style, $fill, $padding, $reseth) {
+		parent::__construct($width, $height, $border, $bgcolor, $newline, $left, $top, $pagecheck, $style, $fill, $padding, $reseth);
 	}
 
 	/**
@@ -1157,8 +1157,8 @@ class PGVRTextPDF extends PGVRText {
 	* @param string $style The name of the text style
 	* @param string $color HTML color code
 	*/
-	function PGVRTextPDF($style, $color) {
-		parent::PGVRText($style, $color);
+	function __construct($style, $color) {
+		parent::__construct($style, $color);
 	}
 
 	/**
@@ -1292,8 +1292,8 @@ class PGVRTextPDF extends PGVRText {
 */
 class PGVRFootnotePDF extends PGVRFootnote {
 
-	function PGVRFootnotePDF($style="") {
-		parent::PGVRFootnote($style);
+	function __construct($style="") {
+		parent::__construct($style);
 	}
 
 	/**
@@ -1445,8 +1445,8 @@ class PGVRFootnotePDF extends PGVRFootnote {
 */
 class PGVRPageHeaderPDF extends PGVRPageHeader {
 
-	function PGVRPageHeaderPDF() {
-		parent::PGVRPageHeader();
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**
@@ -1469,8 +1469,8 @@ class PGVRPageHeaderPDF extends PGVRPageHeader {
 */
 class PGVRImagePDF extends PGVRImage {
 
-	function PGVRImagePDF($file, $x, $y, $w, $h, $align, $ln) {
-		parent::PGVRImage($file, $x, $y, $w, $h, $align, $ln);
+	function __construct($file, $x, $y, $w, $h, $align, $ln) {
+		parent::__construct($file, $x, $y, $w, $h, $align, $ln);
 	}
 
 	/**
@@ -1547,8 +1547,8 @@ class PGVRLinePDF extends PGVRLine {
 	* @param mixed $x2
 	* @param mixed $y2
 	*/
-	function PGVRLinePDF($x1, $y1, $x2, $y2) {
-		parent::PGVRLine($x1, $y1, $x2, $y2);
+	function __construct($x1, $y1, $x2, $y2) {
+		parent::__construct($x1, $y1, $x2, $y2);
 	}
 
 	/**
