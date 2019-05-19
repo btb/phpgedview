@@ -3,7 +3,7 @@
  * Greek Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -776,13 +776,12 @@ $pgv_lang["of"]									= "από";
 $pgv_lang["enter_famid"]						= "Εισαγωγή ID οικογένειας";
 $pgv_lang["show_sources"]						= "Εμφάνιση πηγών;";
 $pgv_lang["show_notes"]							= "Εμφάνιση σημειώσεων;";
-$pgv_lang["show_basic"]							= "Εκτύπωση βασικών συμβάντων όταν είναι κενό;";
+$pgv_lang["show_abbr_notes"] 		= "Εμφάνιση συντετμημένων σημειώσεων;";
 $pgv_lang["show_photos"]						= "Εμφάνιση φωτογραφιών;";
 $pgv_lang["individual_report"]					= "Αναφορά ατόμου";
 $pgv_lang["enter_pid"]							= "Εισαγωγή ID ατόμου";
 $pgv_lang["individual_list_report"]				= "Individual List Report";
 $pgv_lang["generated_by"]						= "Δημιουργήθηκε από";
-$pgv_lang["list_children"]						= "Καταγραφή κάθε παιδιού κατά σειρά γέννησης.";
 $pgv_lang["birth_report"]						= "Αναφορά ημερομηνίας και τόπου γέννησης";
 $pgv_lang["birthplace"]							= "Η γενέτειρα περιέχει";
 $pgv_lang["birthdate1"]							= "Αρχή εύρους ημερομηνιών γέννησης";
@@ -1598,7 +1597,6 @@ $pgv_lang["recent_changes_some"]	= "<b>Αλλαγές κατά τις τελευ
 $pgv_lang["show_empty_block"]		= "Πρέπει αυτό το πλαίσιο να αποκρύπτεται όταν είναι άδειο;";
 $pgv_lang["hide_block_warn"]		= "Εάν αποκρύψετε ένα άδειο πλαίσιο, δεν θα μπορείτε να αλλάξετε τις ρυθμίσεις του μέχρι να μην είναι πλέον άδειο ώστε να γίνει ορατό.";
 $pgv_lang["block_not_configure"]	=	"Αυτό το πλαίσιο δεν μπορεί να ρυθμιστεί.";
-$pgv_lang["ahnentafel_header"]		= "Αναφορά Ahnentafel για";
 $pgv_lang["ahnentafel_generation"]	= "Γενεά";
 $pgv_lang["ahnentafel_born_m"]		= "γεννήθηκε";			// male
 $pgv_lang["ahnentafel_pronoun_m"]	= "Αυτός";
@@ -1616,7 +1614,6 @@ $pgv_lang["ahnentafel_place"]		= "σε";				// place name follows this
 $pgv_lang["ahnentafel_no_details"]	= "αλλά οι λεπτομέρειες είναι άγνωστες";
 $pgv_lang["changes_pending_tot"]	= "Σύνολο εκκρεμών αλλαγών:";
 $pgv_lang["changes_accepted_tot"]	= "Σύνολο δεκτών αλλαγών:";
-$pgv_lang["descendancy_header"]		= "Αναφορά απογόνων για";
 $pgv_lang["with"]					= "με";
 $pgv_lang["in"]						= "σε";			// for imprecise dates
 $pgv_lang["on"]						= "από";			// for precise dates

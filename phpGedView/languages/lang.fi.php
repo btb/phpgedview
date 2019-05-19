@@ -3,7 +3,7 @@
  * Finnish Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1341,7 +1341,6 @@ $pgv_lang["html_reports"]           	= "HTML raportti";
 
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"]	= "Sukutauluraportti";
-$pgv_lang["ahnentafel_header"]	= "Sukutauluraportti henkilölle ";
 $pgv_lang["ahnentafel_generation"]	= "Sukupolvi ";
 $pgv_lang["ahnentafel_pronoun_m"]	= "Hän ";
 $pgv_lang["ahnentafel_pronoun_f"]	= "Hän ";
@@ -1367,7 +1366,6 @@ $pgv_lang["changes_accepted_tot"]	= "Hyväksyttyjä muutoksia yhteensä: ";
 
 //-- Descendancy report
 $pgv_lang["descend_report"]		= "Jälkipolviraportti";
-$pgv_lang["descendancy_header"]	= "Jälkipolviraportti henkilölle ";
 $pgv_lang["son_of"]					= " jonka vanhemmat olivat";
 $pgv_lang["daughter_of"]			= " jonka vanhemmat olivat";
 $pgv_lang["child_of"]				= "Lapsi perheessä ";
@@ -1381,7 +1379,7 @@ $pgv_lang["of"]                     		= "/";
 $pgv_lang["enter_famid"]            	= "Syötä perhe-ID";
 $pgv_lang["show_sources"]           	= "Näytä lähteet?";
 $pgv_lang["show_notes"]             	= "Näytä lisätiedot?";
-$pgv_lang["show_basic"]             	= "Näytä tyhjät perustapahtumat?";
+$pgv_lang["show_abbr_notes"] 		= "Näytä lyhennetyt lisätiedot?";
 $pgv_lang["show_photos"]		= "Näytä valokuvat?";
 $pgv_lang["relatives_report_ext"]	= "Laajennettu sukulaisraportti";
 $pgv_lang["with"]			= "/";
@@ -1390,7 +1388,6 @@ $pgv_lang["in"]				= "-";
 $pgv_lang["individual_report"]		= "Henkilöraportti";
 $pgv_lang["enter_pid"]		= "Syötä henkilö ID";
 $pgv_lang["generated_by"]		= "Luontiohjelma: ";
-$pgv_lang["list_children"]		= "Luettele kukin lapsi syntymäjärjestyksessä.";
 $pgv_lang["birth_report"]		= "Syntymäaika- ja -paikkaraportti";
 $pgv_lang["birthplace"]		= "Syntymäpaikka sisältää ";
 $pgv_lang["birthdate1"]		= "Syntymäaika-alueen alku";

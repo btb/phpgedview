@@ -3,7 +3,7 @@
  * Arabic Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1163,7 +1163,6 @@ $pgv_lang["world_chart"]		= "العالم";
 
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"]		= "تقرير النسب";
-$pgv_lang["ahnentafel_header"]		= "تقرير النسب الخاص ب ";
 $pgv_lang["ahnentafel_generation"]	= "الجيل ";
 $pgv_lang["ahnentafel_pronoun_m"]	= "هو ";
 $pgv_lang["ahnentafel_pronoun_f"]	= "هي ";
@@ -1188,7 +1187,6 @@ $pgv_lang["changes_accepted_tot"]	= "إجمالي عدد التغيرات الم
 
 //-- Descendancy report
 $pgv_lang["descend_report"]		= "تقرير السلالة";
-$pgv_lang["descendancy_header"]		= "تقرير السلالة الخاصة ب  ";
 $pgv_lang["son_of"]			= "ابن";
 $pgv_lang["daughter_of"]		= "ابنة";
 $pgv_lang["child_of"]			= "ابن";
@@ -1211,7 +1209,6 @@ $pgv_lang["individual_report"]		= "تقرير الأفراد";
 $pgv_lang["individual_with_rela_report"]	= "تقرير الأقارب المباشرين";
 $pgv_lang["enter_pid"]			= "أدخل المعرف الخاص بالفرد";
 $pgv_lang["generated_by"]		= "تم إنشاؤها بواسطة";
-$pgv_lang["list_children"]		= "ترتيب الولاد حسب تاريخ الولادة";
 $pgv_lang["birth_report"]		= "تقرير تاريخ ومكان المولد";
 $pgv_lang["birthplace"]			= "مكان الولادة يحتوي على كلمة";
 $pgv_lang["birthdate1"]			= "نطاق تاريخ الولادة يبتدئ من";

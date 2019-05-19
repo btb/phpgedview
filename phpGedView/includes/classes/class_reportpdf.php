@@ -39,7 +39,7 @@ if (!defined('PGV_PHPGEDVIEW')) {
 define('PGV_CLASS_REPORTPDF_PHP', '');
 
 require_once PGV_ROOT."includes/classes/class_reportbase.php";
-require_once PGV_ROOT."tcpdf/tcpdf.php";
+require_once PGV_ROOT."includes/tcpdf/tcpdf.php";		// new version
 
 /**
 * Main PGV Report Class for PDF
@@ -655,7 +655,7 @@ class PGVRCellPDF extends PGVRCell {
 	function render(&$pdf) {
 		/**
 		* Use these variables to update/manipulate values
-		* Repeted classes would reupdate all their class variables again, Header/Page Header/Footer
+		* Repeated classes would update all their class variables again, Header/Page Header/Footer
 		* This is the bugfree version
 		*/
 		$cX = 0;	// Class Left
@@ -664,7 +664,7 @@ class PGVRCellPDF extends PGVRCell {
 		if (($pdf->getCurrentStyle()) != ($this->styleName)) {
 			$pdf->setCurrentStyle($this->styleName);
 		}
-		$temptext = str_replace(array("#PAGENUM#", "#PAGETOT#"), array($pdf->getAliasNumPage(), $pdf->getAliasNbPages()), $this->text);
+		$tempText = str_replace(array("#PAGENUM#", "#PAGETOT#"), array($pdf->getAliasNumPage(), $pdf->getAliasNbPages()), $this->text);
 
 		$match = array();
 		// Indicates if the cell background must be painted (1) or transparent (0)
@@ -724,8 +724,8 @@ class PGVRCellPDF extends PGVRCell {
 			$this->height = $pdf->lastCellHeight;
 		}
 		// Check for pagebreak
-		if (!empty($temptext)) {
-			$cHT = $pdf->getNumLines($temptext, $this->width);
+		if (!empty($tempText)) {
+			$cHT = $pdf->getNumLines($tempText, $this->width);
 			$cHT = $cHT * $pdf->getCellHeightRatio() * $pdf->getCurrentStyleHeight();
 			$cM = $pdf->getMargins();
 			// Add padding
@@ -738,10 +738,10 @@ class PGVRCellPDF extends PGVRCell {
 			if ($pdf->checkPageBreakPDF($cHT)) {
 				$this->top = $pdf->GetY();
 			}
-			$temptext = spanLTRRTL($temptext, "BOTH");
+			$tempText = stripControlCodes(spanLTRRTL($tempText, "BOTH"));
 		}
 		// HTML ready - last value is true
-		$pdf->MultiCell($this->width, $this->height, $temptext, $this->border, $this->align, $this->fill, $this->newline, $cX, $this->top, $this->reseth, $this->stretch, true);
+		$pdf->MultiCell($this->width, $this->height, $tempText, $this->border, $this->align, $this->fill, $this->newline, $cX, $this->top, $this->reseth, $this->stretch, true);
 		// Reset the last cell height for the next line
 		if ($this->newline >= 1) {
 			$pdf->lastCellHeight = 0;
@@ -922,7 +922,7 @@ class PGVRTextBoxPDF extends PGVRTextBox {
 
 		/**
 		* Use these variables to update/manipulate values
-		* Repeted classes would reupdate all their class variables again, Header/Page Header/Footer
+		* Repeated classes would update all their class variables again, Header/Page Header/Footer
 		* This is the bugfree version
 		*/
 		$cH = 0;	// Class Height
@@ -982,7 +982,7 @@ class PGVRTextBoxPDF extends PGVRTextBox {
 				if ($ew == $cWT) {
 					$w = 0;
 				}
-				$lw = $this->elements[$i]->getWidth($pdf);
+				$lw = $this->elements[$i]->getWidth($pdf);	// !!!!!
 				// Text is already gets the # LF
 				$cHT += $lw[2];
 				if ($lw[1] == 1) {
@@ -1013,7 +1013,7 @@ class PGVRTextBoxPDF extends PGVRTextBox {
 			if ($eH == 0) {
 				// This is text elements. Number of LF but at least one line
 				$cHT = ($cHT + 1) * $pdf->getCellHeightRatio();
-				// Calculate the cell hight with the largest font size used within this Box
+				// Calculate the cell height with the largest font size used within this Box
 				$cHT = $cHT * $pdf->largestFontHeight;
 				// Add cell padding
 				if ($this->padding) {
@@ -1032,7 +1032,7 @@ class PGVRTextBoxPDF extends PGVRTextBox {
 				$cH = $eH;
 			}
 		}
-		// Finaly, check the last cells height
+		// Finally, check the last cell's height
 		if ($cH < $pdf->lastCellHeight) {
 			$cH = $pdf->lastCellHeight;
 		}
@@ -1067,7 +1067,7 @@ class PGVRTextBoxPDF extends PGVRTextBox {
 		if (!empty($cS)) {
 			$pdf->Rect($cX, $cY, $cW, $cH, $cS);
 		}
-		// Add cell pedding if set and if any text (element) exist
+		// Add cell padding if set and if any text (element) exist
 		if ($this->padding) {
 			if ($cHT > 0) {
 				if (!is_array($cM['cell'])) {
@@ -1170,7 +1170,7 @@ class PGVRTextPDF extends PGVRText {
 		if ($pdf->getCurrentStyle() != $this->styleName) {
 			$pdf->setCurrentStyle($this->styleName);
 		}
-		$temptext = str_replace(array("#PAGENUM#", "#PAGETOT#"), array($pdf->getAliasNumPage(), $pdf->getAliasNbPages()), $this->text);
+		$tempText = str_replace(array("#PAGENUM#", "#PAGETOT#"), array($pdf->getAliasNumPage(), $pdf->getAliasNbPages()), $this->text);
 
 		// Paint the text color or they might use inherited colors by the previous function
 		$match = array();
@@ -1182,10 +1182,27 @@ class PGVRTextPDF extends PGVRText {
 		} else {
 			$pdf->SetTextColor(0, 0, 0);
 		}
-		$temptext = spanLTRRTL($temptext, "BOTH");
-		$pdf->writeHTML($temptext, false, false, true, false, ""); //change height - line break etc.
-		// Reset the text color to black or it will be inherited
-		$pdf->SetTextColor(0, 0, 0);
+
+		if (substr_count($tempText, "\n") == 0) {
+			// This text does not need special treatment
+			$tempText = stripControlCodes(spanLTRRTL($tempText, "BOTH"));
+			$pdf->writeHTML($tempText, false, false, true, false, "");
+		} else {
+			// Break text into separate lines, because TCPDF doesn't handle embedded NL very well
+			$allLines = explode("\n", $tempText);
+			$lineCount = count($allLines) - 1;
+			for ($i=0; $i<$lineCount; $i++) {
+				$tempText = stripControlCodes(spanLTRRTL($allLines[$i], "BOTH"));
+				$tempText .= '<span><br /></span>';			// Make sure this is not a solitary <br /> -- (causes over-printing in TCPDF)
+				$pdf->writeHTML($tempText, false, false, true, false, "");
+			}
+			$tempText = ltrim($allLines[$i], ' ');
+			$tempText = stripControlCodes(spanLTRRTL($tempText, "BOTH"));
+			$pdf->writeHTML($tempText, false, false, true, false, "");
+
+			// Reset the text color to black or it will be inherited
+			$pdf->SetTextColor(0, 0, 0);
+		}
 	}
 
 	/**
@@ -1302,7 +1319,9 @@ class PGVRFootnotePDF extends PGVRFootnote {
 	*/
 	function render(&$pdf) {
 		$pdf->setCurrentStyle("footnotenum");
-		$pdf->Write($pdf->getCurrentStyleHeight(), $this->numText, $this->addlink); //source link numbers after name
+//		$pdf->Write($pdf->getCurrentStyleHeight(), $this->numText, $this->addlink); //source link numbers after name
+		$pdf->writeHTML('<sup>'.$this->numText.'</sup>', false, false, false, false, "");
+//		$this->wrapWidthRemaining -= 10.0;		// Account for the space taken by the footnote reference
 	}
 
 	/**
@@ -1315,20 +1334,21 @@ class PGVRFootnotePDF extends PGVRFootnote {
 		if ($pdf->getCurrentStyle() != $this->styleName) {
 			$pdf->setCurrentStyle($this->styleName);
 		}
-		$temptext = str_replace(array("#PAGENUM#", "#PAGETOT#"), array($pdf->getAliasNumPage(), $pdf->getAliasNbPages()), $this->text);
-		$temptext = str_replace(array('«', '»'), array('<u>', '</u>'), $temptext);		// underline «title» part of Source item
+		$tempText = str_replace(array("#PAGENUM#", "#PAGETOT#"), array($pdf->getAliasNumPage(), $pdf->getAliasNbPages()), $this->text);
+		$tempText = str_replace(array('Â«', 'Â»'), array('<u>', '</u>'), $tempText);		// underline «title» part of Source item
 		// Set the link to this y/page position
-		$pdf->SetLink($this->addlink, -1, -1);
+//		$pdf->SetLink($this->addlink, -1, -1);
 		// Print first the source number
 		// working
 		if ($pdf->getRTL()) {
 			$pdf->writeHTML("<span> .".$this->num."</span>", false, false, false, false, "");
 		} else {
-			$temptext = "<span>".$this->num.". </span>".$temptext;
+//			$tempText = "<span>".$this->num.". </span>".$tempText;
+			$tempText = $this->num.'. '.$tempText;
 		}
-		$temptext = spanLTRRTL($temptext, "BOTH");
-		$pdf->writeHTML($temptext."<br/>", true, false, true, false, "");
-//		$pdf->Write($pdf->getCurrentStyleHeight(), $this->num.". ".$temptext."\n\n"); //@@ indi list of sources
+		$tempText = stripControlCodes(spanLTRRTL($tempText, "BOTH"));
+		$pdf->writeHTML($tempText."<br />", true, false, true, false, "");
+//		$pdf->Write($pdf->getCurrentStyleHeight(), $this->num.". ".$tempText."\n\n"); //@@ indi list of sources
 	}
 
 	/**
@@ -1382,11 +1402,11 @@ class PGVRFootnotePDF extends PGVRFootnote {
 			if (($lw >= $wrapWidthRemaining) or ($lfct > 1)) {
 				$newtext = "";
 				$lines = explode("\n", $this->numText);
-				// Go throught the text line by line
+				// Go through the text line by line
 				foreach($lines as $line) {
 					// Line width in points
 					$lw = ceil($pdf->GetStringWidth($line));
-					// If the line has to be wraped
+					// If the line has to be wrapped
 					if ($lw >= $wrapWidthRemaining) {
 						$words = explode(" ", $line);
 						$addspace = count($words);
@@ -1565,6 +1585,35 @@ class PGVRLinePDF extends PGVRLine {
 
 		$pdf->Line($this->x1, $this->y1, $this->x2, $this->y2);
 	}
+}
+
+/*
+ * Function stripControlCodes
+ *
+ *		This function strips UTF8 control codes from text before sending it to tcpdf
+ *
+ *		The following UTF8 control codes need to be removed when the currently active font does not support them:
+ *			PGV_UTF8_LRM  \xE2\x80\x8E  U+200E  (Left to Right mark:  zero-width character with LTR directionality)
+ *			PGV_UTF8_RLM  \xE2\x80\x8F  U+200F  (Right to Left mark:  zero-width character with RTL directionality)
+ *			PGV_UTF8_LRO  \xE2\x80\xAD  U+202D  (Left to Right override: force everything following to LTR mode)
+ *			PGV_UTF8_RLO  \xE2\x80\xAE  U+202E  (Right to Left override: force everything following to RTL mode)
+ *			PGV_UTF8_LRE  \xE2\x80\xAA  U+202A  (Left to Right embedding: treat everything following as LTR text)
+ *			PGV_UTF8_RLE  \xE2\x80\xAB  U+202B  (Right to Left embedding: treat everything following as RTL text)
+ *			PGV_UTF8_PDF  \xE2\x80\xAC  U+202C  (Pop directional formatting: restore state prior to last LRO, RLO, LRE, RLE)
+ *		See /includes/session.php
+ */
+function stripControlCodes($text) {
+	global $currentFont;
+	// List of fonts that support UTF8 control codes.  Any fonts not in this list don't support those control codes.
+	$fontUTF8 = array('dejavusans', 'dejavusanscondensed', 'dejavuserif', 'dejavuserifcondensed', 'freesans', 'freeserif');
+	// List of UTF8 control codes that might need to be stripped from incoming text
+	$controlUTF8 = array(PGV_UTF8_LRM, PGV_UTF8_RLM, PGV_UTF8_LRO, PGV_UTF8_RLO, PGV_UTF8_LRE, PGV_UTF8_RLE, PGV_UTF8_PDF);
+
+	if (!in_array($currentFont, $fontUTF8)) {
+		$text = str_replace($controlUTF8, '', $text);
+	}
+
+	return $text;
 }
 
 ?>

@@ -3,7 +3,7 @@
  * Dutch texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1487,8 +1487,7 @@ $pgv_lang["pdf_reports"]			= "PDF rapporten";
 $pgv_lang["html_reports"]				= "HTML rapporten";
 
 //-- Ahnentafel report
-$pgv_lang["ahnentafel_report"]		= "Voorouders";
-$pgv_lang["ahnentafel_header"]		= "Voorouder Rapport voor ";
+$pgv_lang["ahnentafel_report"]		= "Voorouder Rapport";
 $pgv_lang["ahnentafel_generation"]	= "Generatie ";
 $pgv_lang["ahnentafel_pronoun_m"]	= "Hij ";
 $pgv_lang["ahnentafel_pronoun_f"]	= "Zij ";
@@ -1515,8 +1514,7 @@ $pgv_lang["changes_pending_tot"]	= "Totaal lopende wijzigingen: ";
 $pgv_lang["changes_accepted_tot"]	= "Totaal goedgekeurde wijzigingen: ";
 
 //-- Descendancy report
-$pgv_lang["descend_report"]				= "Nakomelingen";
-$pgv_lang["descendancy_header"]			= "Nakomelingen rapport voor ";
+$pgv_lang["descend_report"]				= "Nakomelingen rapport";
 $pgv_lang["son_of"]					= "zoon van";
 $pgv_lang["daughter_of"]				= "dochter van";
 $pgv_lang["child_of"]					= "Kind van ";
@@ -1530,7 +1528,7 @@ $pgv_lang["of"]						= "van";
 $pgv_lang["enter_famid"]				= "Type gezins-ID";
 $pgv_lang["show_sources"]			= "Toon bronnen?";
 $pgv_lang["show_notes"]				= "Toon notities?";
-$pgv_lang["show_basic"]				= "Druk basisgebeurtenissen af indien leeg?";
+$pgv_lang["show_abbr_notes"] 		= "Toon verkorte notities?";
 $pgv_lang["show_photos"]			= "Toon foto's?";
 $pgv_lang["relatives_report_ext"]	= "Uitgebreid Verwanten Rapport";
 $pgv_lang["with"]					= "met";
@@ -1540,7 +1538,6 @@ $pgv_lang["individual_report"]			= "Persoon";
 $pgv_lang["individual_with_rela_report"]	= "Nauwe Verwanten Rapport";
 $pgv_lang["enter_pid"]					= "Type persoons-ID";
 $pgv_lang["generated_by"]				= "Vervaardigd met";
-$pgv_lang["list_children"]			= "Kinderen gesorteerd op geboortedatum.";
 $pgv_lang["birth_report"]			= "Geboortedata en -locaties";
 $pgv_lang["birthplace"]				= "Geboorteplaats bevat";
 $pgv_lang["birthdate1"]				= "Periode geboortedatum start op";

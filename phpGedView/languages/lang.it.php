@@ -3,7 +3,7 @@
  * Italian Language file
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1491,7 +1491,6 @@ $pgv_lang["html_reports"]			= "Rapporti HTML";
 
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"]		= "Relazione Ahnentafel";
-$pgv_lang["ahnentafel_header"]		= "Rapporto Ahnentafel per";
 $pgv_lang["ahnentafel_generation"]	= "Generazione";
 $pgv_lang["ahnentafel_pronoun_m"]	= "Egli";
 $pgv_lang["ahnentafel_pronoun_f"]	= "Essa";
@@ -1517,7 +1516,6 @@ $pgv_lang["changes_accepted_tot"]	= "Totale modifiche accettate:";
 
 //-- Descendancy report
 $pgv_lang["descend_report"]		= "Rapporto dei discendenti";
-$pgv_lang["descendancy_header"]		= "Rapporto dei discendenti per ";
 $pgv_lang["son_of"]				= "figlio di";
 $pgv_lang["daughter_of"]		= "figlia di";
 $pgv_lang["child_of"]				= "Figlio/a di ";
@@ -1529,9 +1527,9 @@ $pgv_lang["family_group_report"]	= "Report Famiglia";
 $pgv_lang["page"]     = "Pagina";
 $pgv_lang["of"]						= "di";
 $pgv_lang["enter_famid"]			= "Inserisci ID Famiglia";
-$pgv_lang["show_sources"]			= "Mostra Fonti?";
+$pgv_lang["show_sources"]			= "Mostra fonti?";
 $pgv_lang["show_notes"] 			= "Mostra note?";
-$pgv_lang["show_basic"] 			= "Stampa eventi base quando vuoti?";
+$pgv_lang["show_abbr_notes"] 		= "Mostra note abbreviate?";
 $pgv_lang["show_photos"]			= "Mostra foto?";
 $pgv_lang["relatives_report_ext"]	= "Rapporto Parenti allargato";
 $pgv_lang["with"]					= "con";
@@ -1541,7 +1539,6 @@ $pgv_lang["individual_report"]		= "Report persona";
 $pgv_lang["individual_with_rela_report"]	= "Rapporto dei parenti stretti";
 $pgv_lang["enter_pid"]				= "Inserisci ID Persona";
 $pgv_lang["generated_by"]			= "Generato da";
-$pgv_lang["list_children"]			= "Elenca ogni bambino in ordine di nascita.";
 $pgv_lang["birth_report"]			= "Report Data e Luogo di nascita";
 $pgv_lang["birthplace"]				= "Luogo di nascita contiene";
 $pgv_lang["birthdate1"]				= "Data di nascita minima";

@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PGVReport access="PRIV_PUBLIC" icon="place">
-<!-- $Id$ -->
-	<PGVRTitle><PGVRvar var="pgv_lang[cemetery_report]" /></PGVRTitle>
+	<!--
+	@package PhpGedView
+	@subpackage Reports
+	@version $Id$
+	-->
 	<PGVRDescription>Prints a list of individuals burial places matching specific cemetery criteria</PGVRDescription>
+
+	<PGVRTitle><PGVRvar var="pgv_lang[cemetery_report]" /></PGVRTitle>
 	<PGVRInput name="deathplace" lookup="PLAC" type="text"><PGVRvar var="pgv_lang[burialplace]" /> </PGVRInput>
 	<PGVRInput name="sortby" type="select" default="NAME" options="none,ID,NAME,DEAT:DATE"><PGVRvar var="pgv_lang[sort_by]" /></PGVRInput>
 	<PGVRInput name="adlist" type="select" default="none" options="none,_MARNM,HUSB"><PGVRvar var="pgv_lang[name_list]" /></PGVRInput>
-	<PGVRInput name="pageSize" type="select" default="A4" options="letter,A3,A4,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
-	<PGVRInput name="fonts" type="select" default="dejavusans" options="arialunicid0,dejavusans,helvetica"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
+	<PGVRInput name="pageSize" type="select" default="A4" options="A3,A4,letter,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
+	<PGVRInput name="fonts" type="select" default="dejavusans" options="courier,dejavusans,dejavusanscondensed,dejavuserif,dejavuserifcondensed,dejavusansmono,freesans,freeserif,freemono,helvetica,times"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 
 	<!-- Header -->
-	<PGVRStyle name="header" font="$fonts" size="16" style="b" />
+	<PGVRStyle name="header" font="$fonts" size="14" style="b" />
 	<!-- Page numbers text -->
 	<PGVRStyle name="pagenum" font="$fonts" size="8"/>
 	<!-- Standard text -->
@@ -30,7 +35,7 @@
 
 	<PGVRDoc pageSize="$pageSize" orientation="landscape">
 		<PGVRHeader>
-			<PGVRCell align="center" height="20" newline="1" style="header"><PGVRvar var="pgv_lang[cemetery_report]" /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="header"><PGVRvar var="pgv_lang[cemetery_report]" /></PGVRCell>
 			<PGVRCell align="rightrtl" newline="1" style="pagenum"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
 
 			<PGVRSetVar name="fill" value="" />
@@ -42,7 +47,7 @@
 			<PGVRSetVar name="fill" value="" />
 			<PGVRif condition="$sortby=='DEAT:DATE'"><PGVRSetVar name="fill" value="#AAAAAA" /></PGVRif>
 			<PGVRTextBox bgcolor="$fill" border="1" width="$datewidth">
-				<PGVRText style="label"><PGVRvar var="factarray[DEAT:DATE]" /></PGVRText>
+				<PGVRText style="label"><PGVRvar var="factarray[DEAT]" /></PGVRText>
 			</PGVRTextBox>
 			<!-- should print and sort by burial date -->
 

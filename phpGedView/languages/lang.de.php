@@ -3,7 +3,7 @@
  * German Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reerved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reerved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1491,7 +1491,6 @@ $pgv_lang["html_reports"]				= "Berichte im HTML Format";
 
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"]			= "Ahnentafelbericht";
-$pgv_lang["ahnentafel_header"]			= "Ahnentafelbericht für ";
 $pgv_lang["ahnentafel_generation"]		= "Generation ";
 $pgv_lang["ahnentafel_pronoun_m"]		= "Er ";
 $pgv_lang["ahnentafel_pronoun_f"]		= "Sie ";
@@ -1519,7 +1518,6 @@ $pgv_lang["changes_accepted_tot"]		= "Schon akzeptierte Änderungen insgesamt: "
 
 //-- Descendancy report
 $pgv_lang["descend_report"]				= "Nachfahrenbericht";
-$pgv_lang["descendancy_header"]			= "Nachfahrenbericht von ";
 $pgv_lang["son_of"]						= "Sohn von";
 $pgv_lang["daughter_of"]				= "Tochter von";
 $pgv_lang["child_of"]					= "Kind von ";
@@ -1533,6 +1531,7 @@ $pgv_lang["of"]							= "von";
 $pgv_lang["enter_famid"]				= "Familien-ID eingeben";
 $pgv_lang["show_sources"]				= "Quellen zeigen?";
 $pgv_lang["show_notes"]					= "Bemerke zeigen?";
+$pgv_lang["show_abbr_notes"] 		= "Gekürzte Bemerke zeigen?";
 $pgv_lang["show_photos"]				= "Fotos zeigen?";
 $pgv_lang["relatives_report_ext"]		= "Ausführlicher Verwandtenbericht";
 $pgv_lang["with"]						= "mit";
@@ -1542,7 +1541,6 @@ $pgv_lang["individual_report"]			= "Personenbericht";
 $pgv_lang["individual_with_rela_report"]	= "Enge Verwandtenbericht";
 $pgv_lang["enter_pid"]					= "Personen-ID eingeben";
 $pgv_lang["generated_by"]				= "Erstellt mit";
-$pgv_lang["list_children"]				= "Alle Kinder nach Geburtsdatum geordnet zeigen.";
 $pgv_lang["birth_report"]				= "Geburtsdaten u. -ortebericht";
 $pgv_lang["birthplace"]					= "Geburtsort enthält";
 $pgv_lang["birthdate1"]					= "Geburtsdatenbereich Anfang";

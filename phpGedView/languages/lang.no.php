@@ -3,7 +3,7 @@
  * Norwegian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1446,7 +1446,6 @@ $pgv_lang["html_reports"]		= "HTML rapporter";
 
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"]		= "Forfedre";
-$pgv_lang["ahnentafel_header"]		= "Forfedre til ";
 $pgv_lang["ahnentafel_generation"]	= "Generasjon ";
 $pgv_lang["ahnentafel_pronoun_m"]	= "Han ";
 $pgv_lang["ahnentafel_pronoun_f"]	= "Hun ";
@@ -1470,7 +1469,6 @@ $pgv_lang["changes_accepted_tot"]	= "Antall aksepterte endringer: ";
 
 //-- Descendancy report
 $pgv_lang["descend_report"]		= "Etterkommere";
-$pgv_lang["descendancy_header"]	= "Etterkommere til ";
 
 $pgv_lang["family_group_report"]	= "Familie";
 $pgv_lang["page"]				= "Side";
@@ -1478,7 +1476,7 @@ $pgv_lang["of"]					= "av";
 $pgv_lang["enter_famid"]		= "Angi FamilieID";
 $pgv_lang["show_sources"]		= "Vise kilder?";
 $pgv_lang["show_notes"]			= "Vise noter?";
-$pgv_lang["show_basic"]			= "Skriv ut de vanligste hendelsene<br />&nbsp;&nbsp;&nbsp;- selv om disse er tomme?";
+$pgv_lang["show_abbr_notes"] 		= "Vise forkortede noter?";
 $pgv_lang["show_photos"]		= "Vise bilder?";
 $pgv_lang["relatives_report_ext"]	= "Mange slektninger";
 $pgv_lang["with"]				= "med";
@@ -1487,7 +1485,6 @@ $pgv_lang["in"]					= "i";			// for imprecise dates
 $pgv_lang["individual_report"]	= "Person";
 $pgv_lang["enter_pid"]			= "Angi PersonID";
 $pgv_lang["generated_by"]		= "Laget av";
-$pgv_lang["list_children"]		= "(Sortert etter alder)";
 $pgv_lang["birth_report"]		= "Fødselsdato og -sted";
 $pgv_lang["birthplace"]			= "Fødested inneholder ";
 $pgv_lang["birthdate1"]			= "Vis fødte <b>fra</b> dato ";

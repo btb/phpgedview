@@ -3,7 +3,7 @@
  * Catalan texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1334,7 +1334,6 @@ $pgv_lang["html_reports"]			= "Llistes HTML";
 
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"]		= "Informe per generacions";
-$pgv_lang["ahnentafel_header"]		= "Ahnentafel: Informe per generacions de ";
 $pgv_lang["ahnentafel_generation"]		= "Generació ";
 $pgv_lang["ahnentafel_pronoun_m"]		= " ";
 $pgv_lang["ahnentafel_pronoun_f"]		= " ";
@@ -1356,15 +1355,14 @@ $pgv_lang["changes_report"]			= "Informe de canvis";
 
 //-- Descendancy report
 $pgv_lang["descend_report"]		= "Informe de Descendents";
-$pgv_lang["descendancy_header"]	= "Informe de Descendents per ";
 
 $pgv_lang["family_group_report"]	= "Informe de Grups Familiars";
 $pgv_lang["page"]				= "Pàgina";
 $pgv_lang["of"] 				= "de";
 $pgv_lang["enter_famid"]		= "Entreu l'ID de la Família";
-$pgv_lang["show_sources"]		= "Amb fonts?";
-$pgv_lang["show_notes"] 		= "Amb notes?";
-$pgv_lang["show_basic"] 		= "Imprimir esdeveniments bàsics malgrat estiguin en blanc?";
+$pgv_lang["show_sources"]		= "Mostra fonts?";
+$pgv_lang["show_notes"] 		= "Mostra notes?";
+$pgv_lang["show_abbr_notes"] 		= "Mostra notes abreujades?";
 $pgv_lang["show_photos"]		= "Amb fotografies?";
 $pgv_lang["relatives_report_ext"]	= "Llista de parentiu ampliada";
 $pgv_lang["with"]				= "amb";
@@ -1373,7 +1371,6 @@ $pgv_lang["in"]				= "el";
 $pgv_lang["individual_report"]	= "Informe personal";
 $pgv_lang["enter_pid"]			= "Entreu l'ID de la persona";
 $pgv_lang["generated_by"]		= "Generat per";
-$pgv_lang["list_children"]		= "Llista la mainada per ordre de naixement.";
 $pgv_lang["birth_report"]		= "Llista de natalicis i llocs";
 $pgv_lang["birthplace"]			= "La llista de llocs cont&eacute";
 $pgv_lang["birthdate1"]			= "Data de naixement inicial";

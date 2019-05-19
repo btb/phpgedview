@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PGVReport access="PRIV_USER" icon="place">
-	<!-- $Id$ -->
-	<PGVRTitle><PGVRvar var="pgv_lang[changes_report]" /></PGVRTitle>
+	<!--
+	@package PhpGedView
+	@subpackage Reports
+	@version $Id$
+	-->
 	<PGVRDescription>Prints a list of individuals matching specific change criteria</PGVRDescription>
+
+	<PGVRTitle><PGVRvar var="pgv_lang[changes_report]" /></PGVRTitle>
 	<PGVRInput name="changeRangeStart" lookup="DATE" type="text" default="NOW-30"><PGVRvar var="pgv_lang[changedate2]" /></PGVRInput>
 	<PGVRInput name="changeRangeEnd" lookup="DATE" type="text" default="NOW"><PGVRvar var="pgv_lang[changedate1]" /></PGVRInput>
 	<PGVRInput name="sortby" type="select" options="CHAN,NAME,BIRT:DATE"><PGVRvar var="pgv_lang[sort_by]" /></PGVRInput>
 	<PGVRInput name="pending" type="select" options="yes,no"><PGVRvar var="pgv_lang[show_pending]" /></PGVRInput>
-	<PGVRInput name="pageSize" type="select" default="A4" options="letter,A3,A4,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
+	<PGVRInput name="pageSize" type="select" default="A4" options="A3,A4,letter,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
 	<PGVRInput name="pageorient" type="select" default="landscape" options="landscape,portrait"><PGVRvar var="pgv_lang[orientation]" /></PGVRInput>
-	<PGVRInput name="fonts" type="select" default="dejavusans" options="arialunicid0,dejavusans,helvetica"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
+	<PGVRInput name="fonts" type="select" default="dejavusans" options="courier,dejavusans,dejavusanscondensed,dejavuserif,dejavuserifcondensed,dejavusansmono,freesans,freeserif,freemono,helvetica,times"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 
 	<!-- Header -->
-	<PGVRStyle name="header" font="$fonts" size="16" style="b" />
+	<PGVRStyle name="header" font="$fonts" size="14" style="b" />
 	<!-- Page numbers text -->
 	<PGVRStyle name="pagenum" font="$fonts" size="8"/>
 	<!-- Standard text -->
@@ -31,7 +36,7 @@
 		<PGVRSetVar name="namewidth" value="220"/>
 		<PGVRSetVar name="datewidth" value="300"/>
 	</PGVRif>
-	
+
 	<PGVRif condition="$pageorient=='portrait'">
 		<!-- portrait orientation -->
 		<PGVRSetVar name="idwidth" value="40"/>
@@ -41,7 +46,7 @@
 
 	<PGVRDoc pageSize="$pageSize" orientation="$pageorient" >
 		<PGVRHeader>
-			<PGVRCell align="center" height="20" newline="1" style="header"><PGVRvar var="pgv_lang[changes_report]" /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="header"><PGVRvar var="pgv_lang[changes_report]" /></PGVRCell>
 			<PGVRCell align="rightrtl" newline="1" style="pagenum"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
 		</PGVRHeader>
 

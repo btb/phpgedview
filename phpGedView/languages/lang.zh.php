@@ -1024,8 +1024,8 @@ $pgv_lang["chart_style"] = "表的格式";
 $pgv_lang["ancestry_chart"] = "祖先樹";
 $pgv_lang["statistics"] = "統計表";
 $pgv_lang["show_photos"] = "顯示照片？";
-$pgv_lang["show_notes"] = "顯示記錄？";
-$pgv_lang["show_notes"] ="顯示來源？";
+$pgv_lang["show_notes"] = "顯示來源？";
+$pgv_lang["show_abbr_notes"] 		= "顯示縮略語？";
 $pgv_lang["show_sources"] = "顯示來源？";
 $pgv_lang["enter_famid"] = "輸入家庭ID";
 $pgv_lang["of"] = "從";
@@ -1770,7 +1770,6 @@ $pgv_lang["hourglass_chart"] = "沙漏圖";
 
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"] = "譜系報告";
-$pgv_lang["ahnentafel_header"] = "Ahnentafel報告";
 $pgv_lang["ahnentafel_christened_m"] = "被命名為";
 $pgv_lang["ahnentafel_christened_f"] = "被命名為";
 $pgv_lang["ahnentafel_married_m"] = "已婚";
@@ -1793,7 +1792,6 @@ $pgv_lang["changes_accepted_tot"] = "接受的總變化：";
 
 //-- Descendancy report
 $pgv_lang["descend_report"] = "後裔報告";
-$pgv_lang["descendancy_header"] = "後代報告";
 $pgv_lang["son_of"] = "的兒子";
 $pgv_lang["daughter_of"] = "的女兒";
 $pgv_lang["child_of"] = "孩子的";
@@ -1807,7 +1805,6 @@ $pgv_lang["in"] = "在";
 $pgv_lang["individual_with_rela_report"] = "近親報告";
 $pgv_lang["enter_pid"] = "輸入個人ID";
 $pgv_lang["generated_by"] = "生成";
-$pgv_lang["list_children"] = "按出生順序列出每個孩子。";
 $pgv_lang["birth_report"] = "出生日期和地點報告";
 $pgv_lang["birthplace"] = "出生地包含";
 $pgv_lang["birthdate1"] = "出生日期範圍開始";

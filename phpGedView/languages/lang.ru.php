@@ -3,7 +3,7 @@
  * Russian Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1482,7 +1482,6 @@ $pgv_lang["html_reports"]		= "HTML Отчеты";
 
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"]		=  "Родословный отчёт";
-$pgv_lang["ahnentafel_header"]		= "Родословный отчёт для ";
 $pgv_lang["ahnentafel_generation"]	= "Поколение ";
 $pgv_lang["ahnentafel_pronoun_m"]	= "Он ";
 $pgv_lang["ahnentafel_pronoun_f"]	= "Она ";
@@ -1510,7 +1509,6 @@ $pgv_lang["changes_accepted_tot"]	= "Всего принятых изменен�
 
 //-- Descendancy report
 $pgv_lang["descend_report"]		= "Нисходящий отчёт";
-$pgv_lang["descendancy_header"]		= "Нисходящий отчёт для ";
 $pgv_lang["son_of"]			= "сын";
 $pgv_lang["daughter_of"]		= "дочь";
 $pgv_lang["child_of"]			= "Ребёнок ";
@@ -1524,6 +1522,7 @@ $pgv_lang["of"] 			= " ";
 $pgv_lang["enter_famid"]		= "Введити ID семьи";
 $pgv_lang["show_sources"]		= "Показать источники?";
 $pgv_lang["show_notes"] 		= "Показать заметки?";
+$pgv_lang["show_abbr_notes"] 		= "Показать сокращенные заметки?";
 $pgv_lang["show_photos"]		= "Показать фотографии?";
 $pgv_lang["relatives_report_ext"]	= "Расширенный отчёт по родственникам";
 $pgv_lang["with"]			= "с";
@@ -1533,7 +1532,6 @@ $pgv_lang["individual_report"]		= "Персональный отчет";
 $pgv_lang["individual_with_rela_report"]= "Отчёт по близким родственникам";
 $pgv_lang["enter_pid"]			= "Введите ID персоны";
 $pgv_lang["generated_by"]		= "Сгенерировано ";
-$pgv_lang["list_children"]		= "Список детей в порядке рождения.";
 $pgv_lang["birth_report"]		= "Отчет дня и места рождения";
 $pgv_lang["birthplace"]			= "Место рождения включает";
 $pgv_lang["birthdate1"]			= "Начало линии дней рождения";
@@ -2151,7 +2149,6 @@ $pgv_lang["media_table_created"]	= "Таблица <i>Медиа-объекто�
 $pgv_lang["click_to_add_media"]		= "Нажмите здесь, чтобы добавить Медиа-объект к GEDCOM данным #GEDCOM#.";
 $pgv_lang["adds_completed"]		= "Медиа-объект успешно добавлен в GEDCOM файл.";
 $pgv_lang["run_report"]			= "Посмотреть отчет";
-$pgv_lang["show_basic"] 			= "Печатать основные события в случае пустоты?";
 $pgv_lang["individual_list_report"]	= "Персональный отчет списком";
 $pgv_lang["dynasty_list"]		= "Обзор семей";
 $pgv_lang["make_slklist"]		= "Создать список EXCEL (SLK) ";

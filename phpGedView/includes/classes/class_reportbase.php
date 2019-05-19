@@ -370,10 +370,10 @@ class PGVReportBase {
 		}
 		else {
 			if ($this->pagew < 10) {
-				die("<strong>REPORT ERROR PGVReportBase::setup(): </strong>For custom size pages you must set \"customwidth\" larger then this in the XML file");
+				die("<strong>REPORT ERROR PGVReportBase::setup(): </strong>For custom size pages you must set \"customwidth\" larger than this in the XML file");
 			}
 			if ($this->pageh < 10) {
-				die("<strong>REPORT ERROR PGVReportBase::setup(): </strong>For custom size pages you must set \"customheight\" larger then this in the XML file");
+				die("<strong>REPORT ERROR PGVReportBase::setup(): </strong>For custom size pages you must set \"customheight\" larger than this in the XML file");
 			}
 		}
 		return 0;
@@ -931,7 +931,7 @@ class PGVRText extends PGVRElement {
 
 	function setWrapWidth($wrapwidth, $cellwidth) {
 		$this->wrapWidthCell = $cellwidth;
-		if (strpos($this->text, "\n")!==false) {
+		if (substr($this->text, 0, 1) == "\n") {
 			$this->wrapWidthRemaining = $cellwidth;
 		} else {
 			$this->wrapWidthRemaining = $wrapwidth;
@@ -1021,7 +1021,7 @@ class PGVRFootnote extends PGVRElement {
 
 	function setWrapWidth($wrapwidth, $cellwidth) {
 		$this->wrapWidthCell = $cellwidth;
-		if (strpos($this->numText, "\n")!==false) {
+		if (substr($this->text, 0, 1) == "\n") {
 			$this->wrapWidthRemaining = $cellwidth;
 		} else {
 			$this->wrapWidthRemaining = $wrapwidth;
@@ -1327,7 +1327,7 @@ $reportDescription = false;
  * Print data stack
  *
  * As the XML is being processed there will be times when we need to turn on and off the
- * <var>$printData</var> variable as we encounter entinties in the XML.  The stack allows us to
+ * <var>$printData</var> variable as we encounter entities in the XML.  The stack allows us to
  * keep track of when to turn <var>$printData</var> on and off.
  * @global array $printDataStack
  */
@@ -1400,7 +1400,7 @@ $processIfs = 0;
 $processGedcoms = 0;
 
 /**
- * Wether or not to print footnote
+ * Whether or not to print footnote
  * true = print, false = don't print
  */
 $processFootnote = true;
@@ -1491,7 +1491,7 @@ function characterData($parser, $data) {
 }
 
 /**
-* XML <PGVRStyleSHandler /> elemnt handler
+* XML <PGVRStyleSHandler /> element handler
 *
 * @param array $attrs an array of key value pairs for the attributes
 * @see PGVReportBase::$defaultFont
@@ -1528,7 +1528,7 @@ function PGVRStyleSHandler($attrs) {
 }
 
 /**
-* XML <PGVRDoc> start elemnt handler
+* XML <PGVRDoc> start element handler
 *
 * Sets up the basics of the document proparties
 * @param array $attrs an array of key value pairs for the attributes
@@ -1611,7 +1611,7 @@ function PGVRDocSHandler($attrs) {
 }
 
 /**
-* XML </PGVRDoc> end elemnt handler
+* XML </PGVRDoc> end element handler
 *
 * @see PGVRDocSHandler()
 */
@@ -1621,7 +1621,7 @@ function PGVRDocEHandler() {
 }
 
 /**
-* XML <PGVRHeader> start elemnt handler
+* XML <PGVRHeader> start element handler
 *
 * @see PGVReportBase::setProcessing()
 */
@@ -1634,7 +1634,7 @@ function PGVRHeaderSHandler() {
 }
 
 /**
-* XML <PGVRPageHeader> start elemnt handler
+* XML <PGVRPageHeader> start element handler
 *
 * @param array $attrs an array of key value pairs for the attributes
 * @see PGVRPageHeaderEHandler()
@@ -1649,7 +1649,7 @@ function PGVRPageHeaderSHandler($attrs) {
 }
 
 /**
-* XML <PGVRPageHeaderEHandler> end elemnt handler
+* XML <PGVRPageHeaderEHandler> end element handler
 *
 * @see PGVRPageHeaderSHandler()
 */
@@ -1663,7 +1663,7 @@ function PGVRPageHeaderEHandler() {
 }
 
 /**
-* XML <PGVRBodySHandler> start elemnt handler
+* XML <PGVRBodySHandler> start element handler
 */
 function PGVRBodySHandler() {
 	global $pgvreport;
@@ -1671,7 +1671,7 @@ function PGVRBodySHandler() {
 }
 
 /**
-* XML <PGVRFooterSHandler> start elemnt handler
+* XML <PGVRFooterSHandler> start element handler
 */
 function PGVRFooterSHandler() {
 	global $pgvreport;
@@ -1679,7 +1679,7 @@ function PGVRFooterSHandler() {
 }
 
 /**
-* XML <PGVRCell> start elemnt handler
+* XML <PGVRCell> start element handler
 *
 * @param array $attrs an array of key value pairs for the attributes
 * @see PGVRCellEHandler()
@@ -1811,7 +1811,7 @@ function PGVRCellSHandler($attrs) {
 }
 
 /**
-* XML </PGVRCell> end elemnt handler
+* XML </PGVRCell> end element handler
 *
 * @see PGVRCellSHandler()
 * @final
@@ -1824,7 +1824,7 @@ function PGVRCellEHandler() {
 }
 
 /**
-* XML <PGVRNow /> elemnt handler
+* XML <PGVRNow /> element handler
 *
 * @see PGVRElement::addText()
 * @final
@@ -1837,7 +1837,7 @@ function PGVRNowSHandler() {
 }
 
 /**
-* XML <PGVRPageNum /> elemnt handler
+* XML <PGVRPageNum /> element handler
 *
 * @see PGVRElement::addText()
 * @final
@@ -1848,7 +1848,7 @@ function PGVRPageNumSHandler() {
 }
 
 /**
-* XML <PGVRTotalPages /> elemnt handler
+* XML <PGVRTotalPages /> element handler
 *
 * @see PGVRElement::addText()
 * @final
@@ -1949,7 +1949,7 @@ function PGVRGedcomEHandler() {
 }
 
 /**
-* XML <PGVRTextBoxSHandler> start elemnt handler
+* XML <PGVRTextBoxSHandler> start element handler
 *
 * @param array $attrs an array of key value pairs for the attributes
 * @see PGVRTextBoxEHandler()
@@ -1962,7 +1962,7 @@ function PGVRTextBoxSHandler($attrs) {
 	$bgcolor = "";
 	if (!empty($attrs["bgcolor"])) $bgcolor = $attrs["bgcolor"];
 
-	// boolean Wether or not fill the background color
+	// boolean Whether or not fill the background color
 	$fill = true;
 	if (isset($attrs["fill"])) {
 		if ($attrs["fill"] === "0") {
@@ -2062,7 +2062,7 @@ function PGVRTextBoxSHandler($attrs) {
 
 	// string Style of rendering
 	$style = "";
-	// fill and border is enought for now for user input
+	// fill and border is enough for now for user input
 //	if (!empty($attrs["style"])) $style = $attrs["style"];
 
 	array_push($printDataStack, $printData);
@@ -2073,7 +2073,7 @@ function PGVRTextBoxSHandler($attrs) {
 }
 
 /**
-* XML <PGVRTextBoxEHandler> end elemnt handler
+* XML <PGVRTextBoxEHandler> end element handler
 *
 * @see PGVRTextBoxSHandler()
 */
@@ -2120,7 +2120,7 @@ function PGVRTextEHandler() {
 }
 
 /**
-* XML <PGVRGetPersonName> start elemnt handler
+* XML <PGVRGetPersonName> start element handler
 * Get the name
 * 1. id is empty - current GEDCOM record
 * 2. id is set with a record id
@@ -2164,7 +2164,8 @@ function PGVRGetPersonNameSHandler($attrs) {
 			$currentElement->addText($pgv_lang["private"]);
 		} else {
 			$name = $record->getFullName();
-			$name = preg_replace("/<span class=\"starredname\">(.*)<\/span> ?/", "\\1* ", $name); //restores the * for underlining a given name
+//			$name = preg_replace("/<span class=\"starredname\">(.*)<\/span> ?/", "\\1* ", $name); //restores the * for underlining a given name
+			$name = preg_replace("/<span class=\"starredname\">(.*)<\/span>/", "\\1", $name);	// Underlining causes problems with line wrap in PDF reports
 			if (!PGV_RNEW) {
 				$name = strip_tags($name);
 			}
@@ -2204,7 +2205,7 @@ function PGVRGetPersonNameSHandler($attrs) {
 }
 
 /**
-* XML <PGVRGedcomValue> start elemnt handler
+* XML <PGVRGedcomValue> start element handler
 *
 * @param array $attrs an array of key value pairs for the attributes
 */
@@ -2249,10 +2250,16 @@ function PGVRGedcomValueSHandler($attrs) {
 			} else {
 				$level = $attrs["level"];
 			}
+
+			// $truncate:
+			//		-1: Get full Notes text
+			//		>0: Truncate facts at specified length
+			//	 	 0: Get abbreviated Notes text, or no truncation of other facts
 			$truncate = "";
 			if (isset($attrs["truncate"])) {
 				$truncate=$attrs["truncate"];
 			}
+
 			$tags = explode(":", $tag);
 			//-- check all tags for privacy
 			foreach($tags as $subtag) {
@@ -2264,6 +2271,7 @@ function PGVRGedcomValueSHandler($attrs) {
 			}
 			if (showFact($fact, $id) or showFactDetails($fact, $id)) {
 				$value = get_gedcom_value($tag, $level, $gedrec, $truncate);
+
 				if ($useBreak == "1") {
 					// Insert <br /> when multiple dates exist.
 					// This works around a TCPDF bug that incorrectly wraps RTL dates on LTR pages
@@ -2281,7 +2289,7 @@ function PGVRGedcomValueSHandler($attrs) {
 }
 
 /**
-* XML <PGVRRepeatTag> start elemnt handler
+* XML <PGVRRepeatTag> start element handler
 *
 * @see PGVRRepeatTagEHandler()
 * @param array $attrs an array of key value pairs for the attributes
@@ -2367,7 +2375,7 @@ function PGVRRepeatTagSHandler($attrs) {
 }
 
 /**
-* XML </ PGVRRepeatTag> end elemnt handler
+* XML </ PGVRRepeatTag> end element handler
 *
 * @see PGVRRepeatTagSHandler()
 */
@@ -2618,7 +2626,7 @@ function PGVRFactsSHandler($attrs) {
 }
 
 /**
-* XML </ PGVRFacts> end elemnt handler
+* XML </ PGVRFacts> end element handler
 *
 * @see PGVRFactsSHandler()
 */
@@ -3110,7 +3118,7 @@ function PGVRImageSHandler($attrs) {
 }
 
 /**
-* XML <PGVRLine> elemnt handler
+* XML <PGVRLine> element handler
 *
 * @param array $attrs an array of key value pairs for the attributes
 */
@@ -3167,7 +3175,7 @@ function PGVRLineSHandler($attrs) {
 }
 
 /**
-* XML <PGVRList> start elemnt handler
+* XML <PGVRList> start element handler
 *
 * @see PGVRListEHandler()
 * @param array $attrs an array of key value pairs for the attributes
@@ -3506,7 +3514,7 @@ function PGVRListSHandler($attrs) {
 }
 
 /**
-* XML <PGVRList> end elemnt handler
+* XML <PGVRList> end element handler
 * @see PGVRListSHandler()
 */
 function PGVRListEHandler() {
@@ -3588,7 +3596,7 @@ function PGVRListEHandler() {
 }
 
 /**
-* XML <PGVRListTotal> elemnt handler
+* XML <PGVRListTotal> element handler
 *
 * Prints the total number of records in a list
 * The total number is collected from
@@ -3745,7 +3753,7 @@ function PGVRRelativesSHandler($attrs) {
 }
 
 /**
-* XML </ PGVRRelatives> end elemnt handler
+* XML </ PGVRRelatives> end element handler
 *
 * @see PGVRRelativesSHandler()
 */
@@ -3834,7 +3842,7 @@ function PGVRRelativesEHandler() {
 }
 
 /**
-* XML <PGVRGeneration /> elemnt handler
+* XML <PGVRGeneration /> element handler
 *
 * Prints the number of generations
 * @todo no info on wiki
@@ -3849,7 +3857,7 @@ function PGVRGenerationSHandler() {
 }
 
 /**
-* XML <PGVRNewPage /> elemnt handler
+* XML <PGVRNewPage /> element handler
 *
 * Has to be placed in an element (header, pageheader, body or footer)
 * @final
@@ -3899,7 +3907,7 @@ function HTMLEHandler($tag) {
 }
 
 /**
-* XML <PGVRTitleSHandler> start elemnt handler
+* XML <PGVRTitleSHandler> start element handler
 *
 * @todo add to wiki
 * @see PGVRTitleEHandler()
@@ -3911,7 +3919,7 @@ function PGVRTitleSHandler() {
 }
 
 /**
-* XML </PGVRTitleEHandler> end elemnt handler
+* XML </PGVRTitleEHandler> end element handler
 *
 * @see PGVRTitleSHandler()
 * @final
@@ -3922,7 +3930,7 @@ function PGVRTitleEHandler() {
 }
 
 /**
-* XML <PGVRDescriptionSHandler> start elemnt handler
+* XML <PGVRDescriptionSHandler> start element handler
 *
 * @todo add to wiki
 * @see PGVRDescriptionEHandler()
@@ -3934,7 +3942,7 @@ function PGVRDescriptionSHandler() {
 }
 
 /**
-* XML </PGVRDescriptionEHandler> end elemnt handler
+* XML </PGVRDescriptionEHandler> end element handler
 *
 * @see PGVRDescriptionSHandler()
 * @final

@@ -3,7 +3,7 @@
  * Hungarian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1177,7 +1177,6 @@ $pgv_lang["indi_is_remote"]					= "Az információ ennek a személynek egy küls
 $pgv_lang["media_not_linked"]					= "Ez a Média nincsen semmi GEDCOM adathoz hozzákapcsolva.";
 $pgv_lang["media_linked"]					= "Ez a média ehhez van hozzákapcsolva:";
 $pgv_lang["add_media_tool"]					= "Média hozzáadása eszköz";
-$pgv_lang["descendancy_header"]					= "Leszármazási jelentés a következőhöz";
 $pgv_lang["descend_report"]					= "Leszármazási jelentés";
 $pgv_lang["ahnentafel_no_details"]				= "de a részletek ismeretlenek";
 $pgv_lang["ahnentafel_place"]					= " ";
@@ -1192,7 +1191,6 @@ $pgv_lang["select_report"]              			= "Jelentés kiválasztása";
 $pgv_lang["download_report"]					= "Jelentés letöltése";
 $pgv_lang["reports"]                    			= "Jelentések";
 $pgv_lang["pdf_reports"]                			= "PDF jelentések";
-$pgv_lang["ahnentafel_header"]					= "Családfa jelentés a következőhöz";
 $pgv_lang["ahnentafel_report"]					= "Családfa jelentés";
 $pgv_lang["html_reports"]               			= "HTML jelentések";
 $pgv_lang["in"]							= "a következőben";
@@ -1227,12 +1225,11 @@ $pgv_lang["page"]                       			= "Oldal";
 $pgv_lang["enter_famid"]                			= "A család azonosítója";
 $pgv_lang["show_sources"]               			= "Feltüntessük a forrásokat?";
 $pgv_lang["show_notes"]                 			= "Feltüntessük a megjegyzéseket?";
-$pgv_lang["show_basic"]                 			= "Nyomtassuk az alapvető eseményeket, ha azok üresek?";
+$pgv_lang["show_abbr_notes"] 		= "A rövidített jegyzetek megjelenítése?";
 $pgv_lang["show_photos"]					= "Megmutassuk a fényképeket?";
 $pgv_lang["individual_report"]					= "Személyes jelentés";
 $pgv_lang["enter_pid"]						= "A személy azonosítója";
 $pgv_lang["generated_by"]               			= "Létrehozta";
-$pgv_lang["list_children"]              			= "Gyermekek listázása születésük szerint.";
 $pgv_lang["birth_report"]               			= "Születési dátum és hely jelentés";
 $pgv_lang["birthplace"]                 			= "Születési hely tartalmazza";
 $pgv_lang["birthdate1"]                 			= "Születési idő-intervallum kezdete";

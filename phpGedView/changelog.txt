@@ -9,6 +9,13 @@
 =====================================================================
 
 Version 4.3.1
+ - Changed: Reports can now optionally print entire NOTE text instead of just the first paragraph (canajun2eh)
+ - Changed: Improved formatting in most reports (canajun2eh)
+ - Changed: Default "Show sources" option changed to "No" in all reports (canajun2eh)
+ - Changed: Expanded the list of available fonts in all reports (canajun2eh)
+ - Fixed: Reports using fonts other than dejavu contained lots of question-marks (canajun2eh)
+ - Fixed: Over-printing in several reports (canajun2eh)
+ - Changed: Relocated TCPDF package and updated to version 6.2.26 (canajun2eh)
  - Fixed: More instances of class constructor functions with same name as their class (canajun2eh)
  - Fixed: "Require Authentication" option in GEDCOM configuration causes "You are not welcome here" error (canajun2eh)
  - Changed: Added some additional checks for SQL injection (canajun2eh)

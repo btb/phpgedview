@@ -3,7 +3,7 @@
  * Slovak Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -984,7 +984,7 @@ $pgv_lang["of"] 			= "z";
 $pgv_lang["enter_famid"]		= "Zadajte ID rodiny";
 $pgv_lang["show_sources"]		= "Zobraziť zdroje?";
 $pgv_lang["show_notes"] 		= "Zobraziť poznámky?";
-$pgv_lang["show_basic"] 		= "Tlačiť základné údaje, i keď sú prázdne?";
+$pgv_lang["show_abbr_notes"] 		= "Zobraziť skrátené poznámky?";
 $pgv_lang["show_photos"]		= "Zobraziť fotky?";
 $pgv_lang["relatives_report_ext"]	= "Rozšírený zoznam príbuzných";
 $pgv_lang["with"]			= "s";
@@ -993,7 +993,6 @@ $pgv_lang["in"]				= "v";
 $pgv_lang["individual_report"]		= "Správa o osobe";
 $pgv_lang["enter_pid"]			= "Zadať ID osoby";
 $pgv_lang["generated_by"]		= "Vytvorené v";
-$pgv_lang["list_children"]		= "Zoradiť všetky deti podľa dátumu narodenia.";
 $pgv_lang["birth_report"]		= "Správa o dátume a mieste narodenia";
 $pgv_lang["birthplace"]			= "Miestom narodenia je";
 $pgv_lang["birthdate1"]			= "Rozsah dátumu narodenia začína";
@@ -1305,8 +1304,7 @@ $pgv_lang["after"]			= "po";
 $pgv_lang["config_block"]		= "Kofigurácia bloku";
 $pgv_lang["enter_comments"]		= "Prosim napíšte svoj pribuzenský vzťah k dátam do poľa komentáre.";
 $pgv_lang["comments"]			= "Poznámky";
-$pgv_lang["ahnentafel_report"]		= "Vývod (Ahnentafel).";
-$pgv_lang["ahnentafel_header"]		= "Vývod (Ahnentafel) pre";
+$pgv_lang["ahnentafel_report"]		= "Vývod (Ahnentafel)";
 $pgv_lang["ahnentafel_generation"]	= "Generácia";
 $pgv_lang["ahnentafel_pronoun_m"]	= "On";
 $pgv_lang["ahnentafel_pronoun_f"]	= "Ona";
@@ -1363,7 +1361,6 @@ $pgv_lang["show_pending"]		= "Zobraziť čakajúce zmeny";
 $pgv_lang["server_folder"]		= "Meno adresára na servere";
 $pgv_lang["media_options"]		= "Nastavenie médií";
 $pgv_lang["descend_report"]		= "Zoznam potomkov";
-$pgv_lang["descendancy_header"]		= "Zoznam potomkov pre";
 $pgv_lang["page_size"]			= "Veľkosť stránky";
 $pgv_lang["record_not_found"]		= "Požadovaný GEDCOM záznam nebol nájdený. To môže byť spôsobené linkom na neplatnú osobu, alebo poškodeným GEDCOM súborom.";
 $pgv_lang["result_page"]		= "Stránka výsledku";

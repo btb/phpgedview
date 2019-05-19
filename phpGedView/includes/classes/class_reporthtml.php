@@ -381,14 +381,14 @@ class PGVReportBaseHTML extends PGVReportBase {
 		$val = $footnote->getValue();
 		while($i < $ct) {
 			if ($this->printedfootnotes[$i]->getValue() == $val) {
-				// If this footnote already exist then set up the numbers for this object
+				// This footnote already exists: set up the numbers for this object
 				$footnote->setNum($i + 1);
 				$footnote->setAddlink($i + 1);
 				return $this->printedfootnotes[$i];
 			}
 			$i++;
 		}
-		// If this Footnote has not been set up yet
+		// This Footnote has not been set up yet
 		$footnote->setNum($ct + 1);
 		$footnote->setAddlink($ct + 1);
 		$this->printedfootnotes[] = $footnote;
@@ -725,7 +725,7 @@ class PGVRCellHTML extends PGVRCell {
 				}
 			}
 		}
-		// Check the width if set to page wide OR set by xml to larger then page wide
+		// Check the width if set to page wide OR set by xml to larger than page wide
 		if (($this->width == 0) or $this->width > $html->getRemainingWidth()) {
 			$this->width = $html->getRemainingWidth();
 		}
@@ -743,7 +743,7 @@ class PGVRCellHTML extends PGVRCell {
 				$this->height = $tmph;
 			}
 		}
-		// Check the last cell height and ajust with the current cell height
+		// Check the last cell height and adjust with the current cell height
 		if ($html->lastCellHeight > $this->height) {
 			$this->height = $html->lastCellHeight;
 		}
@@ -834,7 +834,7 @@ class PGVRHtmlHTML extends PGVRHtml {
 		$this->text .= $this->getEnd();
 		if ($sub) return $this->text;
 
-		// If not called by an other attribute
+		// If not called by another attribute
 		if ($inat) {
 			$startX = $html->GetX();
 			$startY = $html->GetY();
@@ -896,14 +896,14 @@ class PGVRTextBoxHTML extends PGVRTextBox {
 				}
 				// Collect the Footnote links
 				elseif ($element->get_type() == "PGVRFootnote"){
-					// Check if the Footnote has been set with it's link number
+					// Check if the Footnote has been set with its link number
 					$html->checkFootnote($element);
 					// Save first the last element if any
 					if (!empty($lastelement)){
 						$newelements[] = $lastelement;
 						$lastelement = array();
 					}
-					// Save the Footnote with it's link number as key for sorting later
+					// Save the Footnote with its link number as key for sorting later
 					$footnote_element[$element->num] = $element;
 				}
 				//-- do not keep empty footnotes
@@ -950,7 +950,7 @@ class PGVRTextBoxHTML extends PGVRTextBox {
 
 		/**
 		* Use these variables to update/manipulate values
-		* Repeted classes would reupdate all their class variables again, Header/Page Header/Footer
+		* Repeated classes would reupdate all their class variables again, Header/Page Header/Footer
 		* This is the bugfree version
 		*/
 		$cH = 0;	// Class Height
@@ -975,7 +975,7 @@ class PGVRTextBoxHTML extends PGVRTextBox {
 			$html->SetY($this->top);
 		}
 
-		// Check the width if set to page wide OR set by xml to larger then page wide
+		// Check the width if set to page wide OR set by xml to larger than page wide
 		if (($this->width == 0) or ($this->width > $html->getRemainingWidth())) {
 			$this->width = $html->getRemainingWidth();
 		}
@@ -1053,12 +1053,12 @@ class PGVRTextBoxHTML extends PGVRTextBox {
 
 		unset($lw, $cHT, $fH, $w);
 
-		// Finaly, check the last cells height
+		// Finaly, check the last cell's height
 		if ($html->lastCellHeight > $cH) {
 			$cH = $html->lastCellHeight;
 		}
 		// Update max Y incase of a pagebreak
-		// We don't want to over write any images or other stuff
+		// We don't want to overwrite any images or other stuff
 		$html->addMaxY($this->top + $cH);
 
 		// Start to print HTML
@@ -1137,7 +1137,7 @@ class PGVRTextHTML extends PGVRText {
 	* @todo temporary fix
 	* @param PGVReportBaseHTML &$html
 	* @param int $curx
-	* @param boolean $attrib Is is called from a different element?
+	* @param boolean $attrib is called from a different element?
 	*/
 	function render(&$html, $curx=0, $attrib=true) {
 
@@ -1157,7 +1157,7 @@ class PGVRTextHTML extends PGVRText {
 				$startX = $html->GetX();
 				$startY = $html->GetY();
 				$width = $html->getRemainingWidth();
-				// If text is wider then page width then wrap it
+				// If text is wider than page width, wrap it
 				if ($html->GetStringWidth($temptext) > $width) {
 					$lines = explode("\n", $temptext);
 					foreach ($lines as $line) {
@@ -1226,11 +1226,11 @@ class PGVRTextHTML extends PGVRText {
 				$newtext = "";
 				$wrapWidthRemaining = $this->wrapWidthRemaining;
 				$lines = explode("\n", $this->text);
-				// Go throught the text line by line
+				// Go through the text line by line
 				foreach($lines as $line) {
 					// Line width in points + a little margin
 					$lw = $html->GetStringWidth($line);
-					// If the line has to be wraped
+					// If the line has to be wrapped
 					if ($lw > $wrapWidthRemaining) {
 						$words = explode(" ", $line);
 						$addspace = count($words);
@@ -1300,13 +1300,8 @@ class PGVRFootnoteHTML extends PGVRFootnote {
 	*/
 	function render(&$html) {
 		$html->setCurrentStyle("footnotenum");
-//		'vertical-align:super' is not working properly in IE 8
-//		@deprecated
 		echo "<a href=\"#footnote", $this->num, "\"><sup>";
-		// working
 		$html->write($html->entityRTL. $this->num);
-		// Gerrys test code
-//		$html->write($this->num);
 		echo "</sup></a>\n";
 	}
 
@@ -1323,7 +1318,7 @@ class PGVRFootnoteHTML extends PGVRFootnote {
 		}
 
 		$temptext = str_replace("#PAGENUM#", $html->PageNo(), $this->text);
-		$temptext = str_replace(array('«', '»'), array('<u>', '</u>'), $temptext);		// underline «title» part of Source item
+		$temptext = str_replace(array('«', '»'), array('<u>', '</u>'), $temptext);		// underline �title� part of Source item
 		echo "\n<div><a name=\"footnote", $this->num, "\"></a>";
 		$html->write($this->num. ". ". $temptext);
 		echo "</div>";
@@ -1385,11 +1380,11 @@ class PGVRFootnoteHTML extends PGVRFootnote {
 				$newtext = "";
 				$wrapWidthRemaining = $this->wrapWidthRemaining;
 				$lines = explode("\n", $this->numText);
-				// Go throught the text line by line
+				// Go through the text line by line
 				foreach($lines as $line) {
 					// Line width in points + a little margin
 					$lw = $html->GetStringWidth($line);
-					// If the line has to be wraped
+					// If the line has to be wrapped
 					if ($lw > $wrapWidthRemaining) {
 						$words = explode(" ", $line);
 						$addspace = count($words);

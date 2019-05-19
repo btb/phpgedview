@@ -1490,7 +1490,6 @@ $pgv_lang["html_reports"]			= "Informes HTML";
 
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"]		= "Informe Ahnentafel";
-$pgv_lang["ahnentafel_header"]		= "Informe Ahnentafel para ";
 $pgv_lang["ahnentafel_generation"]	= "Generación ";
 $pgv_lang["ahnentafel_pronoun_m"]	= "Él ";
 $pgv_lang["ahnentafel_pronoun_f"]	= "Ella ";
@@ -1518,7 +1517,6 @@ $pgv_lang["changes_accepted_tot"]	= "Cambios aceptados en total: ";
 
 //-- Descendancy report
 $pgv_lang["descend_report"]			= "Informe de descendientes";
-$pgv_lang["descendancy_header"]		= "Informe de descendientes para ";
 $pgv_lang["son_of"]					= "hijo de";
 $pgv_lang["daughter_of"]			= "hija de";
 $pgv_lang["child_of"]				= "Hijo/a de ";
@@ -1532,6 +1530,7 @@ $pgv_lang["of"] 					= "de";
 $pgv_lang["enter_famid"]			= "Introducir ID de la familia";
 $pgv_lang["show_sources"]			= "¿Mostrar fuentes?";
 $pgv_lang["show_notes"] 			= "¿Mostrar notas?";
+$pgv_lang["show_abbr_notes"] 		= "¿Mostrar notas abreviadas?";
 $pgv_lang["show_photos"]			= "¿Mostrar fotos?";
 $pgv_lang["relatives_report_ext"]	= "Informe expandido de parientes";
 $pgv_lang["with"]					= "con";
@@ -1541,7 +1540,6 @@ $pgv_lang["individual_report"]		= "Informe de persona";
 $pgv_lang["individual_with_rela_report"]		= "Informe de parientes cercanos";
 $pgv_lang["enter_pid"]				= "Introduzca el ID de la persona";
 $pgv_lang["generated_by"]			= "Generado por";
-$pgv_lang["list_children"]			= "Listar cada hijo por orden de nacimiento.";
 $pgv_lang["birth_report"]			= "Informe de fechas y lugares de nacimiento";
 $pgv_lang["birthplace"]				= "El lugar de nacimiento contiene";
 $pgv_lang["birthdate1"]				= "Comienzo del rango de fecha de nacimiento";

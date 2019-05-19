@@ -3,7 +3,7 @@
  * Danish Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1320,7 +1320,6 @@ $pgv_lang["pdf_reports"]		= "PDF udskrifter";
 $pgv_lang["html_reports"]		= "HTML udskrifter";
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"]		= "Anetræsudskrift";
-$pgv_lang["ahnentafel_header"]		= "Anetræsudskrift for ";
 $pgv_lang["ahnentafel_generation"]	= "Generation ";
 $pgv_lang["ahnentafel_pronoun_m"]	= "Han ";
 $pgv_lang["ahnentafel_pronoun_f"]	= "Hun ";
@@ -1340,7 +1339,6 @@ $pgv_lang["ahnentafel_no_details"]	= " men detaljerne er ukendte";
 $pgv_lang["ahnentafel_on"]			= " ";
 
 //-- Descendency report
-$pgv_lang["descendancy_header"]		= "Efterkommerudskrift for";
 $pgv_lang["descend_report"]		= "Efterkommerudskrift";
 $pgv_lang["son_of"]					= "søn af";
 $pgv_lang["daughter_of"]			= "datter af";
@@ -1352,8 +1350,8 @@ $pgv_lang["page"]				= "Side";
 $pgv_lang["of"]					= "af";
 $pgv_lang["enter_famid"]		= "Angiv Familie ID";
 $pgv_lang["show_sources"]		= "Vis kilder?";
-$pgv_lang["show_notes"]			= "Vis noter?";
-$pgv_lang["show_basic"]			= "Vis de grundlæggende begivenheder<br />&nbsp;&nbsp;&nbsp;- selv om disse er tomme?";
+$pgv_lang["show_notes"]			= "Vis notater?";
+$pgv_lang["show_abbr_notes"] 		= "Vis forkortede notater?";
 $pgv_lang["show_photos"]		= "Vis billeder?";
 $pgv_lang["relatives_report_ext"]	= "Udvidet udskrift over slægtninge";
 $pgv_lang["with"]					= "med";
@@ -1362,7 +1360,6 @@ $pgv_lang["in"]						= "i";
 $pgv_lang["individual_report"]	= "Personudskrift";
 $pgv_lang["enter_pid"]			= "Angiv Person ID&nbsp;";
 $pgv_lang["generated_by"]		= "Genereret af";
-$pgv_lang["list_children"]		= "List børn sorteret efter alder";
 $pgv_lang["birth_report"]		= "Fødselsdato og -stedudskrift";
 $pgv_lang["birthplace"]			= "Fødested indeholder";
 $pgv_lang["birthdate1"]			= "Fødselsdato interval start";
