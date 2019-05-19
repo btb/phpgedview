@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PGVReport access="PRIV_NONE" icon="source">
-<!-- $Id$ -->
-	<PGVRTitle><PGVRvar var="pgv_lang[fact_sources_report]" /></PGVRTitle>
+	<!--
+	@package PhpGedView
+	@subpackage Reports
+	@version $Id$
+	-->
 	<PGVRDescription>Prints a list of individuals and families with a specific source for facts</PGVRDescription>
 
+	<PGVRTitle><PGVRvar var="pgv_lang[fact_sources_report]" /></PGVRTitle>
 	<PGVRInput name="sid" lookup="SOUR" default="" type="text"><PGVRvar var="pgv_lang[find_sourceid]" /></PGVRInput>
 	<PGVRInput name="sortby" type="select" default="BIRT:DATE" options="NAME,BIRT:DATE"><PGVRvar var="pgv_lang[sort_by]" /></PGVRInput>
-	<PGVRInput name="pageSize" type="select" default="A4" options="letter,A3,A4,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
-	<PGVRInput name="fonts" type="select" default="dejavusans" options="arialunicid0,dejavusans,helvetica"><PGVRvar var="pgv_lang[font]" /></PGVRInput>
+	<PGVRInput name="pageSize" type="select" default="A4" options="A3,A4,letter,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
+	<PGVRInput name="fonts" type="select" default="dejavusans" options="courier,dejavusans,dejavusanscondensed,dejavuserif,dejavuserifcondensed,dejavusansmono,freesans,freeserif,freemono,helvetica,times"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 
 	<!-- Header -->
-	<PGVRStyle name="header" font="$fonts" size="18" style="b" />
+	<PGVRStyle name="header" font="$fonts" size="14" style="b" />
 	<!-- Source Title -->
-	<PGVRStyle name="header2" font="$fonts" size="14" style="b" />
+	<PGVRStyle name="header2" font="$fonts" size="12" style="b" />
 	<!-- Name of the List Type. INDI or FAM -->
 	<PGVRStyle name="listtype" font="$fonts" size="12" style="b" />
 	<!-- Page numbers text -->
@@ -39,11 +43,11 @@
 	<PGVRDoc pageSize="$pageSize" orientation="landscape">
 		<PGVRHeader>
 			<PGVRCell align="center" newline="1" style="header"><PGVRvar var="pgv_lang[source_list]" /></PGVRCell>
-			<PGVRCell align="rightrtl" newline="1" style="pagenum"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
 			<!-- Source Title -->
 			<PGVRGedcom id="$sid">
 				<PGVRCell align="center" newline="1" style="header2"><PGVRGedcomValue tag="TITL" /> (<PGVRvar var="sid" />)</PGVRCell>
 			</PGVRGedcom>
+			<PGVRCell align="rightrtl" newline="1" style="pagenum"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
 		</PGVRHeader>
 
 		<PGVRBody>
@@ -73,8 +77,8 @@
 
 			<!-- Individual List -->
 			<PGVRList list="individual" filter1=":SOUR CONTAINS @$sid@" sortby="$sortby">
-				<PGVRSetVar name="moresource" value="0" />
-				<PGVRSetVar name="printsource" value="0" />
+				<PGVRSetVar name="moresource" value="false" />
+				<PGVRSetVar name="printsource" value="false" />
 				<!-- Printed List counter -->
 				<PGVRSetVar name="printedsource" value="$printedsource + 1" />
 
@@ -83,19 +87,19 @@
 				<!-- Birth date -->
 				<PGVRCell style="list_value" width="$datebirth"><PGVRGedcomValue tag="BIRT:DATE" /></PGVRCell>
 				<PGVRFacts ignore="$ignore">
-					<PGVRSetVar name="printfact" value="0" />
+					<PGVRSetVar name="printfact" value="false" />
 					<PGVRRepeatTag tag="@fact:SOUR">
 						<PGVRGedcom id="@SOUR">
 							<PGVRif condition="@ID==$sid">
-								<PGVRSetVar name="printfact" value="1" />
+								<PGVRSetVar name="printfact" value="true" />
 							</PGVRif>
 						</PGVRGedcom>
 					</PGVRRepeatTag>
 
-					<PGVRif condition="$printfact==1">
-						<PGVRSetVar name="printsource" value="0" />
+					<PGVRif condition="$printfact">
+						<PGVRSetVar name="printsource" value="false" />
 						<!-- Indent the fact line if more than one fact has source -->
-						<PGVRif condition="$moresource==1">
+						<PGVRif condition="$moresource">
 							<PGVRCell style="list_value" width="$moresourcespaceindi"> </PGVRCell>
 						</PGVRif>
 
@@ -105,17 +109,17 @@
 						<PGVRCell style="list_value" width="$dateevent"><PGVRGedcomValue tag="@fact:DATE" /></PGVRCell>
 						<!-- Detailed source text -->
 						<PGVRCell style="list_value" newline="1">
-						<PGVRSetVar name="repeatedSource" value="0" />
+						<PGVRSetVar name="repeatedSource" value="false" />
 							<PGVRRepeatTag tag="@fact:SOUR">
 								<PGVRGedcom id="@SOUR">
 									<PGVRif condition="@ID==$sid">
-										<PGVRSetVar name="printsource" value="1" />
+										<PGVRSetVar name="printsource" value="true" />
 									</PGVRif>
 								</PGVRGedcom>
-								<PGVRif condition="$printsource==1">
-									<PGVRif condition="$repeatedSource==1">; </PGVRif>
+								<PGVRif condition="$printsource">
+									<PGVRif condition="$repeatedSource">; </PGVRif>
 									<PGVRif condition="@SOUR:PAGE!='' or @SOUR:DATA:TEXT!=''">
-										<PGVRSetVar name="repeatedSource" value="1" />
+										<PGVRSetVar name="repeatedSource" value="true" />
 									</PGVRif>
 									<PGVRGedcomValue tag="SOUR:PAGE" />
 									<PGVRif condition="@SOUR:DATA:TEXT!=''">
@@ -124,13 +128,13 @@
 										</PGVRif>
 										<PGVRGedcomValue tag="SOUR:DATA:TEXT" />
 									</PGVRif>
-									<PGVRSetVar name="printsource" value="0" />
+									<PGVRSetVar name="printsource" value="false" />
 								</PGVRif>
 							</PGVRRepeatTag>
 						</PGVRCell>
-						<PGVRSetVar name="moresource" value="1" />
+						<PGVRSetVar name="moresource" value="true" />
 					</PGVRif>
-					<PGVRSetVar name="printfact" value="0" />
+					<PGVRSetVar name="printfact" value="false" />
 				</PGVRFacts>
 			</PGVRList>
 
@@ -160,27 +164,27 @@
 			<PGVRTextBox height="$vspace" newline="1" padding="0" />
 			<PGVRSetVar name="printedsource" value="0" />
 			<PGVRList list="family" filter1=":SOUR CONTAINS @$sid@" sortby="MARR:DATE">
-				<PGVRSetVar name="moresource" value="0" />
-				<PGVRSetVar name="printsource" value="0" />
+				<PGVRSetVar name="moresource" value="false" />
+				<PGVRSetVar name="printsource" value="false" />
 				<!-- Printed List counter -->
 				<PGVRSetVar name="printedsource" value="$printedsource + 1" />
 
 				<!-- Family Name -->
 				<PGVRCell style="list_value" width="$namefam"><PGVRGetPersonName id="" /> - (<PGVRGedcomValue tag="@id" />)</PGVRCell>
 				<PGVRFacts ignore="$ignore">
-					<PGVRSetVar name="printfact" value="0" />
+					<PGVRSetVar name="printfact" value="false" />
 					<PGVRRepeatTag tag="@fact:SOUR">
 						<PGVRGedcom id="@SOUR">
 							<PGVRif condition="@ID==$sid">
-								<PGVRSetVar name="printfact" value="1" />
+								<PGVRSetVar name="printfact" value="true" />
 							</PGVRif>
 						</PGVRGedcom>
 					</PGVRRepeatTag>
 
-					<PGVRif condition="$printfact==1">
-						<PGVRSetVar name="printsource" value="0" />
+					<PGVRif condition="$printfact">
+						<PGVRSetVar name="printsource" value="false" />
 						<!-- Indent the fact line if more than one fact has source -->
-						<PGVRif condition="$moresource==1">
+						<PGVRif condition="$moresource">
 							<PGVRCell style="list_value" width="$namefam"> </PGVRCell>
 						</PGVRif>
 
@@ -210,17 +214,17 @@
 						<PGVRCell style="list_value" width="$dateevent"><PGVRGedcomValue tag="@fact:DATE" /></PGVRCell>
 						<!-- Detailed source text -->
 						<PGVRCell style="list_value" newline="1">
-							<PGVRSetVar name="repeatedSource" value="0" />
+							<PGVRSetVar name="repeatedSource" value="false" />
 							<PGVRRepeatTag tag="@fact:SOUR">
 								<PGVRGedcom id="@SOUR">
 									<PGVRif condition="@ID==$sid">
-										<PGVRSetVar name="printsource" value="1" />
+										<PGVRSetVar name="printsource" value="true" />
 									</PGVRif>
 								</PGVRGedcom>
-								<PGVRif condition="$printsource==1">
-									<PGVRif condition="$repeatedSource==1">; </PGVRif>
+								<PGVRif condition="$printsource">
+									<PGVRif condition="$repeatedSource">; </PGVRif>
 									<PGVRif condition="@SOUR:PAGE!='' or @SOUR:DATA:TEXT!=''">
-										<PGVRSetVar name="repeatedSource" value="1" />
+										<PGVRSetVar name="repeatedSource" value="true" />
 									</PGVRif>
 									<PGVRGedcomValue tag="SOUR:PAGE" />
 									<PGVRif condition="@SOUR:DATA:TEXT!=''">
@@ -229,13 +233,13 @@
 										</PGVRif>
 										<PGVRGedcomValue tag="SOUR:DATA:TEXT" />
 									</PGVRif>
-									<PGVRSetVar name="printsource" value="0" />
+									<PGVRSetVar name="printsource" value="false" />
 								</PGVRif>
 							</PGVRRepeatTag>
 						</PGVRCell>
-						<PGVRSetVar name="moresource" value="1" />
+						<PGVRSetVar name="moresource" value="true" />
 					</PGVRif>
-					<PGVRSetVar name="printfact" value="0" />
+					<PGVRSetVar name="printfact" value="false" />
 				</PGVRFacts>
 			</PGVRList>
 

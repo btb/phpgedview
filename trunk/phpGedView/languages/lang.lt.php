@@ -3,7 +3,7 @@
  * Lithuanian Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -698,16 +698,15 @@ $pgv_lang["of"] 					= "iš";
 $pgv_lang["enter_famid"]			= "Iveskite šeimos ID";
 $pgv_lang["show_sources"]			= "Rodyti šaltinius?";
 $pgv_lang["show_notes"] 			= "Rodyti pastabas?";
+$pgv_lang["show_abbr_notes"] 		= "Rodyti sutrumpintus pastabas?";
 $pgv_lang["relatives_report_ext"]	= "Išplestas giminaiciu raportas";
 $pgv_lang["relatives_report_ext"]	= "Išplestas giminaiciu raportas";
-$pgv_lang["show_basic"] 			= "Spausdinti pagrindinius ivykius net jei jie tušti?";
 $pgv_lang["show_photos"]			= "Rodyti nuotraukas?";
 $pgv_lang["individual_report"]		= "Asmens raportas";
 $pgv_lang["enter_pid"]				= "Iveskite asmens ID";
 $pgv_lang["individual_list_report"]	= "Asmenu sarašo raprotas";
 $pgv_lang["generated_by"]			= "Generuotojas";
 $pgv_lang["page"]					= "Puslapis";
-$pgv_lang["list_children"]			= "Parodyti visus vaikus ju gimimo eiles tvarka";
 $pgv_lang["marrdate2"]				= "Santuokos datos intervalo pabaiga";
 $pgv_lang["marrdate1"]				= "Santuokos datos intervalo pradžia";
 $pgv_lang["marrplace"]				= "Santuokos vietove savyje turi";

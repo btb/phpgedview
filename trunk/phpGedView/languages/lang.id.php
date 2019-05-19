@@ -3,7 +3,7 @@
  * Indonesian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1419,7 +1419,6 @@ $pgv_lang["html_reports"]			= "Laporan HTML";
 
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"]			= "Laporan Ahnentafel";
-$pgv_lang["ahnentafel_header"]			= "Laporan Ahnentafel untuk ";
 $pgv_lang["ahnentafel_generation"]		= "Generasi ";
 $pgv_lang["ahnentafel_pronoun_m"]		= "Ia ";
 $pgv_lang["ahnentafel_pronoun_f"]		= "Ia ";
@@ -1443,7 +1442,6 @@ $pgv_lang["changes_accepted_tot"]		= "Total perubahan diterima: ";
 
 //-- Descendancy report
 $pgv_lang["descend_report"]			= "Laporan Keturunan";
-$pgv_lang["descendancy_header"]			= "Laporan Keturunan untuk ";
 
 $pgv_lang["family_group_report"]		= "Laporan Kelompok Keluarga";
 $pgv_lang["page"]				= "Halaman";
@@ -1451,7 +1449,7 @@ $pgv_lang["of"] 				= "dari";
 $pgv_lang["enter_famid"]			= "Masukkan ID Keluarga";
 $pgv_lang["show_sources"]			= "Perlihatkan sumber?";
 $pgv_lang["show_notes"] 			= "Perlihatkan catatan?";
-$pgv_lang["show_basic"] 			= "Cetak peristiwa dasar saat kosong?";
+$pgv_lang["show_abbr_notes"] 		= "Perlihatkan catatan singkat?";
 $pgv_lang["show_photos"]			= "Perlihatkan foto?";
 $pgv_lang["relatives_report_ext"]		= "Laporan Kerabat Luas";
 $pgv_lang["with"]				= "dengan";
@@ -1460,7 +1458,6 @@ $pgv_lang["in"]					= "pada";			// for imprecise dates
 $pgv_lang["individual_report"]			= "Laporan Individu";
 $pgv_lang["enter_pid"]				= "Masukkan ID Individu";
 $pgv_lang["generated_by"]			= "Diolah oleh";
-$pgv_lang["list_children"]			= "Daftar tiap anak urut kelahiran.";
 $pgv_lang["birth_report"]			= "Laporan Tanggal dan Tempat Lahir";
 $pgv_lang["birthplace"]				= "Tempat Lahir mengandung";
 $pgv_lang["birthdate1"]				= "Awal selang Tanggal Lahir";

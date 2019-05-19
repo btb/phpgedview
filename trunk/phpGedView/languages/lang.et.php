@@ -3,7 +3,7 @@
  * Estonian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -994,7 +994,6 @@ $pgv_lang["html_reports"]		= "HTML raportid";
 
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"]		= "Otseste esivanemate raport";
-$pgv_lang["ahnentafel_header"]		= "Otseste esivanemate raport: ";
 $pgv_lang["ahnentafel_generation"]	= "Põlvkond ";
 $pgv_lang["ahnentafel_pronoun_m"]	= "On ";
 $pgv_lang["ahnentafel_pronoun_f"]	= "On ";
@@ -1013,7 +1012,6 @@ $pgv_lang["ahnentafel_no_details"]	= " täpsemad andmed puuduvad";
 
 //-- Descendancy report
 $pgv_lang["descend_report"]		= "Järeltulijate raport";
-$pgv_lang["descendancy_header"]	= "Järeltulijate raport: ";
 
 $pgv_lang["family_group_report"]	= "Perekonna raport";
 $pgv_lang["page"]			= "Lk";
@@ -1021,14 +1019,13 @@ $pgv_lang["of"] 			= " / ";
 $pgv_lang["enter_famid"]		= "Sisesta perekonna ID";
 $pgv_lang["show_sources"]		= "Näita allikaid";
 $pgv_lang["show_notes"] 		= "Näita märkusi";
-$pgv_lang["show_basic"] 		= "Trüki põhisündmused tühjalt, kui pole sisestatud";
+$pgv_lang["show_abbr_notes"] 		= "Näita lühendatud märkusi?";
 $pgv_lang["show_photos"]		= "Näita fotosid";
 $pgv_lang["relatives_report_ext"]	= "Sugulaste laiendatud raport";
 $pgv_lang["individual_report"]		= "Isiku raport";
 $pgv_lang["enter_pid"]		= "Sisesta isiku ID";
 $pgv_lang["individual_list_report"]	= "isikute nimekiri";
 $pgv_lang["generated_by"]		= "Genereeritud programmiga";
-$pgv_lang["list_children"]		= "Järjesta lapsed sündimise järjekorras.";
 $pgv_lang["birth_report"]		= "Sünnikuupäevade ja -kohtade raport";
 $pgv_lang["birthplace"]		= "Sünnikoht sisaldab";
 $pgv_lang["birthdate1"]		= "Sünnikuupäevad alates";

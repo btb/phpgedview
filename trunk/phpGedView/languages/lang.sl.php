@@ -3,7 +3,7 @@
  * Slovenian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1489,7 +1489,6 @@ $pgv_lang["html_reports"]		= "Poročila HTML";
 
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"]		= "Rodovniško poročilo";
-$pgv_lang["ahnentafel_header"]		= "Rodovniško poročilo za ";
 $pgv_lang["ahnentafel_generation"]	= "Rod ";
 $pgv_lang["ahnentafel_pronoun_m"]	= " ";
 $pgv_lang["ahnentafel_pronoun_f"]	= " ";
@@ -1517,7 +1516,6 @@ $pgv_lang["changes_accepted_tot"]	= "Skupno število sprejetih sprememb: ";
 
 //-- Descendancy report
 $pgv_lang["descend_report"]		= "Poročilo o potomcih";
-$pgv_lang["descendancy_header"]		= "Poročilo o potomcih za ";
 $pgv_lang["son_of"]				= "sin od";
 $pgv_lang["daughter_of"]			= "hči od";
 $pgv_lang["child_of"]				= "Otrok od ";
@@ -1532,6 +1530,7 @@ $pgv_lang["of"] 					= "od";
 $pgv_lang["enter_famid"]			= "Vnesi ID-številko družine";
 $pgv_lang["show_sources"]			= "Prikaz virov?";
 $pgv_lang["show_notes"] 			= "Prikaz zapiskov?";
+$pgv_lang["show_abbr_notes"] 		= "Prikaz skrajšane zapiskov?";
 $pgv_lang["show_photos"]			= "Pokaži slike?";
 $pgv_lang["relatives_report_ext"]	= "Razširjeno poročilo sorodnikov";
 $pgv_lang["with"]					= "z";
@@ -1541,7 +1540,6 @@ $pgv_lang["individual_report"]		= "Poročilo za osebo";
 $pgv_lang["individual_with_rela_report"]	= "Poročilo bližnjih sorodnikov";
 $pgv_lang["enter_pid"]				= "Vpiši ID-številko osebe";
 $pgv_lang["generated_by"]			= "Pripravil";
-$pgv_lang["list_children"]			= "Razvrsti otroke po datumu rojstva.";
 $pgv_lang["birth_report"]			= "Rojstni dan in kraj";
 $pgv_lang["birthplace"]				= "Rojstni kraj vsebuje";
 $pgv_lang["birthdate1"]				= "Začetek razpona rojstnih datumov";

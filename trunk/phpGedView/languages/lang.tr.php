@@ -3,7 +3,7 @@
  * Turkish Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1482,7 +1482,6 @@ $pgv_lang["html_reports"]		= "HTML raporları";
 
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"]		= "Soyağacı Raporu";
-$pgv_lang["ahnentafel_header"]		= "İçin Soyağacı Raporu ";
 $pgv_lang["ahnentafel_generation"]	= "Nesil";
 $pgv_lang["ahnentafel_pronoun_m"]	= "Erkek ";
 $pgv_lang["ahnentafel_pronoun_f"]	= "Kadın ";
@@ -1510,7 +1509,6 @@ $pgv_lang["changes_accepted_tot"]	= "Toplam kabul edilen değişiklikler: ";
 
 //-- Descendancy report
 $pgv_lang["descend_report"]		= "Şahsı İzleyen Nesiller Raporu";
-$pgv_lang["descendancy_header"]		= "Şahsı İzleyen Nesiller Raporu için ";
 $pgv_lang["son_of"]					= "oğlu";
 $pgv_lang["daughter_of"]			= "kızı";
 $pgv_lang["child_of"]				= "Çocuğu ";
@@ -1524,6 +1522,7 @@ $pgv_lang["of"] 					= "son";
 $pgv_lang["enter_famid"]		= "Aile ID Gir";
 $pgv_lang["show_sources"]		= "Kaynakları göster?";
 $pgv_lang["show_notes"]			= "Notları göster?";
+$pgv_lang["show_abbr_notes"] 		= "Kısaltılmış notları göster?";
 $pgv_lang["show_photos"]		= "Fotoğrafları göster?";
 $pgv_lang["relatives_report_ext"]	= "Genişletilmiş Akrabalık Bağı Raporu";
 $pgv_lang["with"]					= "ile";
@@ -1533,7 +1532,6 @@ $pgv_lang["individual_report"]		= "Birey Raporu";
 $pgv_lang["individual_with_rela_report"]		= "Akrabalık Bağı Raporu Kapat";
 $pgv_lang["enter_pid"]			= "Birey ID Girin";
 $pgv_lang["generated_by"]		= "Üreten";
-$pgv_lang["list_children"]		= "Doğum sırasına göre her çocuk listele.";
 $pgv_lang["birth_report"]		= "Doğum Tarihi ve Yeri Raporu";
 $pgv_lang["birthplace"]				= "Doğum Yeri içerenler";
 $pgv_lang["birthdate1"]				= "Doğum Tarihinden Başla";

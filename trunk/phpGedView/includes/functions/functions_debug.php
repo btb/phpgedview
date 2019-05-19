@@ -3,7 +3,7 @@
 * Functions used for debugging
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -152,8 +152,8 @@ function DumpString($input) {
 //			$thisLine .= PGV_UTF8_LRM;
 			$thisLine .= $thisChar;
 		}
-//		echo '&nbsp;&nbsp;UTF8&nbsp;', $thisLine, '<br />';
-		echo '&nbsp;&nbsp;UTF8&nbsp;', PGV_UTF8_LRO, $thisLine, PGV_UTF8_PDF, '<br />';
+		echo '&nbsp;&nbsp;UTF8&nbsp;', $thisLine, '<br />';
+//		echo '&nbsp;&nbsp;UTF8&nbsp;', PGV_UTF8_LRO, $thisLine, PGV_UTF8_PDF, '<br />';
 
 		// Line 3:  First hexadecimal byte
 		$thisLine = 'Byte 1 ';
@@ -202,6 +202,6 @@ function DumpString($input) {
 	}
 
 	echo '</span></code>';
-	return true;
+	return;
 }
 ?>

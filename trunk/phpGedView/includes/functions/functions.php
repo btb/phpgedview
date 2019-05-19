@@ -712,7 +712,7 @@ function get_all_subrecords($gedrec, $ignore="", $families=true, $ApplyPriv=true
  * @param boolean $convert	Should data like dates be converted using the configuration settings
  * @return string
  */
-function get_gedcom_value($tag, $level, $gedrec, $truncate='', $convert=true) {
+function get_gedcom_value($tag, $level, $gedrec, $truncate='0', $convert=true) {
 	global $SHOW_PEDIGREE_PLACES, $pgv_lang;
 	global $GEDCOM;
 	$ged_id=get_id_from_gedcom($GEDCOM);
@@ -720,6 +720,9 @@ function get_gedcom_value($tag, $level, $gedrec, $truncate='', $convert=true) {
 	if (empty($gedrec)) {
 		return "";
 	}
+
+	if (empty($truncate)) $truncate = 0;	// <0: look for CONT/CONC; 0: no truncate; >0: truncate
+
 	$tags = explode(':', $tag);
 	$origlevel = $level;
 	if ($level==0) {
@@ -799,7 +802,7 @@ function get_gedcom_value($tag, $level, $gedrec, $truncate='', $convert=true) {
 				//-- set the value to the id without the @
 				$value = $match[1];
 		}
-		if ($level!=0 || $t!="NOTE") {
+		if ($level!=0 || $t!="NOTE" || $truncate<0) {
 			$value .= get_cont($level+1, $subrec);
 		}
 		$value = preg_replace("'\n'", "", $value);
@@ -809,7 +812,7 @@ function get_gedcom_value($tag, $level, $gedrec, $truncate='', $convert=true) {
 		if ($convert && $t=="DATE") {
 			$g = new GedcomDate($value);
 			$value = $g->Display();
-			if (!empty($truncate)) {
+			if ($truncate > 0) {
 				if (UTF8_strlen($value)>$truncate) {
 					$value = preg_replace("/\(.+\)/", "", $value);
 					//if (UTF8_strlen($value)>$truncate) {
@@ -832,7 +835,7 @@ function get_gedcom_value($tag, $level, $gedrec, $truncate='', $convert=true) {
 						}
 					}
 				}
-				if (!empty($truncate)) {
+				if ($truncate > 0) {
 					if (strlen($value)>$truncate) {
 						$plevels = explode(',', $value);
 						$value = "";
@@ -859,7 +862,7 @@ function get_gedcom_value($tag, $level, $gedrec, $truncate='', $convert=true) {
 						$value = UTF8_substr($pgv_lang["unknown"], 0, 1);
 					}
 				} else {
-					if (!empty($truncate)) {
+					if ($truncate > 0) {
 						if (strlen($value)>$truncate) {
 							$plevels = explode(' ', $value);
 							$value = "";

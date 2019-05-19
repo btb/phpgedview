@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PGVReport access="PRIV_PUBLIC" icon="pedigree">
-<!-- $Id$ -->
+	<!--
+	@package PhpGedView
+	@subpackage Reports
+	@version $Id$
+	-->
 	<PGVRDescription>Prints a pedigree chart in landscape mode</PGVRDescription>
-	<PGVRTitle><PGVRvar var="pgv_lang[pedigree_chart]" /> - <PGVRvar var="pgv_lang[landscape]" /></PGVRTitle>	
-	<PGVRInput name="pid" lookup="INDI" type="text" default=""><PGVRvar var="pgv_lang[enter_pid]" /></PGVRInput>
-	<PGVRInput name="pageSize" type="select" default="A4" options="letter,A3,A4,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
-	<PGVRInput name="fonts" type="select" default="dejavusans" options="arialunicid0,dejavusans,helvetica"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 
-	<PGVRStyle name="header" font="$fonts" size="18"/>
+	<PGVRTitle><PGVRvar var="pgv_lang[pedigree_chart]" /> - <PGVRvar var="pgv_lang[landscape]" /></PGVRTitle>
+	<PGVRInput name="pid" lookup="INDI" type="text" default=""><PGVRvar var="pgv_lang[enter_pid]" /></PGVRInput>
+	<PGVRInput name="pageSize" type="select" default="A4" options="A3,A4,letter,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
+	<PGVRInput name="fonts" type="select" default="dejavusans" options="courier,dejavusans,dejavusanscondensed,dejavuserif,dejavuserifcondensed,dejavusansmono,freesans,freeserif,freemono,helvetica,times"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
+
+	<PGVRStyle name="header" font="$fonts" size="14" style="b" />
+	<PGVRStyle name="subheader" font="$fonts" size="12" style="b" />
 	<PGVRStyle name="label1" font="$fonts" size="9" />
 	<PGVRStyle name="name" font="$fonts" size="9" />
 	<PGVRStyle name="text" font="$fonts" size="7" />
 	<PGVRStyle name="genby" font="$fonts" size="8" />
 	<!-- Date text -->
 	<PGVRStyle name="date" font="$fonts" size="8"/>
-	
+
 	<!-- Horizontal Number/Name/Fact text -->
 	<PGVRSetVar name="number_1_2_3" value="19" />
 	<PGVRSetVar name="name_1_2_3" value="35" />
@@ -25,30 +31,25 @@
 	<PGVRSetVar name="name_8_to_15" value="393" />
 	<PGVRSetVar name="number_16_to_31" value="554" />
 	<PGVRSetVar name="name_16_to_31" value="573" />
-	
+
 	<!-- Truncate variables -->
-	<PGVRSetVar name="truncatename" value="32" />
+	<PGVRSetVar name="truncatename" value="15" />
 	<PGVRSetVar name="trunc_place" value="40" />
 	<PGVRSetVar name="trunc_dateplace" value="27" />
-	
+
 	<PGVRDoc pageSize="$pageSize" orientation="landscape" leftmargin="1" rightmargin="1" topmargin="65">
 		<PGVRHeader>
-			<PGVRCell height="20" newline="1" left="20" style="header"><PGVRvar var="pgv_lang[pedigree_chart]" /></PGVRCell>
-			<PGVRCell align="rightrtl" height="10" newline="1" style="date"><PGVRNow /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="header"><PGVRvar var="pgv_lang[pedigree_chart]" /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="subheader"><PGVRGetPersonName id="$pid" /></PGVRCell>
 		</PGVRHeader>
 		<PGVRBody>
-			<PGVRLine x1="32" y1="270" x2="210" y2="270" />
-			<PGVRLine x1="32" y1="270" x2="32" y2="425" />
-			<PGVRLine x1="32" y1="425" x2="210" y2="425" />
-			<PGVRLine x1="32" y1="150" x2="32" y2="270" />
-			<PGVRLine x1="32" y1="150" x2="210" y2="150" />
 
-			<PGVRLine x1="210" y1="95" x2="210" y2="215" />
-			<PGVRLine x1="210" y1="335" x2="210" y2="455" />
-			<PGVRLine x1="210" y1="95" x2="390" y2="95" />
-			<PGVRLine x1="210" y1="215" x2="390" y2="215" />
-			<PGVRLine x1="210" y1="335" x2="390" y2="335" />
-			<PGVRLine x1="210" y1="455" x2="390" y2="455" />
+<!-- Nodes 1 to 3 -->
+
+			<PGVRLine x1="32" y1="151" x2="32" y2="426" />
+			<PGVRLine x1="32" y1="151" x2="210" y2="151" />
+			<PGVRLine x1="32" y1="271" x2="210" y2="271" />
+			<PGVRLine x1="32" y1="426" x2="210" y2="426" />
 
 			<PGVRGedcom id="$pid">
 			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_1_2_3" top="258" reseth="1">
@@ -110,6 +111,17 @@
 					</PGVRText>
 				</PGVRGedcom>
 			</PGVRTextBox>
+
+
+<!-- Nodes 4 to 7 -->
+
+			<PGVRLine x1="210" y1="96" x2="210" y2="216" />
+			<PGVRLine x1="210" y1="96" x2="390" y2="96" />
+			<PGVRLine x1="210" y1="216" x2="390" y2="216" />
+
+			<PGVRLine x1="210" y1="336" x2="210" y2="456" />
+			<PGVRLine x1="210" y1="336" x2="390" y2="336" />
+			<PGVRLine x1="210" y1="456" x2="390" y2="456" />
 
 			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_4_to_7" top="83" reseth="1">
 				<PGVRText style="label1">4.</PGVRText>
@@ -192,9 +204,24 @@
 			</PGVRTextBox>
 
 
-			<PGVRLine x1="390" y1="65" x2="390" y2="125" />
-			<PGVRLine x1="390" y1="65" x2="570" y2="65" />
-			<PGVRLine x1="390" y1="125" x2="570" y2="125" />
+<!-- Nodes 8 to 15 -->
+
+			<PGVRLine x1="390" y1="66" x2="390" y2="126" />
+			<PGVRLine x1="390" y1="66" x2="570" y2="66" />
+			<PGVRLine x1="390" y1="126" x2="570" y2="126" />
+
+			<PGVRLine x1="390" y1="186" x2="390" y2="246" />
+			<PGVRLine x1="390" y1="186" x2="570" y2="186" />
+			<PGVRLine x1="390" y1="246" x2="570" y2="246" />
+
+			<PGVRLine x1="390" y1="306" x2="390" y2="366" />
+			<PGVRLine x1="390" y1="306" x2="570" y2="306" />
+			<PGVRLine x1="390" y1="366" x2="570" y2="366" />
+
+			<PGVRLine x1="390" y1="426" x2="390" y2="486" />
+			<PGVRLine x1="390" y1="426" x2="570" y2="426" />
+			<PGVRLine x1="390" y1="486" x2="570" y2="486" />
+
 			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_8_to_9" top="53" reseth="1">
 				<PGVRText style="label1">8.</PGVRText>
 			</PGVRTextBox>
@@ -235,9 +262,6 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRLine x1="390" y1="185" x2="390" y2="245" />
-			<PGVRLine x1="390" y1="185" x2="570" y2="185" />
-			<PGVRLine x1="390" y1="245" x2="570" y2="245" />
 			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_10_to_15" top="173" reseth="1">
 				<PGVRText style="label1">10.</PGVRText>
 			</PGVRTextBox>
@@ -278,9 +302,6 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRLine x1="390" y1="305" x2="390" y2="365" />
-			<PGVRLine x1="390" y1="305" x2="570" y2="305" />
-			<PGVRLine x1="390" y1="365" x2="570" y2="365" />
 			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_10_to_15" top="293" reseth="1">
 				<PGVRText style="label1">12.</PGVRText>
 			</PGVRTextBox>
@@ -321,9 +342,6 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRLine x1="390" y1="425" x2="390" y2="485" />
-			<PGVRLine x1="390" y1="425" x2="570" y2="425" />
-			<PGVRLine x1="390" y1="485" x2="570" y2="485" />
 			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_10_to_15" top="413" reseth="1">
 				<PGVRText style="label1">14.</PGVRText>
 			</PGVRTextBox>
@@ -365,10 +383,40 @@
 			</PGVRTextBox>
 
 
+<!-- Nodes 16 to 31 -->
 
-			<PGVRLine x1="570" y1="50" x2="570" y2="80" />
-			<PGVRLine x1="570" y1="50" x2="750" y2="50" />
-			<PGVRLine x1="570" y1="80" x2="750" y2="80" />
+			<PGVRLine x1="570" y1="51" x2="570" y2="81" />
+			<PGVRLine x1="570" y1="51" x2="750" y2="51" />
+			<PGVRLine x1="570" y1="81" x2="750" y2="81" />
+
+			<PGVRLine x1="570" y1="111" x2="570" y2="141" />
+			<PGVRLine x1="570" y1="111" x2="750" y2="111" />
+			<PGVRLine x1="570" y1="141" x2="750" y2="141" />
+
+			<PGVRLine x1="570" y1="171" x2="570" y2="201" />
+			<PGVRLine x1="570" y1="171" x2="750" y2="171" />
+			<PGVRLine x1="570" y1="201" x2="750" y2="201" />
+
+			<PGVRLine x1="570" y1="231" x2="570" y2="261" />
+			<PGVRLine x1="570" y1="231" x2="750" y2="231" />
+			<PGVRLine x1="570" y1="261" x2="750" y2="261" />
+
+			<PGVRLine x1="570" y1="291" x2="570" y2="321" />
+			<PGVRLine x1="570" y1="291" x2="750" y2="291" />
+			<PGVRLine x1="570" y1="321" x2="750" y2="321" />
+
+			<PGVRLine x1="570" y1="351" x2="570" y2="381" />
+			<PGVRLine x1="570" y1="351" x2="750" y2="351" />
+			<PGVRLine x1="570" y1="381" x2="750" y2="381" />
+
+			<PGVRLine x1="570" y1="411" x2="570" y2="441" />
+			<PGVRLine x1="570" y1="411" x2="750" y2="411" />
+			<PGVRLine x1="570" y1="441" x2="750" y2="441" />
+
+			<PGVRLine x1="570" y1="471" x2="570" y2="501" />
+			<PGVRLine x1="570" y1="471" x2="750" y2="471" />
+			<PGVRLine x1="570" y1="501" x2="750" y2="501" />
+
 			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="38" reseth="1">
 				<PGVRText style="label1">16.</PGVRText>
 			</PGVRTextBox>
@@ -404,9 +452,6 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRLine x1="570" y1="110" x2="570" y2="140" />
-			<PGVRLine x1="570" y1="110" x2="750" y2="110" />
-			<PGVRLine x1="570" y1="140" x2="750" y2="140" />
 			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="98" reseth="1">
 				<PGVRText style="label1">18.</PGVRText>
 			</PGVRTextBox>
@@ -442,9 +487,6 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRLine x1="570" y1="170" x2="570" y2="200" />
-			<PGVRLine x1="570" y1="170" x2="750" y2="170" />
-			<PGVRLine x1="570" y1="200" x2="750" y2="200" />
 			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="158" reseth="1">
 				<PGVRText style="label1">20.</PGVRText>
 			</PGVRTextBox>
@@ -480,9 +522,6 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRLine x1="570" y1="230" x2="570" y2="260" />
-			<PGVRLine x1="570" y1="230" x2="750" y2="230" />
-			<PGVRLine x1="570" y1="260" x2="750" y2="260" />
 			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="218" reseth="1">
 				<PGVRText style="label1">22.</PGVRText>
 			</PGVRTextBox>
@@ -518,9 +557,6 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRLine x1="570" y1="290" x2="570" y2="320" />
-			<PGVRLine x1="570" y1="290" x2="750" y2="290" />
-			<PGVRLine x1="570" y1="320" x2="750" y2="320" />
 			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="278" reseth="1">
 				<PGVRText style="label1">24.</PGVRText>
 			</PGVRTextBox>
@@ -556,9 +592,6 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRLine x1="570" y1="350" x2="570" y2="380" />
-			<PGVRLine x1="570" y1="350" x2="750" y2="350" />
-			<PGVRLine x1="570" y1="380" x2="750" y2="380" />
 			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="338" reseth="1">
 				<PGVRText style="label1">26.</PGVRText>
 			</PGVRTextBox>
@@ -594,9 +627,6 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRLine x1="570" y1="410" x2="570" y2="440" />
-			<PGVRLine x1="570" y1="410" x2="750" y2="410" />
-			<PGVRLine x1="570" y1="440" x2="750" y2="440" />
 			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="398" reseth="1">
 				<PGVRText style="label1">28.</PGVRText>
 			</PGVRTextBox>
@@ -632,9 +662,6 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRLine x1="570" y1="470" x2="570" y2="500" />
-			<PGVRLine x1="570" y1="470" x2="750" y2="470" />
-			<PGVRLine x1="570" y1="500" x2="750" y2="500" />
 			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="458" reseth="1">
 				<PGVRText style="label1">30.</PGVRText>
 			</PGVRTextBox>
@@ -683,7 +710,8 @@
 								</PGVRif>
 							</PGVRTextBox>
 							<PGVRSetVar name="my" value="$my+10" />
-							<PGVRLine x1="38" y1="$my" x2="160" y2="$my" />
+							<PGVRSetVar name="tempY" value="$my+3" />
+							<PGVRLine x1="38" y1="$tempY" x2="160" y2="$tempY" />
 						</PGVRif>
 						<PGVRSetVar name="my" value="$my+2" />
 						<PGVRRepeatTag tag="CHIL">

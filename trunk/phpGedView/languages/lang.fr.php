@@ -3,7 +3,7 @@
  * French Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1485,7 +1485,6 @@ $pgv_lang["html_reports"]               = "Rapports format HTML";
 
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"]          = "Liste par générations";
-$pgv_lang["ahnentafel_header"]          = "'Ahnentafel' : liste par générations pour ";
 $pgv_lang["ahnentafel_generation"]      = "Génération n° ";
 $pgv_lang["ahnentafel_pronoun_m"]       = "Il ";
 $pgv_lang["ahnentafel_pronoun_f"]       = "Elle ";
@@ -1511,7 +1510,6 @@ $pgv_lang["changes_accepted_tot"]       = "Nombre total des modifications accept
 
 //-- Descendancy report
 $pgv_lang["descend_report"]             = "Descendance";
-$pgv_lang["descendancy_header"]         = "Descendance de ";
 $pgv_lang["son_of"]						= "Fils de ";
 $pgv_lang["daughter_of"]				= "Fille de ";
 $pgv_lang["child_of"]					= "Enfant de ";
@@ -1523,10 +1521,10 @@ $pgv_lang["family_group_report"]        = "Famille";
 $pgv_lang["page"]                       = "Page";
 $pgv_lang["of"]                         = "de";
 $pgv_lang["enter_famid"]                = "Code famille";
-$pgv_lang["show_sources"]               = "Montrer les sources ?";
-$pgv_lang["show_notes"]                 = "Montrer les notes ?";
-$pgv_lang["show_basic"]                 = "Montrer les principaux<br />événements même vides ?";
-$pgv_lang["show_photos"]                = "Montrer les photos ?";
+$pgv_lang["show_sources"]               = "Afficher sources ?";
+$pgv_lang["show_notes"]                 = "Afficher notes ?";
+$pgv_lang["show_abbr_notes"] 		= "Afficher notes abrégées ?";
+$pgv_lang["show_photos"]                = "Afficher photos ?";
 $pgv_lang["relatives_report_ext"]       = "Parenté élargie";
 $pgv_lang["with"]                       = "avec";
 $pgv_lang["on"]                         = "le";
@@ -1535,7 +1533,6 @@ $pgv_lang["individual_report"]          = "Individu";
 $pgv_lang["individual_with_rela_report"]= "Famille proche";
 $pgv_lang["enter_pid"]                  = "Code individu";
 $pgv_lang["generated_by"]               = "Généré par";
-$pgv_lang["list_children"]              = "Liste des enfants par ordre de naissance.";
 $pgv_lang["birth_report"]               = "Naissances par lieu";
 $pgv_lang["birthplace"]                 = "Le lieu commence par";
 $pgv_lang["birthdate1"]                 = "Date de naissance mini";

@@ -6,7 +6,7 @@
  * routines and sorting functions.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2015  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -94,14 +94,15 @@ function spanLTRRTL($inputText, $direction='BOTH', $class='') {
 	$workingText = str_replace(array('<span class="starredname"><br />', '<span<br />class="starredname">'), '<br /><span class="starredname">',$workingText);		// Reposition some incorrectly placed line breaks
 	$workingText = stripLRMRLM($workingText);		// Get rid of any existing UTF8 control codes
 
-	$nothing 	= '&zwnj;';		// Zero Width Non-Joiner  (not sure whether this is still needed to work around a TCPDF bug)
+	$nothing 	= '';		// Zero Width Non-Joiner  (not sure whether this is still needed to work around a TCPDF bug)
+//	$nothing 	= '&zwnj;';		// Zero Width Non-Joiner  (not sure whether this is still needed to work around a TCPDF bug)
 
 	$startLTR	= '<LTR>';		// This will become '<span dir="ltr">' at the end
 	$endLTR		= '</LTR>';		// This will become '</span>' at the end
 	$startRTL	= '<RTL>';		// This will become '<span dir="rtl">' at the end
 	$endRTL		= '</RTL>';		// This will become '</span>' at the end
-	$lenStart	= strlen($startLTR);	// RTL version MUST have same length		
-	$lenEnd		= strlen($endLTR);		// RTL version MUST have same length		
+	$lenStart	= strlen($startLTR);	// RTL version MUST have same length
+	$lenEnd		= strlen($endLTR);		// RTL version MUST have same length
 
 	$previousState = '';
 	$currentState = strtoupper($TEXT_DIRECTION);
@@ -375,7 +376,7 @@ function spanLTRRTL($inputText, $direction='BOTH', $class='') {
 
 	// Lastly, do some more cleanups
 	if ($debug) {echo '<b>Interim Output:</b>'; DumpString($result);}
-	
+
 	// Move leading RTL numeric strings to following LTR text
 	// (this happens when the page direction is RTL and the original text begins with a number and is followed by LTR text)
 	while (substr($result, 0, $lenStart+3) == $startRTL.PGV_UTF8_LRE) {
@@ -391,12 +392,12 @@ function spanLTRRTL($inputText, $direction='BOTH', $class='') {
 		$result = $startLTR . substr($result, $lenStart, $spanEnd-$lenStart) . substr($result, $spanEnd+$lenStart+$lenEnd);
 		break;
 	}
-	
+
 	// On RTL pages, put trailing "." in RTL numeric strings into its own RTL span
 	if ($TEXT_DIRECTION == 'rtl') {
 		$result = str_replace(PGV_UTF8_PDF.'.'.$endRTL, PGV_UTF8_PDF.$endRTL.$startRTL.'.'.$endRTL, $result);
 	}
-	
+
 	// Trim trailing blanks preceding <br /> in LTR text
 	while ($previousState != 'RTL') {
 		if (strpos($result, ' <LTRbr />') !== false) {
@@ -1134,8 +1135,8 @@ function unhtmlentities($string)  {
 	$trans_tbl=array_flip(get_html_translation_table (HTML_ENTITIES));
 	$trans_tbl['&lrm;']=PGV_UTF8_LRM;
 	$trans_tbl['&rlm;']=PGV_UTF8_RLM;
-	return preg_replace_callback('/&#(\d+);/', 
-	                             function ($match) { return chr($match[1]); }, 
+	return preg_replace_callback('/&#(\d+);/',
+	                             function ($match) { return chr($match[1]); },
 	                             strtr($string, $trans_tbl));
 }
 

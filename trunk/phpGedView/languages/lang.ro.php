@@ -3,7 +3,7 @@
  * Romanian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team
+ * Copyright (C) 2002 to 2019  PGV Development Team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1376,7 +1376,6 @@ $pgv_lang["html_reports"]			= "Rapoarte HTML";
 
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"]		= "Raport Ahnentafel";
-$pgv_lang["ahnentafel_header"]		= "Raport Ahnentafel pentru ";
 $pgv_lang["ahnentafel_generation"]	= "Generaţia ";
 $pgv_lang["ahnentafel_pronoun_m"]	= "El ";
 $pgv_lang["ahnentafel_pronoun_f"]	= "Ea ";
@@ -1400,7 +1399,6 @@ $pgv_lang["changes_accepted_tot"]	= "Total schimbări acceptate: ";
 
 //-- Descendancy report
 $pgv_lang["descend_report"]			= "Raportul descendenţilor";
-$pgv_lang["descendancy_header"]		= "Raportul descendenţilor pentru ";
 
 $pgv_lang["family_group_report"]	= "Raportul de grup pentru familie";
 $pgv_lang["page"]					= "Pagina";
@@ -1408,7 +1406,7 @@ $pgv_lang["of"] 					= "din";
 $pgv_lang["enter_famid"]			= "Introduceţi ID-ul familiei";
 $pgv_lang["show_sources"]			= "Arată sursele ?";
 $pgv_lang["show_notes"] 			= "Arată notele ?";
-$pgv_lang["show_basic"] 			= "Afişaţi evenimentele de bază când sunt goale ?";
+$pgv_lang["show_abbr_notes"] 		= "Arată note abreviate ?";
 $pgv_lang["show_photos"]			= "Arată fotografiile ?";
 $pgv_lang["relatives_report_ext"]	= "Raportul extins al rudelor";
 $pgv_lang["with"]					= "cu";
@@ -1417,7 +1415,6 @@ $pgv_lang["in"]						= "în";			// for imprecise dates
 $pgv_lang["individual_report"]		= "Raportul individului";
 $pgv_lang["enter_pid"]				= "Introduceţi ID-ul individului";
 $pgv_lang["generated_by"]			= "Generat de către";
-$pgv_lang["list_children"]			= "Afişează fiecare copil în ordinea naşterii.";
 $pgv_lang["birth_report"]			= "Raportul cu zilele şi locurile de naştere";
 $pgv_lang["birthplace"]				= "Locul naşterii conţine";
 $pgv_lang["birthdate1"]				= "Data de început pentru zilele de naştere";

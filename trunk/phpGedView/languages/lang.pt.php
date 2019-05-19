@@ -3,7 +3,7 @@
  * Portugese Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1489,7 +1489,6 @@ $pgv_lang["html_reports"]="Relatórios HTML";
 
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"]="Relatório Ahnentafel";
-$pgv_lang["ahnentafel_header"]="Relatório Ahnentafel de ";
 $pgv_lang["ahnentafel_generation"]="Geração";
 $pgv_lang["ahnentafel_pronoun_m"]="Ele ";
 $pgv_lang["ahnentafel_pronoun_f"]="Ela ";
@@ -1517,7 +1516,6 @@ $pgv_lang["changes_accepted_tot"]	= "Total alterações concluídas: ";
 
 //-- Descendancy report
 $pgv_lang["descend_report"]="Relatório de Descendentes";
-$pgv_lang["descendancy_header"]		= "Descendentes de ";
 $pgv_lang["son_of"]					= "filho de";
 $pgv_lang["daughter_of"]			= "filha de";
 $pgv_lang["child_of"]				= "Filho de ";
@@ -1531,6 +1529,7 @@ $pgv_lang["of"]="de";
 $pgv_lang["enter_famid"]="Informe ID da Família";
 $pgv_lang["show_sources"]="Exibir fontes?";
 $pgv_lang["show_notes"]="Exibir notas?";
+$pgv_lang["show_abbr_notes"] 		= "Exibir notas abreviadas?";
 $pgv_lang["show_photos"]="Exibir fotos?";
 $pgv_lang["relatives_report_ext"]="Relatório de Parentes (expandido)";
 $pgv_lang["with"]="com";
@@ -1540,7 +1539,6 @@ $pgv_lang["individual_report"]="Relatório de Pessoa";
 $pgv_lang["individual_with_rela_report"]		= "Relatório de Parentes próximos";
 $pgv_lang["enter_pid"]="Informe ID da Pessoa";
 $pgv_lang["generated_by"]="Gerado por";
-$pgv_lang["list_children"]="Lista em ordem de nascimento.";
 $pgv_lang["birth_report"]="Relatório Data e Local de Nascimento";
 $pgv_lang["birthplace"]="Local de Nascimento contendo";
 $pgv_lang["birthdate1"]="Data de Nascimento inicial";

@@ -5,13 +5,15 @@
 	<PGVRDescription>Prints an Ahnentafel report for the selected individual</PGVRDescription>
 	<PGVRInput name="pid" lookup="INDI" type="text"><PGVRvar var="pgv_lang[enter_pid]" /></PGVRInput>
 	<PGVRInput name="maxgen" type="select" options="3,4,5,6,7,8,9,*"><PGVRvar var="pgv_lang[generations]" /></PGVRInput>
-	<PGVRInput name="sources" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_sources]" /></PGVRInput>
+	<PGVRInput name="sources" type="checkbox" default="0"><PGVRvar var="pgv_lang[show_sources]" /></PGVRInput>
 	<PGVRInput name="notes" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_notes]" /></PGVRInput>
+	<PGVRInput name="abbrNote" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_abbr_notes]" /></PGVRInput>
 	<PGVRInput name="pageSize" type="select" default="A4" options="letter,A3,A4,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
-	<PGVRInput name="fonts" type="select" default="dejavusans" options="arialunicid0,dejavusans,helvetica"><PGVRvar var="pgv_lang[font]" /></PGVRInput>
+	<PGVRInput name="fonts" type="select" default="dejavusans" options="courier,dejavusans,dejavusanscondensed,dejavuserif,dejavuserifcondensed,dejavusansmono,freesans,freeserif,freemono,helvetica,times"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 
 	<!-- Header -->
 	<PGVRStyle name="header" font="$fonts" size="14" style="b" />
+	<PGVRStyle name="subheader" font="$fonts" size="12" style="b" />
 	<!-- Page numbers text -->
 	<PGVRStyle name="pagenum" font="$fonts" size="8" />
 	<!-- Standard text -->
@@ -39,7 +41,8 @@
 
 	<PGVRDoc pageSize="$pageSize">
 		<PGVRHeader>
-			<PGVRCell align="center" height="30" newline="1" style="header"><PGVRvar var="pgv_lang[ahnentafel_header]" /><PGVRGetPersonName id="$pid" /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="header"><PGVRvar var="pgv_lang[ahnentafel_report]" /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="subheader"><PGVRGetPersonName id="$pid" /></PGVRCell>
 			<PGVRCell align="rightrtl" newline="1" style="pagenum"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
 		</PGVRHeader>
 
@@ -215,7 +218,7 @@
 								</PGVRif>
 								<PGVRGedcom id="MARR">
 									<PGVRif condition="$spid!='' and @DATE!='' and @PLAC!=''">
-										<PGVRText style="text"><br /><PGVRvar var="printPronoun" />
+										<PGVRText style="text">  <PGVRvar var="printPronoun" />
 											<PGVRif condition="$gender=='m'">
 												<PGVRvar var="pgv_lang[ahnentafel_married_m]" />
 											</PGVRif>
@@ -258,7 +261,7 @@
 						</PGVRif>
 
 						<PGVRGedcom id="DEAT">
-							<PGVRText style="text"><br /><PGVRvar var="printPronoun" />
+							<PGVRText style="text">  <PGVRvar var="printPronoun" />
 								<PGVRif condition="$gender=='m'">
 									<PGVRvar var="pgv_lang[ahnentafel_died_m]" />
 								</PGVRif>
@@ -381,7 +384,15 @@
 					</PGVRTextBox>
 					<PGVRif condition="$notes==1">
 						<PGVRRepeatTag tag="NOTE">
-							<PGVRCell left="30" newline="1" style="note"><PGVRGedcomValue tag="NOTE" /></PGVRCell>
+							<PGVRTextBox height="10" newline="1" padding="0" />
+							<PGVRCell left="30" newline="1" style="note">
+								<PGVRif condition="$abbrNote==1">
+									<PGVRGedcomValue tag="NOTE" truncate="0" />		<!-- 0: show abbreviated Note text -->
+								</PGVRif>
+								<PGVRif condition="$abbrNote==0">
+									<PGVRGedcomValue tag="NOTE" truncate="-1" />	<!-- -1: show full Note text -->
+								</PGVRif>
+							</PGVRCell>
 						</PGVRRepeatTag>
 					</PGVRif>
 					<PGVRTextBox height="10" newline="1" padding="0" />

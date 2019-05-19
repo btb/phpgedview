@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<PGVReport access="PRIV_USER" icon="place">
-<!-- $Id$ -->
+<PGVReport access="PRIV_NONE" icon="place">
+	<!--
+	@package PhpGedView
+	@subpackage Reports
+	@version $Id$
+	-->
 	<PGVRDescription>Prints address labels</PGVRDescription>
+
 	<PGVRTitle><PGVRvar var="pgv_lang[address_labels]" /></PGVRTitle>
 	<PGVRInput name="address" type="text"><PGVRvar var="pgv_lang[filter_address]" /> </PGVRInput>
 	<PGVRInput name="sortby" type="select" options="NAME,ID"><PGVRvar var="pgv_lang[sort_by]" /></PGVRInput>
 	<PGVRInput name="email_in" type="select" options="all,noemail,onlyemail"><PGVRvar var="pgv_lang[include]"/> </PGVRInput>
-	<PGVRInput name="pageSize" type="select" default="A4" options="letter,A3,A4,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
-	<PGVRInput name="fonts" type="select" default="dejavusans" options="arialunicid0,dejavusans,helvetica"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
+	<PGVRInput name="pageSize" type="select" default="A4" options="A3,A4,letter,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
+	<PGVRInput name="fonts" type="select" default="dejavusans" options="courier,dejavusans,dejavusanscondensed,dejavuserif,dejavuserifcondensed,dejavusansmono,freesans,freeserif,freemono,helvetica,times"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 	<!--
 	<PGVRInput name="showid" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_ids]" /></PGVRInput>
 	-->

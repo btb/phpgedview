@@ -3,7 +3,7 @@
  * Hebrew Language Help-file
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team
+ * Copyright (C) 2002 to 2019  PGV Development Team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1460,7 +1460,6 @@ $pgv_lang["html_reports"]          	= "דו\"חות HTML";
 
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"]	= "דו\"ח טבלת אבות";
-$pgv_lang["ahnentafel_header"]	= "דו\"ח טבלת אבות עבור ";
 $pgv_lang["ahnentafel_generation"]	= "דור ";
 $pgv_lang["ahnentafel_pronoun_m"]	= "הוא ";
 $pgv_lang["ahnentafel_pronoun_f"]	= "היא ";
@@ -1486,7 +1485,6 @@ $pgv_lang["changes_accepted_tot"]	= "סה\"כ שינויים שהתקבלו: ";
 
 //-- Descendancy report
 $pgv_lang["descend_report"]		= "דו\"ח צאצאים";
-$pgv_lang["descendancy_header"]	= "דו\"ח צאצאים עבור ";
 $pgv_lang["son_of"]			= "בן של";
 $pgv_lang["daughter_of"]		= "בת של";
 $pgv_lang["child_of"]			= "ילד/ה של ";
@@ -1500,7 +1498,6 @@ $pgv_lang["of"]                     		= "מתוך";
 $pgv_lang["enter_famid"]            	= "הכנס קוד זיהוי של המשפחה";
 $pgv_lang["show_sources"]           	= "הצג מקורות?";
 $pgv_lang["show_notes"]             	= "הצג הערות?";
-$pgv_lang["show_basic"]             	= "הדפס אירועים בסיסיים ריקים?";
 $pgv_lang["show_photos"]		= "הראה תמונות?";
 $pgv_lang["relatives_report_ext"]	= "דו\"ח קרובים מורחב";
 $pgv_lang["with"]			= "עם";
@@ -1510,7 +1507,6 @@ $pgv_lang["individual_report"]		= "דו\"ח אישי";
 $pgv_lang["individual_with_rela_report"] = "דו\"ח קרובים";
 $pgv_lang["enter_pid"]		= "הכנס קוד זיהוי אישי";
 $pgv_lang["generated_by"]		= "נוצר ע\"י";
-$pgv_lang["list_children"]		= "הצג ילדים לפי תאריך לידה.";
 $pgv_lang["birth_report"]		= "דו\"ח תאריכי ומקומות לידה";
 $pgv_lang["birthplace"]		= "מקום הלידה כולל";
 $pgv_lang["birthdate1"]		= "תחילת תחום תאריכי לידה";

@@ -3,7 +3,7 @@
  * Czech Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1481,7 +1481,6 @@ $pgv_lang["html_reports"]			= "Zprávy v HTML";
 
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"]		= "Seznam předků";
-$pgv_lang["ahnentafel_header"]		= "Seznam předků pro ";
 $pgv_lang["ahnentafel_generation"]	= "Generace";
 $pgv_lang["ahnentafel_pronoun_m"]	= "On ";
 $pgv_lang["ahnentafel_pronoun_f"]	= "Ona ";
@@ -1509,7 +1508,6 @@ $pgv_lang["changes_accepted_tot"]	= "Celkem přijaté změny:";
 
 //-- Descendancy report
 $pgv_lang["descend_report"]			= "Rozrod Zpráva";
-$pgv_lang["descendancy_header"]		= "Rozrod Zpráva por ";
 $pgv_lang["son_of"]					= "syn";
 $pgv_lang["daughter_of"]			= "dcera";
 $pgv_lang["child_of"]				= "dítě ";
@@ -1523,6 +1521,7 @@ $pgv_lang["of"] 					= "z";
 $pgv_lang["enter_famid"]			= "Zadejte ID rodiny";
 $pgv_lang["show_sources"]			= "Zobrazit zdroje?";
 $pgv_lang["show_notes"] 			= "Zobrazit poznámky?";
+$pgv_lang["show_abbr_notes"] 		= "Zobrazit zkrácené poznámky?";
 $pgv_lang["show_photos"]			= "Zobrazit fotky?";
 $pgv_lang["relatives_report_ext"]	= "Rozšířený Zpráva o Příbuznými";
 $pgv_lang["with"]					= "s";
@@ -1532,7 +1531,6 @@ $pgv_lang["individual_report"]		= "Zpráva o Osobě";
 $pgv_lang["individual_with_rela_report"]		= "Zpráva o Blízkých Příbuzných";
 $pgv_lang["enter_pid"]				= "Zadat ID osoby";
 $pgv_lang["generated_by"]			= "Vytvořeno v";
-$pgv_lang["list_children"]			= "Seřadit všechny děti podle data narození.";
 $pgv_lang["birth_report"]			= "Zpráva o Datu a Místě Narození";
 $pgv_lang["birthplace"]				= "Místo narození obsahuje";
 $pgv_lang["birthdate1"]				= "Rozsah data narození začíná";

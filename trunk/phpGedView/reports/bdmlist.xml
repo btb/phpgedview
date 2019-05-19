@@ -5,8 +5,9 @@
 	@subpackage Reports
 	@version $Id$
 	-->
-	<PGVRTitle><PGVRvar var="pgv_lang[bdm]" /></PGVRTitle>
 	<PGVRDescription>Prints a list of BIRT/DEAT/MARR events for individuals matching NAME or PLAC criteria.</PGVRDescription>
+
+	<PGVRTitle><PGVRvar var="pgv_lang[bdm]" /></PGVRTitle>
 	<PGVRInput name="name" lookup="NAME" type="text"><PGVRvar var="pgv_lang[name]" /></PGVRInput>
 	<PGVRInput name="bdmplace" lookup="PLAC" type="text"><PGVRvar var="factarray[PLAC]" /></PGVRInput>
 	<PGVRInput name="birthdate1" lookup="DATE" type="text"><PGVRvar var="pgv_lang[birthdate1]" /></PGVRInput>
@@ -14,11 +15,12 @@
 	<PGVRInput name="deathdate1" lookup="DATE" type="text"><PGVRvar var="pgv_lang[deathdate1]" /></PGVRInput>
 	<PGVRInput name="deathdate2" lookup="DATE" type="text"><PGVRvar var="pgv_lang[deathdate2]" /></PGVRInput>
 	<PGVRInput name="sortby" type="select" default="BIRT:DATE" options="ID,NAME,BIRT:DATE,DEAT:DATE"><PGVRvar var="pgv_lang[sort_by]" /></PGVRInput>
-	<PGVRInput name="pageSize" type="select" default="A4" options="letter,A3,A4,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
-	<PGVRInput name="fonts" type="select" default="dejavusans" options="arialunicid0,dejavusans,helvetica"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
+	<PGVRInput name="pageSize" type="select" default="A4" options="A3,A4,letter,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
+	<PGVRInput name="fonts" type="select" default="dejavusans" options="courier,dejavusans,dejavusanscondensed,dejavuserif,dejavuserifcondensed,dejavusansmono,freesans,freeserif,freemono,helvetica,times"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 
 	<!-- Header -->
-	<PGVRStyle name="header" font="$fonts" size="15" style="b" />
+	<PGVRStyle name="header" font="$fonts" size="14" style="b" />
+	<PGVRStyle name="subheader" font="$fonts" size="12" style="b" />
 	<!-- Page numbers text -->
 	<PGVRStyle name="pagenum" font="$fonts" size="8"/>
 	<!-- Standard text -->
@@ -32,16 +34,16 @@
 
 	<PGVRDoc pageSize="$pageSize" orientation="landscape">
 		<PGVRHeader>
-			<PGVRCell align="center" newline="1" style="label"><PGVRvar var="pgv_lang[bdm]" /></PGVRCell>
-			<PGVRCell align="center" newline="1" style="header">
+			<PGVRCell align="center" newline="1" style="header"><PGVRvar var="pgv_lang[bdm]" /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="subheader">
 				<PGVRif condition="$name!=''">
-				    <PGVRvar var="name" /> 
+				    <PGVRvar var="name" />
 				</PGVRif>
 				<PGVRif condition="$bdmplace!=''">
 					<PGVRvar var="bdmplace" />
 				</PGVRif>
 			</PGVRCell>
-			<PGVRCell align="rightrtl" height="10" newline="1" style="pagenum"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
+			<PGVRCell align="rightrtl" newline="1" style="pagenum"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
 			<!-- ID -->
 			<PGVRSetVar name="fill" value="" />
 			<PGVRif condition="$sortby=='ID'">
@@ -64,18 +66,22 @@
 				<PGVRSetVar name="fill" value="#AAAAAA" />
 			</PGVRif>
 			<PGVRTextBox bgcolor="$fill" border="1" height="12" width="165">
-			<!-- todo: do not print [-] if no dates are selected -->
 				<PGVRText style="label">
-					<PGVRvar var="factarray[BIRT]" />   [
-					<PGVRif condition="$birthdate1!=''">
-						<PGVRvar var="birthdate1" />
-					</PGVRif>
-					-
-					<PGVRif condition="$birthdate2!=''">
-						<PGVRvar var="birthdate2" />
-					</PGVRif>
-					]
+					<PGVRvar var="factarray[BIRT]" />
 				</PGVRText>
+				<!-- Do not print [-] if no dates are selected -->
+				<PGVRif condition="$birthdate1!='' || $birthdate2!=''">
+					<PGVRText style="label">   [
+						<PGVRif condition="$birthdate1!=''">
+							<PGVRvar var="birthdate1" />
+						</PGVRif>
+						-
+						<PGVRif condition="$birthdate2!=''">
+							<PGVRvar var="birthdate2" />
+						</PGVRif>
+						]
+					</PGVRText>
+				</PGVRif>
 			</PGVRTextBox>
 			<!-- Marrige -->
 			<PGVRSetVar name="fill" value="" />
@@ -93,16 +99,21 @@
 			<PGVRTextBox bgcolor="$fill" border="1" height="12" newline="1">
 			<!-- todo: do not print [-] if no dates are selected -->
 				<PGVRText style="label">
-					<PGVRvar var="factarray[DEAT]" />   [
-					<PGVRif condition="$deathdate1!=''">
-						<PGVRvar var="deathdate1" />
-					</PGVRif>
-					-
-					<PGVRif condition="$deathdate2!=''">
-						<PGVRvar var="deathdate2" />
-					</PGVRif>
-					]
+					<PGVRvar var="factarray[DEAT]" />
 				</PGVRText>
+				<!-- Do not print [-] if no dates are selected -->
+				<PGVRif condition="$deathdate1!='' || $deathdate2!=''">
+					<PGVRText style="label">   [
+						<PGVRif condition="$deathdate1!=''">
+							<PGVRvar var="deathdate1" />
+						</PGVRif>
+						-
+						<PGVRif condition="$deathdate2!=''">
+							<PGVRvar var="deathdate2" />
+						</PGVRif>
+						]
+					</PGVRText>
+				</PGVRif>
 			</PGVRTextBox>
 		</PGVRHeader>
 
@@ -124,12 +135,12 @@
 
 				<PGVRTextBox width="205" height="46">
 					<PGVRText style="text">
-						<PGVRGetPersonName id="" />
+						<PGVRGetPersonName id="" /><br />
 					</PGVRText>
 					<PGVRText style="small">
-						<br />   <PGVRvar var="pgv_lang[father]" />
+						<PGVRvar var="pgv_lang[father]" />
 						: <PGVRGedcom id="@FAMC"><PGVRGetPersonName id="@HUSB" /></PGVRGedcom>
-						<br />   <PGVRvar var="pgv_lang[mother]" />
+						<br /><PGVRvar var="pgv_lang[mother]" />
 						: <PGVRGedcom id="@FAMC"><PGVRGetPersonName id="@WIFE" /></PGVRGedcom>
 					</PGVRText>
 				</PGVRTextBox>
@@ -143,11 +154,11 @@
 							</PGVRif>
 							<PGVRvar var="factarray[DATE]" />
 							: <PGVRGedcomValue tag="BIRT:DATE" />
-							<br />  <PGVRvar var="factarray[PLAC]" />
+							<br /><PGVRvar var="factarray[PLAC]" />
 							: <PGVRGedcomValue tag="BIRT:PLAC" />
-							<br />  <PGVRvar var="factarray[SOUR]" />
+							<br /><PGVRvar var="factarray[SOUR]" />
 							: <PGVRRepeatTag tag="BIRT:SOUR">
-								<PGVRGedcomValue tag="SOUR" /> 
+								<PGVRGedcomValue tag="SOUR" /> <!-- Make sure there's a space following this -->
 							</PGVRRepeatTag>
 							<PGVRSetVar name="moreB" value="1" />
 						</PGVRRepeatTag>
@@ -167,15 +178,15 @@
 								<!-- todo: print the dates, places and sources of all the FAM MARR records -->
 								<PGVRvar var="factarray[DATE]" />
 								: <PGVRGedcomValue tag="MARR:DATE" />
-								<br />  <PGVRvar var="factarray[PLAC]" />
+								<br /><PGVRvar var="factarray[PLAC]" />
 								: <PGVRGedcomValue tag="MARR:PLAC" />
-								<br />  <PGVRvar var="factarray[SOUR]" />
+								<br /><PGVRvar var="factarray[SOUR]" />
 								: <PGVRRepeatTag tag="MARR:SOUR">
-									<PGVRGedcomValue tag="SOUR" /> 
+									<PGVRGedcomValue tag="SOUR" /> <!-- Make sure there's a space following this -->
 								</PGVRRepeatTag>
 								<br />
 								<PGVRvar var="pgv_lang[spouse]" />
-								: 
+								: <!-- make sure we have a space following this -->
 								<PGVRif condition="$spid==@WIFE">
 									<PGVRGetPersonName id="@HUSB" />
 								</PGVRif>
@@ -197,11 +208,11 @@
 							</PGVRif>
 							<PGVRvar var="factarray[DATE]" />
 							: <PGVRGedcomValue tag="DEAT:DATE" />
-							<br />  <PGVRvar var="factarray[PLAC]" />
+							<br /><PGVRvar var="factarray[PLAC]" />
 							: <PGVRGedcomValue tag="DEAT:PLAC" />
-							<br />  <PGVRvar var="factarray[SOUR]" />
+							<br /><PGVRvar var="factarray[SOUR]" />
 							: <PGVRRepeatTag tag="DEAT:SOUR">
-								<PGVRGedcomValue tag="SOUR" /> 
+								<PGVRGedcomValue tag="SOUR" /> <!-- Make sure there's a space following this -->
 							</PGVRRepeatTag>
 							<PGVRSetVar name="moreD" value="1" />
 						</PGVRRepeatTag>
@@ -211,7 +222,7 @@
 						</PGVRRepeatTag>
 					</PGVRText>
 				</PGVRTextBox>
-				
+
 			</PGVRList>
 
 			<PGVRCell align="rightrtl" height="24" newline="1" style="label"><br />

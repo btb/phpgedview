@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Swedish Language file for PhpGedView.
  *
@@ -566,7 +566,7 @@ $pgv_lang["of"]                 = "av";
 $pgv_lang["enter_famid"]        = "Skriv in familje-ID";
 $pgv_lang["show_sources"]       = "Visa källor?";
 $pgv_lang["show_notes"]         = "Visa anteckningar?";
-$pgv_lang["show_basic"]         = "Skriv ut standardhändelser när det är tomt?";
+$pgv_lang["show_abbr_notes"] 		= "Visa förkortade anteckningar?";
 $pgv_lang["show_photos"]		= "Visa foton?";
 $pgv_lang["relatives_report_ext"]	= "Utökad släktrapport";
 $pgv_lang["with"]					= "med";
@@ -575,7 +575,6 @@ $pgv_lang["in"]						= "i";
 $pgv_lang["individual_report"]	= "Personrapport";
 $pgv_lang["enter_pid"]			= "Skriv in personens ID";
 $pgv_lang["generated_by"]		= "Skapad av";
-$pgv_lang["list_children"]		= "Lista varje barn i födelseordning.";
 $pgv_lang["birth_report"]		= "Födelsedatum- och ortsrapport";
 $pgv_lang["birthplace"]			= "Födelseort innehåller";
 $pgv_lang["birthdate1"]			= "Startdatum för födelseområde";
@@ -1213,7 +1212,6 @@ $pgv_lang["common_upload_errors"]	= "Detta fel beror troligen på att filen du f
 $pgv_lang["total_memory_usage"]	= "Total minnesanvändning:";
 $pgv_lang["fams_with_surname"]	= "Familjer med efternamn #surname#";
 $pgv_lang["ahnentafel_report"]	= "Antavlerapport";
-$pgv_lang["ahnentafel_header"]		= "Antavlerapport för ";
 $pgv_lang["ahnentafel_generation"]	= "Generationer ";
 $pgv_lang["ahnentafel_pronoun_m"]	= "Han ";
 $pgv_lang["ahnentafel_pronoun_f"]	= "Hon ";
@@ -1234,7 +1232,6 @@ $pgv_lang["ahnentafel_on"]			= " ";
 
 //-- Descendancy report
 $pgv_lang["descend_report"]				= "Ättlingsrapport";
-$pgv_lang["descendancy_header"]		= "Ättlingsrapport för ";
 $pgv_lang["son_of"]					= "son av";
 $pgv_lang["daughter_of"]			= "dotter av";
 $pgv_lang["child_of"]				= "Barn av ";
