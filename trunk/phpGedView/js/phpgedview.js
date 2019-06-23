@@ -2,7 +2,7 @@
  * Common javascript functions
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019	PGV Development Team.	All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -11,12 +11,12 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA	02111-1307	USA
  *
  * @package PhpGedView
  * @subpackage Display
@@ -58,73 +58,74 @@ function openImage(filename, width, height) {
 	var msX = 0;
 	var msY = 0;
 
-//  the following javascript functions are for the positioning and hide/show of
-//  DIV layers used in the display of the pedigree chart.
+//	the following javascript functions are for the positioning and hide/show of
+//	DIV layers used in the display of the pedigree chart.
 function MM_findObj(n, d) { //v4.01
-  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
-    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
-  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
-  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
-  if(!x && d.getElementById) x=d.getElementById(n); return x;
+	var p,i,x;	if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+		d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+	if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+	for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+	if(!x && d.getElementById) x=d.getElementById(n); return x;
 }
 
 function MM_showHideLayers() { //v6.0
-  var i,p,v,obj,args=MM_showHideLayers.arguments;
-  for (i=0; i<(args.length-3); i+=4) {
-	  if ((obj=MM_findObj(args[i]))!=null) {
-    	if (obj.style) {
-	      div=obj;
-	      obj=obj.style;
-	    }
-	    v=args[i+2];
-	    if (v=='toggle') {
-		    if (obj.visibility.indexOf('hid')!=-1) v='show';
-		    else v='hide';
-	    }
-	    v=(v=='show')?'visible':(v=='hide')?'hidden':v;
-    	obj.visibility=v;
-    	if (args[i+1]=='followmouse') {
-	    	pobj = MM_findObj(args[i+3]);
-	    	if (pobj!=null) {
-//		    	if (pobj.style.top!="auto") {
-		    	if (pobj.style.top!="auto" && args[i+3]!="relatives") {
-			    	obj.top=5+msY-parseInt(pobj.style.top)+'px';
-			    	if (textDirection=="ltr") obj.left=5+msX-parseInt(pobj.style.left)+'px';
-			    	if (textDirection=="rtl") obj.right=5+msX-parseInt(pobj.style.right)+'px';
-		    	}
-		    	else {
-			    	obj.top="auto";
-			    	//obj.left="80%";
-			    	pagewidth = document.documentElement.offsetWidth+document.documentElement.scrollLeft;
-			    	if (textDirection=="rtl") pagewidth -= document.documentElement.scrollLeft;
-			    	if (msX > pagewidth-160) msX = msX-150-pobj.offsetLeft;
-			    	contentdiv = document.getElementById("content");
-			    	msX = msX - contentdiv.offsetLeft;
-			    	if (textDirection=="ltr") obj.left=(5+msX)+'px';
-			    	obj.zIndex=1000;
-		    	}
-	    	}
-	    	else {
-	    		//obj.top="auto";
-	    		if (SCRIPT_NAME.indexOf("fanchart")>0) {
-		    		obj.top=(msY-20)+'px';
-			    	obj.left=(msX-20)+'px';
-	    		}
-	    		else if (SCRIPT_NAME.indexOf("index.php")==-1) {
-		    		Xadjust = document.getElementById('content').offsetLeft;
-		    		obj.left=(5+(msX-Xadjust))+'px';
-		    		obj.top="auto";
-	    		}
-	    		else {
-		    		Xadjust = document.getElementById('content').offsetLeft;
-		    		obj.top=(msY-50)+'px';
-			    	obj.left=(10+(msX-Xadjust))+'px';
-	    		}
-	    		obj.zIndex=1000;
-    		}
-    	}
-    }
-  }
+	var i,p,v,obj,args=MM_showHideLayers.arguments;
+	for (i=0; i<(args.length-3); i+=4) {
+		if ((obj=MM_findObj(args[i]))!=null) {
+			if (obj.style) {
+				div=obj;
+				obj=obj.style;
+			}
+			v=args[i+2];
+			if (v=='toggle') {
+				if (obj.visibility.indexOf('hid')!=-1) v='show';
+				else v='hide';
+			}
+			v=(v=='show')?'visible':(v=='hide')?'hidden':v;
+			obj.visibility=v;
+			if (args[i+1]=='followmouse') {
+				pobj = MM_findObj(args[i+3]);
+				if (pobj!=null) {
+					if (pobj.style.top!="auto" && args[i+3]!="relatives") {
+						obj.top=5+msY-parseInt(pobj.style.top)+'px';
+						if (textDirection=="ltr") obj.left=5+msX-parseInt(pobj.style.left)+'px';
+						if (textDirection=="rtl") obj.right=5+msX-parseInt(pobj.style.right)+'px';
+					}
+					else {
+						obj.top="auto";
+						pagewidth = document.documentElement.offsetWidth+document.documentElement.scrollLeft;
+						if (textDirection=="rtl") pagewidth -= document.documentElement.scrollLeft;
+						if (msX > pagewidth-160) msX = msX-150-pobj.offsetLeft;
+						contentdiv = document.getElementById("content");
+						msX = msX - contentdiv.offsetLeft;
+						if (textDirection=="ltr") obj.left=(5+msX)+'px';
+						obj.zIndex=1000;
+					}
+				}
+				else {
+					if (SCRIPT_NAME.indexOf("fanchart")>0) {
+						obj.top=(msY-20)+'px';
+						obj.left=(msX-20)+'px';
+					}
+					else if (SCRIPT_NAME.indexOf("index.php")==-1) {
+						if (obj.left == '0px') {
+							// Left position of object has not been calculated previously
+							Xadjust = document.getElementById('content').offsetLeft;
+							obj.left=(5+(msX-Xadjust))+'px';
+						}
+						obj.top="auto";
+					}
+					else {
+						Xadjust = document.getElementById('content').offsetLeft;
+						obj.top=(msY-50)+'px';
+						obj.left=(10+(msX-Xadjust))+'px';
+					}
+					obj.zIndex=1000;
+				}
+			}
+			// alert ('Line 126, Postion:'+obj.position+'; Top:'+obj.top+'; Left:'+obj.left);
+		}
+	}
 }
 
 var show = false;
@@ -165,7 +166,6 @@ var show = false;
 			famlinks = document.getElementById("I"+boxid+"links");
 			divbox = document.getElementById("out-"+boxid);
 			parentbox = document.getElementById("box"+boxid);
-			//alert(famlinks+" "+divbox+" "+parentbox);
 			if (famlinks && divbox && parentbox) {
 				famlinks.style.top = "0px";
 				if (textDirection=="ltr") famleft = parseInt(divbox.style.width)+15;
@@ -296,14 +296,14 @@ var show = false;
 
 // Main function to retrieve mouse x-y pos.s
 function getMouseXY(e) {
-  if (IE) { // grab the x-y pos.s if browser is IE
-    msX = event.clientX + document.documentElement.scrollLeft;
-    msY = event.clientY + document.documentElement.scrollTop;
-  } else {  // grab the x-y pos.s if browser is NS
-    msX = e.pageX;
-    msY = e.pageY;
-  }
-  return true;
+	if (IE) { // grab the x-y pos.s if browser is IE
+		msX = event.clientX + document.documentElement.scrollLeft;
+		msY = event.clientY + document.documentElement.scrollTop;
+	} else {	// grab the x-y pos.s if browser is NS
+		msX = e.pageX;
+		msY = e.pageY;
+	}
+	return true;
 }
 
 function edit_record(pid, linenum) {
@@ -510,14 +510,14 @@ function valid_date(datefield) {
 	datestr=datestr.replace(/(\d)([A-Z])/, "$1 $2");
 	datestr=datestr.replace(/([A-Z])(\d)/, "$1 $2");
 
-	// Shortcut for quarter format, "Q1 1900" => "BET JAN 1900 AND MAR 1900".  See [ 1509083 ]
+	// Shortcut for quarter format, "Q1 1900" => "BET JAN 1900 AND MAR 1900".	See [ 1509083 ]
  	if (datestr.match(/^Q ([1-4]) (\d\d\d\d)$/)) {
 		datestr = "BET "+months[RegExp.$1*3-3]+" "+RegExp.$2+" AND "+months[RegExp.$1*3-1]+" "+RegExp.$2;
 	}
 
 	// 2 passes, to catch things like "FROM 1860.11.17 TO 1860.11.25"
 	for (var pass=1; pass<=2; pass++) {
-		// e.g. 1860 NOV 17  (i.e., year and day switched, optional text before and after date)
+		// e.g. 1860 NOV 17	(i.e., year and day switched, optional text before and after date)
 		if (datestr.match(/(.*) (\d{4}) (\w+) (\d{1,2}) (.*)/)) {
 		 	day = parseInt(RegExp.$4, 10);
 		 	if (day > 0 && day < 32) {
@@ -525,7 +525,7 @@ function valid_date(datefield) {
 		 	}
 	 	}
 
-	 	// e.g. 1860.11.17  (1 or 2-digit month and day permitted, optional text before and after date)
+	 	// e.g. 1860.11.17	(1 or 2-digit month and day permitted, optional text before and after date)
 	 	if (datestr.match(/(.*) (\d{4})[^\d](\d{1,2})[^\d](\d{1,2}) (.*)/)) {
 	 	 	day = parseInt(RegExp.$4, 10);
 		 	mth = parseInt(RegExp.$3, 10);
@@ -534,7 +534,7 @@ function valid_date(datefield) {
 		 	}
 		}
 
-	 	// e.g. 18601117  (2-digit month and day required, optional text before and after date)
+	 	// e.g. 18601117	(2-digit month and day required, optional text before and after date)
 	 	if (datestr.match(/(.*) (\d{4})(\d\d)(\d\d) (.*)/)) {
 	 	 	day = parseInt(RegExp.$4, 10);
 		 	mth = parseInt(RegExp.$3, 10);
@@ -543,7 +543,7 @@ function valid_date(datefield) {
 		 	}
 		}
 
-		// e.g. 17.11.1860, 03/04/2005 or 1999-12-31.  Use locale settings where DMY order is ambiguous.
+		// e.g. 17.11.1860, 03/04/2005 or 1999-12-31.	Use locale settings where DMY order is ambiguous.
 		srch = /(.*) (\d+)[^\d](\d+)[^\d](\d+) (.*)/i;
 	 	if (srch.exec(datestr)) {
 	 		var f0=RegExp.$1;
@@ -685,13 +685,13 @@ function expandbox(boxid, bstyle) {
 				oXmlHttp.open("get", "expand_view.php?pid=" + pid, true);
 				oXmlHttp.onreadystatechange=function()
 				{
-		  			if (oXmlHttp.readyState==4)
-		  			{
-		   				inbox.innerHTML = oXmlHttp.responseText;
-		   			}
-		  		};
-		  		oXmlHttp.send(null);
-	  		}
+						if (oXmlHttp.readyState==4)
+						{
+			 				inbox.innerHTML = oXmlHttp.responseText;
+			 			}
+					};
+					oXmlHttp.send(null);
+				}
 		}
 		else
 		{
@@ -757,10 +757,10 @@ function createXMLHttp()
 };
 
 /**
- * function to extract JS code from a text string.  Useful to call when loading
+ * function to extract JS code from a text string.	Useful to call when loading
  * content dynamically through AJAX which contains a mix of HTML and JavaScript.
  * retrieves all of the JS code between <script></script> tags and adds it as a <script> node
- * @param string text   the text that contains a mix of html and inline javascript
+ * @param string text	 the text that contains a mix of html and inline javascript
  * @param DOMElement parentElement	the element that the text and JavaScript will added to
  */
 function evalAjaxJavascript(text, parentElement) {
@@ -939,7 +939,7 @@ function show_submenu(elementid, parentid, dir) {
 			var child = element.childNodes[i];
 			if (child.offsetWidth > maxwidth+5) maxwidth = child.offsetWidth;
 		}
-		if (element.offsetWidth <  maxwidth) {
+		if (element.offsetWidth <	maxwidth) {
 			element.style.width = maxwidth+"px";
 		}
 
@@ -1099,127 +1099,127 @@ function statusChecked(sel) {
 }
 
 var monthLabels = new Array();
-  monthLabels[1] = "January";
-  monthLabels[2] = "February";
-  monthLabels[3] = "March";
-  monthLabels[4] = "April";
-  monthLabels[5] = "May";
-  monthLabels[6] = "June";
-  monthLabels[7] = "July";
-  monthLabels[8] = "August";
-  monthLabels[9] = "September";
-  monthLabels[10] = "October";
-  monthLabels[11] = "November";
-  monthLabels[12] = "December";
+	monthLabels[1] = "January";
+	monthLabels[2] = "February";
+	monthLabels[3] = "March";
+	monthLabels[4] = "April";
+	monthLabels[5] = "May";
+	monthLabels[6] = "June";
+	monthLabels[7] = "July";
+	monthLabels[8] = "August";
+	monthLabels[9] = "September";
+	monthLabels[10] = "October";
+	monthLabels[11] = "November";
+	monthLabels[12] = "December";
 
-  var monthShort = new Array();
-  monthShort[1] = "JAN";
-  monthShort[2] = "FEB";
-  monthShort[3] = "MAR";
-  monthShort[4] = "APR";
-  monthShort[5] = "MAY";
-  monthShort[6] = "JUN";
-  monthShort[7] = "JUL";
-  monthShort[8] = "AUG";
-  monthShort[9] = "SEP";
-  monthShort[10] = "OCT";
-  monthShort[11] = "NOV";
-  monthShort[12] = "DEC";
+	var monthShort = new Array();
+	monthShort[1] = "JAN";
+	monthShort[2] = "FEB";
+	monthShort[3] = "MAR";
+	monthShort[4] = "APR";
+	monthShort[5] = "MAY";
+	monthShort[6] = "JUN";
+	monthShort[7] = "JUL";
+	monthShort[8] = "AUG";
+	monthShort[9] = "SEP";
+	monthShort[10] = "OCT";
+	monthShort[11] = "NOV";
+	monthShort[12] = "DEC";
 
-  var daysOfWeek = new Array();
-  daysOfWeek[0] = "S";
-  daysOfWeek[1] = "M";
-  daysOfWeek[2] = "T";
-  daysOfWeek[3] = "W";
-  daysOfWeek[4] = "T";
-  daysOfWeek[5] = "F";
-  daysOfWeek[6] = "S";
+	var daysOfWeek = new Array();
+	daysOfWeek[0] = "S";
+	daysOfWeek[1] = "M";
+	daysOfWeek[2] = "T";
+	daysOfWeek[3] = "W";
+	daysOfWeek[4] = "T";
+	daysOfWeek[5] = "F";
+	daysOfWeek[6] = "S";
 
-  var weekStart = 0;
+	var weekStart = 0;
 
-  function cal_setMonthNames(jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec) {
-  	monthLabels[1] = jan;
-  	monthLabels[2] = feb;
-  	monthLabels[3] = mar;
-  	monthLabels[4] = apr;
-  	monthLabels[5] = may;
-  	monthLabels[6] = jun;
-  	monthLabels[7] = jul;
-  	monthLabels[8] = aug;
-  	monthLabels[9] = sep;
-  	monthLabels[10] = oct;
-  	monthLabels[11] = nov;
-  	monthLabels[12] = dec;
-  }
+	function cal_setMonthNames(jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec) {
+		monthLabels[1] = jan;
+		monthLabels[2] = feb;
+		monthLabels[3] = mar;
+		monthLabels[4] = apr;
+		monthLabels[5] = may;
+		monthLabels[6] = jun;
+		monthLabels[7] = jul;
+		monthLabels[8] = aug;
+		monthLabels[9] = sep;
+		monthLabels[10] = oct;
+		monthLabels[11] = nov;
+		monthLabels[12] = dec;
+	}
 
-  function cal_setDayHeaders(sun, mon, tue, wed, thu, fri, sat) {
-  	daysOfWeek[0] = sun;
-  	daysOfWeek[1] = mon;
-  	daysOfWeek[2] = tue;
-  	daysOfWeek[3] = wed;
-  	daysOfWeek[4] = thu;
-  	daysOfWeek[5] = fri;
-  	daysOfWeek[6] = sat;
-  }
+	function cal_setDayHeaders(sun, mon, tue, wed, thu, fri, sat) {
+		daysOfWeek[0] = sun;
+		daysOfWeek[1] = mon;
+		daysOfWeek[2] = tue;
+		daysOfWeek[3] = wed;
+		daysOfWeek[4] = thu;
+		daysOfWeek[5] = fri;
+		daysOfWeek[6] = sat;
+	}
 
-  function cal_setWeekStart(day) {
-  	if (day >=0 && day < 7) weekStart = day;
-  }
+	function cal_setWeekStart(day) {
+		if (day >=0 && day < 7) weekStart = day;
+	}
 
-  function cal_toggleDate(dateDivId, dateFieldId) {
-  	var dateDiv = document.getElementById(dateDivId);
-  	if (!dateDiv) return false;
+	function cal_toggleDate(dateDivId, dateFieldId) {
+		var dateDiv = document.getElementById(dateDivId);
+		if (!dateDiv) return false;
 
-  	if (dateDiv.style.visibility=='visible') {
-  		dateDiv.style.visibility = 'hidden';
-  		return false;
-  	}
-  	if (dateDiv.style.visibility=='show') {
-  		dateDiv.style.visibility = 'hide';
-  		return false;
-  	}
+		if (dateDiv.style.visibility=='visible') {
+			dateDiv.style.visibility = 'hidden';
+			return false;
+		}
+		if (dateDiv.style.visibility=='show') {
+			dateDiv.style.visibility = 'hide';
+			return false;
+		}
 
-  	var dateField = document.getElementById(dateFieldId);
-  	if (!dateField) return false;
+		var dateField = document.getElementById(dateFieldId);
+		if (!dateField) return false;
 
-  	var dateStr = dateField.value;
-  	var date = new Date();
-  	if (dateStr!="" && dateStr.indexOf("@")==-1) date = new Date(dateStr);
-  	if (!date) return;
+		var dateStr = dateField.value;
+		var date = new Date();
+		if (dateStr!="" && dateStr.indexOf("@")==-1) date = new Date(dateStr);
+		if (!date) return;
 
-  	dateDiv.innerHTML = cal_generateSelectorContent(dateFieldId, dateDivId, date);
-  	if (dateDiv.style.visibility=='hidden') {
-  		dateDiv.style.visibility = 'visible';
-  		return false;
-  	}
-  	if (dateDiv.style.visibility=='hide') {
-  		dateDiv.style.visibility = 'show';
-  		return false;
-  	}
-  	return false;
-  }
+		dateDiv.innerHTML = cal_generateSelectorContent(dateFieldId, dateDivId, date);
+		if (dateDiv.style.visibility=='hidden') {
+			dateDiv.style.visibility = 'visible';
+			return false;
+		}
+		if (dateDiv.style.visibility=='hide') {
+			dateDiv.style.visibility = 'show';
+			return false;
+		}
+		return false;
+	}
 
-  function cal_generateSelectorContent(dateFieldId, dateDivId, date) {
-  	var content = '<table border="1"><tr>';
-  	content += '<td><select name="'+dateFieldId+'_daySelect" id="'+dateFieldId+'_daySelect" onchange="return cal_updateCalendar(\''+dateFieldId+'\', \''+dateDivId+'\');">';
-  	for(i=1; i<32; i++) {
-  		content += '<option value="'+i+'"';
-  		if (date.getDate()==i) content += ' selected="selected"';
-  		content += '>'+i+'</option>';
-  	}
-  	content += '</select></td>';
-  	content += '<td><select name="'+dateFieldId+'_monSelect" id="'+dateFieldId+'_monSelect" onchange="return cal_updateCalendar(\''+dateFieldId+'\', \''+dateDivId+'\');">';
-  	for(i=1; i<13; i++) {
-  		content += '<option value="'+i+'"';
-  		if (date.getMonth()+1==i) content += ' selected="selected"';
-  		content += '>'+monthLabels[i]+'</option>';
-  	}
-  	content += '</select></td>';
-  	content += '<td><input type="text" name="'+dateFieldId+'_yearInput" id="'+dateFieldId+'_yearInput" size="5" value="'+date.getFullYear()+'" onchange="return cal_updateCalendar(\''+dateFieldId+'\', \''+dateDivId+'\');" /></td></tr>';
-  	content += '<tr><td colspan="3">';
-  	content += '<table width="100%">';
-  	content += '<tr>';
-  	j = weekStart;
+	function cal_generateSelectorContent(dateFieldId, dateDivId, date) {
+		var content = '<table border="1"><tr>';
+		content += '<td><select name="'+dateFieldId+'_daySelect" id="'+dateFieldId+'_daySelect" onchange="return cal_updateCalendar(\''+dateFieldId+'\', \''+dateDivId+'\');">';
+		for(i=1; i<32; i++) {
+			content += '<option value="'+i+'"';
+			if (date.getDate()==i) content += ' selected="selected"';
+			content += '>'+i+'</option>';
+		}
+		content += '</select></td>';
+		content += '<td><select name="'+dateFieldId+'_monSelect" id="'+dateFieldId+'_monSelect" onchange="return cal_updateCalendar(\''+dateFieldId+'\', \''+dateDivId+'\');">';
+		for(i=1; i<13; i++) {
+			content += '<option value="'+i+'"';
+			if (date.getMonth()+1==i) content += ' selected="selected"';
+			content += '>'+monthLabels[i]+'</option>';
+		}
+		content += '</select></td>';
+		content += '<td><input type="text" name="'+dateFieldId+'_yearInput" id="'+dateFieldId+'_yearInput" size="5" value="'+date.getFullYear()+'" onchange="return cal_updateCalendar(\''+dateFieldId+'\', \''+dateDivId+'\');" /></td></tr>';
+		content += '<tr><td colspan="3">';
+		content += '<table width="100%">';
+		content += '<tr>';
+		j = weekStart;
 	for(i=0; i<7; i++) {
 		content += '<td ';
 		content += 'class="descriptionbox"';
@@ -1231,87 +1231,87 @@ var monthLabels = new Array();
 	}
 	content += '</tr>';
 
-  	var tdate = new Date(date.getFullYear(), date.getMonth(), 1);
-  	var day = tdate.getDay();
-  	day = day - weekStart;
-  	var daymilli = (1000*60*60*24);
-  	tdate = tdate.getTime() - (day*daymilli) + (daymilli/2);
-  	tdate = new Date(tdate);
+		var tdate = new Date(date.getFullYear(), date.getMonth(), 1);
+		var day = tdate.getDay();
+		day = day - weekStart;
+		var daymilli = (1000*60*60*24);
+		tdate = tdate.getTime() - (day*daymilli) + (daymilli/2);
+		tdate = new Date(tdate);
 
-  	for(j=0; j<6; j++) {
-  		content += '<tr>';
-  		for(i=0; i<7; i++) {
-  			content += '<td ';
-  			if (tdate.getMonth()==date.getMonth()) {
-  				if (tdate.getDate()==date.getDate()) content += 'class="descriptionbox"';
-  				else content += 'class="optionbox"';
-  			}
-  			else content += 'style="background-color:#EAEAEA; border: solid #AAAAAA 1px;"';
-  			content += '><a href="#" onclick="return cal_dateClicked(\''+dateFieldId+'\', \''+dateDivId+'\', '+tdate.getFullYear()+', '+tdate.getMonth()+', '+tdate.getDate()+');">';
-  			content += tdate.getDate();
-  			content += '</a></td>';
-  			datemilli = tdate.getTime() + daymilli;
-  			tdate = new Date(datemilli);
-  		}
-  		content += '</tr>';
-  	}
-  	content += '</table>';
-  	content += '</td></tr>';
-  	content += '</table>';
+		for(j=0; j<6; j++) {
+			content += '<tr>';
+			for(i=0; i<7; i++) {
+				content += '<td ';
+				if (tdate.getMonth()==date.getMonth()) {
+					if (tdate.getDate()==date.getDate()) content += 'class="descriptionbox"';
+					else content += 'class="optionbox"';
+				}
+				else content += 'style="background-color:#EAEAEA; border: solid #AAAAAA 1px;"';
+				content += '><a href="#" onclick="return cal_dateClicked(\''+dateFieldId+'\', \''+dateDivId+'\', '+tdate.getFullYear()+', '+tdate.getMonth()+', '+tdate.getDate()+');">';
+				content += tdate.getDate();
+				content += '</a></td>';
+				datemilli = tdate.getTime() + daymilli;
+				tdate = new Date(datemilli);
+			}
+			content += '</tr>';
+		}
+		content += '</table>';
+		content += '</td></tr>';
+		content += '</table>';
 
-  	return content;
-  }
+		return content;
+	}
 
-  function cal_setDateField(dateFieldId, year, month, day) {
-  	var dateField = document.getElementById(dateFieldId);
-  	if (!dateField) return false;
-  	if (day<10) day = "0"+day;
-  	dateField.value = day+' '+monthShort[month+1]+' '+year;
-  	return false;
-  }
+	function cal_setDateField(dateFieldId, year, month, day) {
+		var dateField = document.getElementById(dateFieldId);
+		if (!dateField) return false;
+		if (day<10) day = "0"+day;
+		dateField.value = day+' '+monthShort[month+1]+' '+year;
+		return false;
+	}
 
-  function cal_updateCalendar(dateFieldId, dateDivId) {
-  	var dateSel = document.getElementById(dateFieldId+'_daySelect');
-  	if (!dateSel) return false;
-  	var monthSel = document.getElementById(dateFieldId+'_monSelect');
-  	if (!monthSel) return false;
-  	var yearInput = document.getElementById(dateFieldId+'_yearInput');
-  	if (!yearInput) return false;
+	function cal_updateCalendar(dateFieldId, dateDivId) {
+		var dateSel = document.getElementById(dateFieldId+'_daySelect');
+		if (!dateSel) return false;
+		var monthSel = document.getElementById(dateFieldId+'_monSelect');
+		if (!monthSel) return false;
+		var yearInput = document.getElementById(dateFieldId+'_yearInput');
+		if (!yearInput) return false;
 
-  	var month = parseInt(monthSel.options[monthSel.selectedIndex].value);
-  	month = month-1;
+		var month = parseInt(monthSel.options[monthSel.selectedIndex].value);
+		month = month-1;
 
-  	var date = new Date(yearInput.value, month, dateSel.options[dateSel.selectedIndex].value);
-  	if (!date) alert('Date error '+date);
-  	cal_setDateField(dateFieldId, date.getFullYear(), date.getMonth(), date.getDate());
+		var date = new Date(yearInput.value, month, dateSel.options[dateSel.selectedIndex].value);
+		if (!date) alert('Date error '+date);
+		cal_setDateField(dateFieldId, date.getFullYear(), date.getMonth(), date.getDate());
 
-  	var dateDiv = document.getElementById(dateDivId);
-  	if (!dateDiv) {
-  		alert('no dateDiv '+dateDivId);
-  		return false;
-  	}
-  	dateDiv.innerHTML = cal_generateSelectorContent(dateFieldId, dateDivId, date);
+		var dateDiv = document.getElementById(dateDivId);
+		if (!dateDiv) {
+			alert('no dateDiv '+dateDivId);
+			return false;
+		}
+		dateDiv.innerHTML = cal_generateSelectorContent(dateFieldId, dateDivId, date);
 
-  	return false;
-  }
+		return false;
+	}
 
-  function cal_dateClicked(dateFieldId, dateDivId, year, month, day) {
-  	cal_setDateField(dateFieldId, year, month, day);
-  	cal_toggleDate(dateDivId, dateFieldId);
-  	return false;
-  }
+	function cal_dateClicked(dateFieldId, dateDivId, year, month, day) {
+		cal_setDateField(dateFieldId, year, month, day);
+		cal_toggleDate(dateDivId, dateFieldId);
+		return false;
+	}
 function findIndi(field, indiname, multiple, ged,filter) {
-        pastefield = field;
-        nameElement = indiname;
-        if(filter)
-        {
-        window.open('find.php?type=indi&multiple='+multiple+'&ged='+ged+'&filter='+filter, '_blank', 'left=50,top=50,width=600,height=500,resizable=1,scrollbars=1');
-        }
-        else
-        {
-        window.open('find.php?type=indi&multiple='+multiple+'&ged='+ged, '_blank', 'left=50,top=50,width=600,height=500,resizable=1,scrollbars=1');
-        }
-        return false;
+				pastefield = field;
+				nameElement = indiname;
+				if(filter)
+				{
+				window.open('find.php?type=indi&multiple='+multiple+'&ged='+ged+'&filter='+filter, '_blank', 'left=50,top=50,width=600,height=500,resizable=1,scrollbars=1');
+				}
+				else
+				{
+				window.open('find.php?type=indi&multiple='+multiple+'&ged='+ged, '_blank', 'left=50,top=50,width=600,height=500,resizable=1,scrollbars=1');
+				}
+				return false;
 }
 
 function findPlace(field, ged) {
@@ -1385,60 +1385,60 @@ function toggleByClassName(tagName, className) {
  * Load a CSS file from the body of a document
  *
  * CSS files are normally loaded through a <link rel="stylesheet" type="text/css" href="something" />
- * statement.  This statement is only allowed in the <head> section of the document.
+ * statement.	This statement is only allowed in the <head> section of the document.
  *
  * See : http://www.phpied.com/javascript-include-ready-onload/
  *
  */
 function include_css(css_file) {
-    var html_doc = document.getElementsByTagName('head')[0];
-    var css = document.createElement('link');
-    css.setAttribute('rel', 'stylesheet');
-    css.setAttribute('type', 'text/css');
-    css.setAttribute('href', css_file);
-    html_doc.appendChild(css);
+		var html_doc = document.getElementsByTagName('head')[0];
+		var css = document.createElement('link');
+		css.setAttribute('rel', 'stylesheet');
+		css.setAttribute('type', 'text/css');
+		css.setAttribute('href', css_file);
+		html_doc.appendChild(css);
 }
 
 function include_js(file) {
-    var html_doc = document.getElementsByTagName('head')[0];
-    var js = document.createElement('script');
-    js.setAttribute('type', 'text/javascript');
-    js.setAttribute('src', file);
-    html_doc.appendChild(js);
+		var html_doc = document.getElementsByTagName('head')[0];
+		var js = document.createElement('script');
+		js.setAttribute('type', 'text/javascript');
+		js.setAttribute('src', file);
+		html_doc.appendChild(js);
 }
 
-  function findPosX(obj)
-  {
-    var curleft = 0;
-    if(obj.offsetParent)
-        while(1)
-        {
-          curleft += obj.offsetLeft;
-          if(!obj.offsetParent)
-            break;
-          obj = obj.offsetParent;
-        }
-    else if(obj.x)
-        curleft += obj.x;
-    return curleft;
-  }
+	function findPosX(obj)
+	{
+		var curleft = 0;
+		if(obj.offsetParent)
+				while(1)
+				{
+					curleft += obj.offsetLeft;
+					if(!obj.offsetParent)
+						break;
+					obj = obj.offsetParent;
+				}
+		else if(obj.x)
+				curleft += obj.x;
+		return curleft;
+	}
 
-  function findPosY(obj)
-  {
-    var curtop = 0;
-    if(obj.offsetParent)
-        while(1)
-        {
-        	if (obj.style.position=="relative") break;
-          curtop += obj.offsetTop;
-          if(!obj.offsetParent)
-            break;
-          obj = obj.offsetParent;
-        }
-    else if(obj.y)
-        curtop += obj.y;
-    return curtop;
-  }
+	function findPosY(obj)
+	{
+		var curtop = 0;
+		if(obj.offsetParent)
+				while(1)
+				{
+					if (obj.style.position=="relative") break;
+					curtop += obj.offsetTop;
+					if(!obj.offsetParent)
+						break;
+					obj = obj.offsetParent;
+				}
+		else if(obj.y)
+				curtop += obj.y;
+		return curtop;
+	}
 
 	function hidePrint() {
 		var printlink = document.getElementById("printlink");

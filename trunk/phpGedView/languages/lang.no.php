@@ -212,7 +212,7 @@ $pgv_lang["dec_1st"]					= "Des";
 
 $pgv_lang["edit_source"]			= "Rediger kilde";
 $pgv_lang["familybook_chart"]		= "Familiebok";
-$pgv_lang["family_of"]				= "Familie av:&nbsp;";
+$pgv_lang["family_of"]				= "Familie av&nbsp;";
 $pgv_lang["descent_steps"]			= "Etterkommerledd";
 
 $pgv_lang["cancel"]					= "Avbryt";
@@ -393,7 +393,6 @@ $pgv_lang["fam_spouse"]			= "Familie med partner";
 $pgv_lang["root_person"]		= "ID til startperson&nbsp;";
 $pgv_lang["hide_details"]		= "Skjul detaljer";
 $pgv_lang["show_details"]		= "Vis detaljer";
-$pgv_lang["person_links"]		= "Linker til diagram, familie(r), og nære slektninger til denne personen. - Klikk her for å vise denne personen som startperson i diagrammet.";
 $pgv_lang["zoom_box"]			= "Zoom denne boksen inn/ut";
 $pgv_lang["orientation"]		= "Retning";
 $pgv_lang["portrait"]			= "Stående tre";

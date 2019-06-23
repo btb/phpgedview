@@ -3,7 +3,7 @@
  * Controller for the Hourglass Page
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -81,7 +81,7 @@ class HourglassControllerRoot extends BaseController {
 		global $USE_RIN, $MAX_ALIVE_AGE, $GEDCOM, $bheight, $bwidth, $bhalfheight, $GEDCOM_DEFAULT_TAB, $pgv_lang, $PEDIGREE_FULL_DETAILS, $MAX_DESCENDANCY_GENERATIONS;
 		global $PGV_IMAGES, $PGV_IMAGE_DIR, $TEXT_DIRECTION, $show_full;
 
-		// Extract parameters from from
+		// Extract parameters from form
 		$this->pid        =safe_GET_xref('pid');
 		$this->show_full  =safe_GET('show_full',   array('0', '1'), $PEDIGREE_FULL_DETAILS);
 		$this->show_spouse=safe_GET('show_spouse', array('0', '1'), '0');
@@ -120,8 +120,8 @@ class HourglassControllerRoot extends BaseController {
 		$this->hourPerson = Person::getInstance($this->pid);
 		$this->name=$this->hourPerson->getFullName();
 
-		//Checks how many generations of descendency is for the person for formatting purposes
-		$this->dgenerations = $this->max_descendency_generations($this->pid, 0);
+		//Checks how many generations of descendancy is for the person for formatting purposes
+		$this->dgenerations = $this->max_descendancy_generations($this->pid, 0);
 		if ($this->dgenerations<1) $this->dgenerations=1;
 
 		if (!$this->isPrintPreview()) {
@@ -144,7 +144,7 @@ class HourglassControllerRoot extends BaseController {
 	}
 
 	/**
-	 * Prints pedigree of the person passed in. Which is the descendancy
+	 * Prints pedigree of the person passed in.
 	 *
 	 * @param mixed $pid ID of person to print the pedigree for
 	 * @param mixed $count generation count, so it recursively calls itself
@@ -152,7 +152,9 @@ class HourglassControllerRoot extends BaseController {
 	 * @return void
 	 */
 	function print_person_pedigree($pid, $count) {
-		global $SHOW_EMPTY_BOXES, $PGV_IMAGE_DIR, $PGV_IMAGES, $bhalfheight;
+		global $SHOW_EMPTY_BOXES, $PGV_IMAGE_DIR, $PGV_IMAGES, $bwidth, $bhalfheight;
+		global $HouBRootBoxPosn, $HouBColumnWidth, $boxPosn;
+
 		if ($count>=$this->generations) return;
 		$person = Person::getInstance($pid);
 		if (is_null($person)) return;
@@ -168,6 +170,8 @@ class HourglassControllerRoot extends BaseController {
 			print "<td><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" width=\"7\" height=\"3\" alt=\"\" /></td>";
 			print "<td>";
 			//-- print the father box
+			echo "\n<!-- Line 173, count: {$count}-->\n";
+			$boxPosn = $HouBRootBoxPosn + $count * ($bwidth + $HouBColumnWidth);
 			print_pedigree_person($parents["HUSB"]);
 			print "</td>";
 			$ARID = $parents["HUSB"];
@@ -185,6 +189,8 @@ class HourglassControllerRoot extends BaseController {
 			print "<td><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" width=\"7\" height=\"3\" alt=\"\" /></td>";
 			print "<td>";
 			//-- print the mother box
+			echo "\n<!-- Line 189, count: {$count}-->\n";
+			$boxPosn = $HouBRootBoxPosn + $count * ($bwidth + $HouBColumnWidth);
 			print_pedigree_person($parents["WIFE"]);
 			print "</td>";
 			$ARID = $parents["WIFE"];
@@ -206,16 +212,17 @@ class HourglassControllerRoot extends BaseController {
 	}
 
 	/**
-	 * Prints descendency of passed in person
+	 * Prints descendancy of passed in person
 	 *
-	 * @param mixed $pid ID of person to print descendency for
+	 * @param mixed $pid ID of person to print descendancy for
 	 * @param mixed $count count of generations to print
 	 * @access public
 	 * @return void
 	 */
-	function print_descendency($pid, $count, $showNav=true) {
+	function print_descendancy($pid, $count, $showNav=true) {
 		global $TEXT_DIRECTION, $PGV_IMAGE_DIR, $PGV_IMAGES, $pgv_lang, $bheight, $bwidth, $bhalfheight;
 		global $lastGenSecondFam;
+		global $HouARootBoxPosn, $HouAColumnWidth, $HouALastBoxAdj, $boxPosn;
 
 		if ($count>$this->dgenerations) return 0;
 		$person = Person::getInstance($pid);
@@ -228,7 +235,7 @@ class HourglassControllerRoot extends BaseController {
 			$otablealign = "right";
 		}
 		//	print $this->dgenerations;
-		print "<!-- print_descendency for $pid -->";
+		print "<!-- print_descendancy for $pid -->";
 		//-- put a space between families on the last generation
 		if ($count==$this->dgenerations-1) {
 			if (isset($lastGenSecondFam)) print "<br />";
@@ -262,7 +269,7 @@ class HourglassControllerRoot extends BaseController {
 					$chil = $person2->getXref();
 					print "<tr>";
 					print "<td id=\"td_$chil\" class=\"$TEXT_DIRECTION\" align=\"$tablealign\">";
-					$kids = $this->print_descendency($chil, $count+1);
+					$kids = $this->print_descendancy($chil, $count+1);
 					$numkids += $kids;
 					print "</td>";
 
@@ -295,7 +302,7 @@ class HourglassControllerRoot extends BaseController {
 			print "<td width=\"$bwidth\">";
 		}
 
-		// Print the descendency expansion arrow
+		// Print the descendancy expansion arrow
 		if ($count==$this->dgenerations) {
 			$numkids = 1;
 			$tbwidth = $bwidth+16;
@@ -325,6 +332,9 @@ class HourglassControllerRoot extends BaseController {
 		}
 
 		print "<table id=\"table2_$pid\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td>";
+		echo "\n<!-- Line 335, count: {$count}-->\n";
+		$boxPosn = $HouARootBoxPosn + ($this->dgenerations - $count) * ($bwidth + $HouAColumnWidth);
+		if ($count == 1) $boxPosn += $HouALastBoxAdj;			// -- Correction to last box position (the actual Root person box)
 		print_pedigree_person($pid);
 		print "</td><td><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" width=\"7\" height=\"3\" alt=\"\" />";
 
@@ -339,8 +349,9 @@ class HourglassControllerRoot extends BaseController {
 						//-- shrink the box for the spouses
 						$tempw = $bwidth;
 						$temph = $bheight;
-						$bwidth -= 10;
-						$bheight -= 10;
+						//$bwidth -= 10;
+						//$bheight -= 10;
+//						$boxPosn = $HouARootBoxPosn + ($this->dgenerations - $count) * ($bwidth + $HouAColumnWidth);
 						print_pedigree_person($spouse->getXref());
 						$bwidth = $tempw;
 						$bheight = $temph;
@@ -480,12 +491,12 @@ class HourglassControllerRoot extends BaseController {
 	/**
 	 * Calculates number of generations a person has
 	 *
-	 * @param mixed $pid ID of person to see how far down the descendency goes
-	 * @param mixed $depth Pass in 0 and it calculates how far down descendency goes
+	 * @param mixed $pid ID of person to see how far down the descendancy goes
+	 * @param mixed $depth Pass in 0 and it calculates how far down descendancy goes
 	 * @access public
-	 * @return maxdc Amount of generations the descendency actually goes
+	 * @return maxdc Amount of generations the descendancy actually goes
 	 */
-	function max_descendency_generations($pid, $depth) {
+	function max_descendancy_generations($pid, $depth) {
 		if ($depth > $this->generations) return $depth;
 		$person = Person::getInstance($pid);
 		if (is_null($person)) return $depth;
@@ -496,7 +507,7 @@ class HourglassControllerRoot extends BaseController {
 			$ct = preg_match_all("/1 CHIL @(.*)@/", $family->gedrec, $match, PREG_SET_ORDER);
 			for($i=0; $i<$ct; $i++) {
 				$chil = trim($match[$i][1]);
-				$dc = $this->max_descendency_generations($chil, $depth+1);
+				$dc = $this->max_descendancy_generations($chil, $depth+1);
 				if ($dc >= $this->generations) return $dc;
 				if ($dc > $maxdc) $maxdc = $dc;
 			}

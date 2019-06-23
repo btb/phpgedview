@@ -6,7 +6,7 @@
  * with id = $rootid in the GEDCOM file.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,9 +49,9 @@ if (PGV_USE_LIGHTBOX) {
 
 echo '<table><tr><td valign="middle">';
 if ($controller->isPrintPreview()) {
-	echo "<h2>", str_replace("#PEDIGREE_GENERATIONS#", $PEDIGREE_GENERATIONS, $pgv_lang["gen_ped_chart"]), ":";
+	echo "<h2>", str_replace("#PEDIGREE_GENERATIONS#", $PEDIGREE_GENERATIONS, $pgv_lang["gen_ped_chart"]);
 } else {
-	echo "<h2>", $pgv_lang["index_header"], ":";
+	echo "<h2>", $pgv_lang["index_header"];
 }
 echo '<br />', PrintReady($controller->name);
 if ($controller->addname!="") {
@@ -197,7 +197,7 @@ for($i=($controller->treesize-1); $i>=0; $i--) {
 					if ($TEXT_DIRECTION=="rtl") echo 'rtl" style="position:absolute; right:';
 					else echo 'ltr" style="position:absolute; left:';
 					echo $linexoffset, 'px; top:', ($yoffset+1+$controller->pbheight/2), 'px; z-index: 0;">';
-					echo '<img src="', $PGV_IMAGE_DIR, '/', $PGV_IMAGES["vline"]["other"], '" width="', $linesize, '" height="', ($vlength-1), '\" alt="" />';
+					echo '<img src="', $PGV_IMAGE_DIR, '/', $PGV_IMAGES["vline"]["other"], '" width="', $linesize, '" height="', ($vlength-1), '" alt="" />';
 					echo '</div>';
 				}
 				else {

@@ -220,7 +220,7 @@ $pgv_lang["dec_1st"]				= "Pro";
 $pgv_lang["edit_source"]			= "Upravit zdroj";
 $pgv_lang["edit_shared_note"]		= "Upravit sdílenou poznámku";
 $pgv_lang["familybook_chart"]		= "Rodina sešit graf";
-$pgv_lang["family_of"]				= "Rodina:&nbsp;";
+$pgv_lang["family_of"]				= "Rodina&nbsp;";
 $pgv_lang["descent_steps"]			= "Klesání kroky";
 
 $pgv_lang["cancel"]			= "Zrušit";
@@ -401,7 +401,6 @@ $pgv_lang["rootid"]			= "Střen (proband) vývodu";
 $pgv_lang["root_person"]	= "ID výchozí osoby";
 $pgv_lang["hide_details"]	= "Skrýt podrobnosti";
 $pgv_lang["show_details"]	= "Ukázat podrobnosti";
-$pgv_lang["person_links"]	= "Odkazy na schémata, rodiny a blízké příbuzné této osoby. Klikněte na tuto ikonu pro zvolené zobrazení rodokmenu s touto osobou jako střenem.";
 $pgv_lang["zoom_box"]		= "Zvětšení/zmenšení tohoto rámečku.";
 $pgv_lang["orientation"]			= "Orientace";
 $pgv_lang["portrait"]		= "Na výšku";

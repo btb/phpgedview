@@ -3,7 +3,7 @@
  * Parses gedcom file and displays a descendancy tree.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ if (PGV_USE_LIGHTBOX) {
 }
 // ==========================================================================================
 
-echo '<table><tr><td valign="top"><h2>', $pgv_lang["descend_chart"], ':<br />', PrintReady($controller->name), '</h2>';
+echo '<table><tr><td valign="top"><h2>', $pgv_lang["descend_chart"], '<br />', PrintReady($controller->name), '</h2>';
 echo PGV_JS_START;
 echo 'var pastefield; function paste_id(value) {pastefield.value=value;}';
 echo PGV_JS_END;
@@ -126,6 +126,10 @@ case 0: //-- list
 		echo '<span class="details2">', $pgv_lang["charts_click_box"], '</span><br /><br />';
 	}
 	echo '<ul style="list-style: none; display: block;" id="descendancy_chart', $TEXT_DIRECTION=='rtl' ? '_rtl' : '', '">';
+
+	$boxPosn = $DesStyle1RootBoxPosn;			// -- Position of the leftmost Person Box (style 1)
+	$columnWidth = $DesStyle1ColumnWidth;		// -- Spacing between adjacent columns (style 1)
+
 	$controller->print_child_descendancy($controller->descPerson, $controller->generations);
 	echo '</ul>';
 	break;
@@ -135,6 +139,14 @@ case 1: //-- booklet
 	}
 	$show_cousins = true;
 	$famids = find_sfamily_ids($controller->pid);
+
+	$aRootBoxPosn = $DesStyle2aRootBoxPosn;		// -- Position of the leftmost Person Box (style 2 - parents)
+	$aColumnWidth = $DesStyle2aColumnWidth;		// -- Spacing between adjacent columns (style 2 - parents)
+	$bRootBoxPosn = $DesStyle2bRootBoxPosn;		// -- Position of the leftmost Person Box (style 2 - children)
+	$bColumnWidth = $DesStyle2bColumnWidth;		// -- Spacing between adjacent columns (style 2 - children)
+	$wideSosa = true;							// -- Use wide width for SOSA numbers
+	$forceSosa = true;							// -- Don't allow empty SOSA numbers to be omitted
+
 	if (count($famids)) {
 		$controller->print_child_family($controller->descPerson, $controller->generations);
 	}
@@ -142,13 +154,13 @@ case 1: //-- booklet
 case 2: //-- Individual list
 	$descendants=indi_desc($controller->descPerson, $controller->generations, array());
 	echo '<div class="center">';
-	print_indi_table($descendants, $pgv_lang["descend_chart"].' : '.PrintReady($controller->name));
+	print_indi_table($descendants, $pgv_lang["descend_chart"].'<br />'.PrintReady($controller->name));
 	echo '</div>';
 	break;
 case 3: //-- Family list
 	$descendants=fam_desc($controller->descPerson, $controller->generations, array());
 	echo '<div class="center">';
-	print_fam_table($descendants, $pgv_lang["descend_chart"].' : '.PrintReady($controller->name));
+	print_fam_table($descendants, $pgv_lang["descend_chart"].'<br />'.PrintReady($controller->name));
 	echo '</div>';
 	break;
 }

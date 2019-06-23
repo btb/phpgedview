@@ -7,7 +7,7 @@
  * $addname, $showid, $float
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2008  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ if (!defined('PGV_PHPGEDVIEW')) {
 
 ?>
 <div id="I<?php print $boxID; ?>links"
-	style="position: absolute; left: 0px; top: 0px; width: <?php print $lbwidth; ?>px; visibility: hidden; z-index: '100';">
+	style="position: absolute; left: <?php print $menuLeftPosn; ?>px; top: 0px; width: <?php print $lbwidth; ?>px; visibility: hidden; z-index: '100';">
 <?php print $personlinks; ?></div>
 <div id="out-<?php print $boxID; ?>" <?php print $outBoxAdd; ?>>
 <!--  table helps to maintain spacing -->

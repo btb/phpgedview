@@ -5,7 +5,7 @@
 * Various printing functions used by all scripts and included by the functions.php file.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -51,6 +51,7 @@ function print_pedigree_person($pid, $style=1, $show_famlink=true, $count=0, $pe
 	global $CONTACT_EMAIL, $CONTACT_METHOD, $TEXT_DIRECTION, $DEFAULT_PEDIGREE_GENERATIONS, $OLD_PGENS, $talloffset, $PEDIGREE_LAYOUT, $MEDIA_DIRECTORY;
 	global $USE_SILHOUETTE, $PGV_IMAGE_DIR, $PGV_IMAGES, $ABBREVIATE_CHART_LABELS, $USE_MEDIA_VIEWER;
 	global $chart_style, $box_width, $generations, $show_spouse, $show_full;
+	global $menuLeftPosn, $boxPosn, $brborder, $basexoffset;
 	global $CHART_BOX_TAGS, $SHOW_LDS_AT_GLANCE, $PEDIGREE_SHOW_GENDER;
 	global $SEARCH_SPIDER;
 
@@ -71,6 +72,12 @@ function print_pedigree_person($pid, $style=1, $show_famlink=true, $count=0, $pe
 	if ($count==0) $count = rand();
 	$lbwidth = $bwidth*.75;
 	if ($lbwidth < 150) $lbwidth = 150;
+
+	// Calculate the desired position of the popup menu
+	if (isset($boxPosn)) {
+		$menuLeftPosn = $boxPosn + $bwidth + $brborder;
+	echo "\n<!-- menuLeftPosn: {$menuLeftPosn}; boxPosn: {$boxPosn}; bwidth: {$bwidth}; brborder: {$brborder}. -->\n";
+	} else $menuLeftPosn = 0;
 
 	$tmp=array('M'=>'', 'F'=>'F', 'U'=>'NN');
 	$isF=$tmp[$person->getSex()];
@@ -262,7 +269,7 @@ function print_pedigree_person($pid, $style=1, $show_famlink=true, $count=0, $pe
 				$icons .= "onmouseout=\"family_box_timeout('".$boxID."');";
 				$icons .= " return false;\"";
 				if (($click_link=="#")&&($LINK_ICONS!="click")) $icons .= "onclick=\"return false;\"";
-				$icons .= "><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["pedigree"]["small"]."\" width=\"25\" border=\"0\" vspace=\"0\" hspace=\"0\" alt=\"".$pgv_lang["person_links"]."\" title=\"".$pgv_lang["person_links"]."\" /></a>";
+				$icons .= "><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["pedigree"]["small"]."\" width=\"25\" border=\"0\" vspace=\"0\" hspace=\"0\" alt=\"\" title=\"\" /></a>";
 			}
 		}
 		else {

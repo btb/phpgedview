@@ -222,7 +222,7 @@ $pgv_lang["dec_1st"]					= "Dec";
 $pgv_lang["edit_source"]			= "Uredi izvor";
 $pgv_lang["edit_shared_note"]		= "Edit Shared Note";
 $pgv_lang["familybook_chart"]		= "Family Book Chart";
-$pgv_lang["family_of"]				= "Family of:&nbsp;";
+$pgv_lang["family_of"]				= "Family of&nbsp;";
 $pgv_lang["descent_steps"]			= "Descent Steps";
 
 $pgv_lang["cancel"]					= "Poništi";
@@ -403,7 +403,6 @@ $pgv_lang["rootid"] 				= "Pedigree Chart Root Person";
 $pgv_lang["root_person"]			= "Root Person ID";
 $pgv_lang["hide_details"]			= "Sakrij detalje";
 $pgv_lang["show_details"]			= "Prikaži detalje";
-$pgv_lang["person_links"]			= "Links to dijagrams, families, and close relatives of this person. Click this icon to view this page, starting at this person.";
 $pgv_lang["zoom_box"]				= "Zoom in/out on this box.";
 $pgv_lang["orientation"]			= "Orijentacija";
 $pgv_lang["portrait"]				= "Portret";

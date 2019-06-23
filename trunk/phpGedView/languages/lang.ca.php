@@ -173,7 +173,7 @@ $pgv_lang["jun_1st"]					= "Juny";
 
 $pgv_lang["edit_source"]				= "Edita la font";
 $pgv_lang["familybook_chart"]				= "Llibre de Família";
-$pgv_lang["family_of"]					= "Família de:&nbsp;";
+$pgv_lang["family_of"]					= "Família de&nbsp;";
 $pgv_lang["descent_steps"]				= "Generacions de descendents";
 
 $pgv_lang["cancel"]					= "Cancel·la";
@@ -348,7 +348,6 @@ $pgv_lang["fam_spouse"]			= "Família amb el cònjuge:";
 $pgv_lang["root_person"]		= "ID persona arrel:";
 $pgv_lang["hide_details"]		= "Amaga els detalls";
 $pgv_lang["show_details"]		= "Mostra els detalls";
-$pgv_lang["person_links"]		= "Polseu aquí per a veure l'arbre començant per aquesta persona.";
 $pgv_lang["zoom_box"]			= "Amplia/redueix";
 $pgv_lang["orientation"]		= "Orientació";
 $pgv_lang["portrait"]			= "Plantat";

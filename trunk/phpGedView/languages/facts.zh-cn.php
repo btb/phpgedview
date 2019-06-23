@@ -439,4 +439,27 @@ $factarray["_FAMC_RESI"] = "父母居住";
 $factarray["_THUM"] = "总是使用主图像？";
 $factarray["_PGVU"] = "更改人"; //最后改变了
 $factarray["SERV"] = "远程服务器";
+
+/*-- Fact abbreviations for use in Chart boxes.
+ *		Use these abbreviations in cases where the standard method of using the first
+ *		letter of the spelled-out name results in an undesirable abbreviation or where
+ *		you want to produce a different result (eg: "x" instead of "M" for "Married").
+ *
+ *		You can abbreviate any Fact label this way.  The list of abbreviations is
+ *		open-ended.
+ *
+ *		These abbreviations are user-customizable. Just put them into file "extra.xx.php".
+ *		The length of these abbreviations is not restricted to 1 letter.
+ */
+
+unset($factAbbrev);		// Don't let other languages specify Fact abbreviations for this language
+
+/*-- The following lines have been commented out.  They should serve as examples.
+
+$factAbbrev["BIRT"]		= "B";
+$factAbbrev["MARR"]		= "M";
+$factAbbrev["DEAT"]		= "D";
+
+ */
+
 ?>

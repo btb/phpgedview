@@ -5,7 +5,7 @@
  * Set the root person using the $pid variable
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,11 +41,11 @@ print_header(PrintReady($controller->name)." ".$pgv_lang["hourglass_chart"]);
 if ($ENABLE_AUTOCOMPLETE) require PGV_ROOT.'js/autocomplete.js.htm';
 
 if ($controller->view=="preview") {
-	print "<h2 style=\"text-align: center\">".$pgv_lang["hourglass_chart"].":&nbsp;&nbsp;&nbsp;".PrintReady($controller->name)."</h2>";
+	print "<h2 style=\"text-align: center\">".$pgv_lang["hourglass_chart"]."&nbsp;&nbsp;&nbsp;".PrintReady($controller->name)."</h2>";
 } else {
 	print "<!-- // NOTE: Start table header -->";
 	print "<table><tr><td valign=\"top\">";
-	print "<h2>".$pgv_lang["hourglass_chart"].":<br />".PrintReady($controller->name)."</h2>";
+	print "<h2>".$pgv_lang["hourglass_chart"]."<br />".PrintReady($controller->name)."</h2>";
 }
 
 $controller->setupJavascript();
@@ -56,6 +56,10 @@ if (PGV_USE_LIGHTBOX) {
 	require PGV_ROOT.'modules/lightbox/functions/lb_call_js.php';
 }
 // ==========================================================================================
+
+// -- global variables for positioning the popup menus on the Hourglass chart
+//    kinda kludgy -- JavaScript doesn't cut it here
+global $HouARootBoxPosn, $HouAColumnWidth, $HouALastBoxAdj, $HouBRootBoxPosn, $HouBColumnWidth, $boxPosn;
 
 $gencount=0;
 if ($view!="preview") {
@@ -147,11 +151,12 @@ if ($view!="preview") {
 <!-- // descendancy -->
 <td valign="middle">
 <?php
-$controller->print_descendency($controller->pid, 1); ?>
+$controller->print_descendancy($controller->pid, 1); ?>
 </td>
 <!-- // pedigree -->
 <td valign="middle">
 <?php
+$HouBRootBoxPosn = $boxPosn + 7;
 $controller->print_person_pedigree($controller->pid, 1); ?>
 </td>
 </tr></table>

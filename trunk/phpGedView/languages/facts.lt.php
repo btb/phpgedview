@@ -3,7 +3,7 @@
  * Lithuanian Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -159,5 +159,27 @@ $factarray["ADR2"]	= "Adresas 2 ";
 $factarray["ADOP"]	= "Įvaikinimas";
 $factarray["AGE"]	= "Amžius";
 $factarray["AUTH"]	= "Autorius";
+
+/*-- Fact abbreviations for use in Chart boxes.
+ *		Use these abbreviations in cases where the standard method of using the first
+ *		letter of the spelled-out name results in an undesirable abbreviation or where
+ *		you want to produce a different result (eg: "x" instead of "M" for "Married").
+ *
+ *		You can abbreviate any Fact label this way.  The list of abbreviations is
+ *		open-ended.
+ *
+ *		These abbreviations are user-customizable. Just put them into file "extra.xx.php".
+ *		The length of these abbreviations is not restricted to 1 letter.
+ */
+
+unset($factAbbrev);		// Don't let other languages specify Fact abbreviations for this language
+
+/*-- The following lines have been commented out.  They should serve as examples.
+
+$factAbbrev["BIRT"]		= "B";
+$factAbbrev["MARR"]		= "M";
+$factAbbrev["DEAT"]		= "D";
+
+ */
 
 ?>

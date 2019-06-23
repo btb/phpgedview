@@ -46,9 +46,9 @@ if (PGV_USE_LIGHTBOX) {
 
 echo '<table><tr><td valign="middle">';
 if ($view=="preview") {
-	echo '<h2>', str_replace('#PEDIGREE_GENERATIONS#', $PEDIGREE_GENERATIONS, $pgv_lang["gen_ancestry_chart"]) , ':';
+	echo '<h2>', str_replace('#PEDIGREE_GENERATIONS#', $PEDIGREE_GENERATIONS, $pgv_lang["gen_ancestry_chart"]);
 } else {
-	echo '<h2>', $pgv_lang["ancestry_chart"], ':';
+	echo '<h2>', $pgv_lang["ancestry_chart"];
 }
 echo '<br />', PrintReady($controller->name);
 if ($controller->addname!="") {
@@ -197,6 +197,8 @@ case 0:
 	// List
 	$pidarr=array();
 	echo '<ul style="list-style: none; display: block;" id="ancestry_chart', $TEXT_DIRECTION=='rtl' ? '_rtl' : '', '">';
+	$boxPosn = $AncStyle1RootBoxPosn;			// -- Position of the leftmost Person Box (style 1)
+	$columnWidth = $AncStyle1ColumnWidth;		// -- Spacing between adjacent columns (style 1)
 	$controller->print_child_ascendancy($controller->rootid, 1, $OLD_PGENS-1);
 	echo '</ul>';
 	echo '<br />';
@@ -219,6 +221,12 @@ case 1:
 				$famids=$person->getChildFamilies();
 				foreach($famids as $famid=>$family) {
 					$parents=find_parents_in_record($family->getGedcomRecord());
+					$aRootBoxPosn = $AncStyle2aRootBoxPosn;	// -- Position of the leftmost Person Box (style 2 - parents)
+					$aColumnWidth = $AncStyle2aColumnWidth;	// -- Spacing between adjacent columns (style 2 - parents)
+					$bRootBoxPosn = $AncStyle2bRootBoxPosn;	// -- Position of the leftmost Person Box (style 2 - children)
+					$bColumnWidth = $AncStyle2bColumnWidth;	// -- Spacing between adjacent columns (style 2 - children)
+					$wideSosa = false;						// -- Use normal width for SOSA numbers
+					$forceSosa = false;						// -- Allow empty SOSA numbers to be omitted
 					if ($parents) {
 						print_sosa_family($famid, $pid, $i);
 					} elseif ($i==1) {

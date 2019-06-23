@@ -453,7 +453,7 @@ $pgv_lang["print_stat_link"]		= "اظهار الرابط للرسوم البيا
 $pgv_lang["edit_source"]		= "تعديل المصادر";
 $pgv_lang["edit_shared_note"]		= "تعديل الملاحظات المشتركة";
 $pgv_lang["familybook_chart"]		= "رسم دفتر العائلة";
-$pgv_lang["family_of"]			= "أسرة من: &nbsp;";
+$pgv_lang["family_of"]			= "أسرة من &nbsp;";
 $pgv_lang["descent_steps"]		= "مرتبات النسب";
 
 $pgv_lang["cookie_help"]	        = "يستخدم الموقع الكوكيز لتعقب حالة تسجيل الدخول الخاصة بك. <br /> <br /> ولكن إعدادات الكوكيز غير مفعلة لديك في المتصفح. يجب عليك تفعيل الكوكيز في المتصفح قبل أن تتمكن من تسجيل الدخول.";
@@ -1066,7 +1066,6 @@ $pgv_lang["rootid"] 				= "الشخص الجذري في شجرة نسبي";
 $pgv_lang["root_person"]			= "رقم المعرف الخاص بالشخص الجذري";
 $pgv_lang["hide_details"]			= "إخفاء التفاصيل";
 $pgv_lang["show_details"]			= "عرض التفاصيل";
-$pgv_lang["person_links"]			= "الروابط المتعلقة بالرسوم البيانية وأسرة والأقارب لهذا الشخص. اضغظ على الايقونة لمشاهدة الصفحة، ابتداءاً من هذا الشخص.";
 $pgv_lang["zoom_box"]				= "تكبير وتصغير";
 $pgv_lang["orientation"]			= "توجيه الصفحة";
 $pgv_lang["portrait"]				= "عمودي";

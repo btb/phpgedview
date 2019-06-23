@@ -205,7 +205,7 @@ $pgv_lang["dec_1st"]			= "דצמבר";
 $pgv_lang["edit_source"]		= "ערוך מקור";
 $pgv_lang["edit_shared_note"]	= "ערוך הערה משותפת";
 $pgv_lang["familybook_chart"]		= "תרשים ספר משפחה";
-$pgv_lang["family_of"]			= "משפחה של:&nbsp;";
+$pgv_lang["family_of"]			= "משפחה של&nbsp;";
 $pgv_lang["descent_steps"]		= "רמות צאצאים";
 
 $pgv_lang["cancel"]			= "בטל";
@@ -387,7 +387,6 @@ $pgv_lang["rootid"]			= "אדם ההתחלה באילן היוחסין";
 $pgv_lang["root_person"]		= "קוד הזיהוי של אדם המוצא";
 $pgv_lang["hide_details"]		= "הסתר פרטים";
 $pgv_lang["show_details"]		= "הצג פרטים";
-$pgv_lang["person_links"]		= "קישורים לתרשימים, משפחות וקרובי משפחה של אדם זה. יש ללחוץ על הצלמית הזו להצגת העמוד כאשר אדם זה בתחילתו.";
 $pgv_lang["zoom_box"]		= "קרב / הרחק";
 $pgv_lang["orientation"]		= "כוון";
 $pgv_lang["portrait"]			= "תצוגה צפופה";

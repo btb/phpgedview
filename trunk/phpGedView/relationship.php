@@ -3,7 +3,7 @@
  * Calculates the relationship between two individuals in the gedcom
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,6 +30,8 @@ define('PGV_SCRIPT_NAME', 'relationship.php');
 require './config.php';
 require_once PGV_ROOT.'includes/functions/functions_charts.php';
 require_once PGV_ROOT.'includes/classes/class_person.php';
+
+global $boxPosn;
 
 function getRelationshipSentence($node, $pid1, $pid2) {
 	global $pgv_lang, $lang_short_cut, $LANGUAGE, $path_to_find;
@@ -999,6 +1001,7 @@ if ((!empty($pid1))&&(!empty($pid2))) {
 				}
 
 				print "<div id=\"box$pid.0\" style=\"position:absolute; ".($TEXT_DIRECTION=="ltr"?"left":"right").":".$pxoffset."px; top:".$pyoffset."px; width:".$Dbwidth."px; height:".$Dbheight."px; z-index:".$zIndex."; \"><table><tr><td colspan=\"2\" width=\"$Dbwidth\" height=\"$Dbheight\">";
+				$boxPosn = 8;		// This makes the pop-up menu appear exactly to the right of the Person Box  (Weird!!)
 				print_pedigree_person($pid, 1, ($view!="preview"));
 				print "</td></tr></table></div>\n";
 			}
