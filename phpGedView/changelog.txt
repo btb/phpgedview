@@ -9,7 +9,7 @@
 =====================================================================
 
 Version 4.3.1
- - Changed: Pop-up menus in Charts boxes are now positioned properly and consistently on RTL pages -- LTR will be done later (canajun2eh)
+ - Changed: Pop-up menus in Charts boxes are now positioned properly and consistently on LTR pages -- RTL will be done later (canajun2eh)
  - Changed: Reports can now optionally print entire NOTE text instead of just the first paragraph (canajun2eh)
  - Changed: Improved formatting in most reports (canajun2eh)
  - Changed: Default "Show sources" option changed to "No" in all reports (canajun2eh)
