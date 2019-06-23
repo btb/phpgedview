@@ -115,7 +115,7 @@ $pgv_lang["dec_1st"]					= "dets";
 $pgv_lang["edit_source"]			= "Muuda allikat";
 $pgv_lang["source_menu"]			= "Allika valikud";
 $pgv_lang["familybook_chart"]			= "Perekond raamatuna";
-$pgv_lang["family_of"]			= "Perekond: &nbsp;";
+$pgv_lang["family_of"]			= "Perekond&nbsp;";
 $pgv_lang["descent_steps"]			= "Järeltulijad";
 
 $pgv_lang["user_auto_accept"]			= "Aktsepteeri selle kasutaja muudatusi automaatselt";
@@ -271,7 +271,6 @@ $pgv_lang["fam_spouse"] 		= "Perekond abikaasaga";
 $pgv_lang["root_person"]		= "Alusta isikust";
 $pgv_lang["hide_details"]		= "Peida detailid";
 $pgv_lang["show_details"]		= "Näita detaile";
-$pgv_lang["person_links"]		= "Viitab selle isiku tabelitele, prekondadele ja lähedastele sugulastele. Kliki seda ikooni, et vaadata seda tabelit sellest isikust alates.";
 $pgv_lang["zoom_box"]		= "Suurenda / vähenda.";
 $pgv_lang["orientation"]		= "Orientatsioon";
 $pgv_lang["portrait"]			= "Püstine";

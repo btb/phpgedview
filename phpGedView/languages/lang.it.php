@@ -222,7 +222,7 @@ $pgv_lang["dec_1st"]				= "Dic";
 $pgv_lang["edit_source"]			= "Modifica Fonte";
 $pgv_lang["edit_shared_note"]		= "Modifica nota condivisa";
 $pgv_lang["familybook_chart"]		= "Prospetto libro di famiglia";
-$pgv_lang["family_of"]				= "Famiglia di:&nbsp;";
+$pgv_lang["family_of"]				= "Famiglia di&nbsp;";
 $pgv_lang["descent_steps"]			= "Passi discendenti";
 
 $pgv_lang["cancel"]			= "Annulla";
@@ -404,7 +404,6 @@ $pgv_lang["rootid"] 				   = "Prospetto Pedigree della persona Radice";
 $pgv_lang["root_person"]	= "ID persona";
 $pgv_lang["hide_details"]	= "Nascondi i dettagli";
 $pgv_lang["show_details"]	= "Mostra i dettagli";
-$pgv_lang["person_links"]	= "Collegamento ai grafici, famigliari e parenti stretti di questa persona";
 $pgv_lang["zoom_box"]		= "Zoom IN/OUT";
 $pgv_lang["orientation"]			= "Orientamento";
 $pgv_lang["portrait"]				= "In altezza";

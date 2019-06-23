@@ -222,7 +222,7 @@ $pgv_lang["dec_1st"]					= "Dec";
 $pgv_lang["edit_source"]				= "Bewerk bron";
 $pgv_lang["edit_shared_note"]			= "Wijzig gedeelde notitie";
 $pgv_lang["familybook_chart"]			= "Familieboek";
-$pgv_lang["family_of"]					= "Familie van: &nbsp;";
+$pgv_lang["family_of"]					= "Familie van&nbsp;";
 $pgv_lang["descent_steps"]				= "Nakomelingen stappen";
 
 $pgv_lang["cancel"]					= "Afbreken";
@@ -403,7 +403,6 @@ $pgv_lang["rootid"] 				= "Startpersoon v.d. Kwartierstaat";
 $pgv_lang["root_person"]			= "Startpersoon ";
 $pgv_lang["hide_details"]			= "Verberg details";
 $pgv_lang["show_details"]			= "Toon details";
-$pgv_lang["person_links"]			= "Verwijzingen naar overzichten, gezinnen en verwanten van deze persoon.";
 $pgv_lang["zoom_box"]				= "In/uitzoomen op dit vak.";
 $pgv_lang["orientation"]			= "Oriëntatie";
 $pgv_lang["portrait"]					= "Staand";

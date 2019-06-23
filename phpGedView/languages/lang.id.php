@@ -209,7 +209,7 @@ $pgv_lang["dec_1st"]				= "Des";
 
 $pgv_lang["edit_source"]			= "Sunting Sumber";
 $pgv_lang["familybook_chart"]			= "Bagan Buku Keluarga";
-$pgv_lang["family_of"]				= "Keluarga:&nbsp;";
+$pgv_lang["family_of"]				= "Keluarga&nbsp;";
 $pgv_lang["descent_steps"]			= "Langkah Turun";
 
 $pgv_lang["cancel"]				= "Batal";
@@ -386,7 +386,6 @@ $pgv_lang["fam_spouse"] 			= "Keluarga dengan pasangan";
 $pgv_lang["root_person"]			= "ID Orang Acuan";
 $pgv_lang["hide_details"]			= "Sembunyikan Rincian";
 $pgv_lang["show_details"]			= "Perlihatkan Rincian";
-$pgv_lang["person_links"]			= "Pranala ke bagan, keluarga, dan kerabat dekat dari orang ini. Klik ikon ini untuk memperlihatkan halaman ini, bermula dari orang ini.";
 $pgv_lang["zoom_box"]				= "Perbesar/perkecil kotak ini.";
 $pgv_lang["orientation"]			= "Orientasi";
 $pgv_lang["portrait"]				= "Potret";

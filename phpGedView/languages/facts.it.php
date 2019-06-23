@@ -3,7 +3,7 @@
  * Italian Language file
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -438,6 +438,13 @@ $factarray["_THUM"]	= "Always use main image?";
 $factarray["_PGVU"]	= "Ultima modifica di";
 $factarray["SERV"] = "Server remoto";
 $factarray["_GEDF"] = "File GEDCOM";
+$factarray["CEME"]  = "Cimitero";
+
+$factarray["MEDI"]	= "Tipo media";
+$factarray["_YART"]	= "Yahrzeit";
+$factarray["FAMS:SLGS:DATE"] = "Data di sigillatura SUG degli sposi";
+$factarray["FAMS:SLGS:PLAC"] = "Luogo di sigillatura SUG degli sposi";
+$factarray["FAMS:SLGS:TEMP"] = "Tempio di sigillatura SUG degli sposi";
 
 /*-- Fact abbreviations for use in Chart boxes.
  *		Use these abbreviations in cases where the standard method of using the first
@@ -451,6 +458,8 @@ $factarray["_GEDF"] = "File GEDCOM";
  *		The length of these abbreviations is not restricted to 1 letter.
  */
 
+unset($factAbbrev);		// Don't let other languages specify Fact abbreviations for this language
+
 /*-- The following lines have been commented out.  They should serve as examples.
 
 $factAbbrev["BIRT"]		= "B";
@@ -458,11 +467,5 @@ $factAbbrev["MARR"]		= "M";
 $factAbbrev["DEAT"]		= "D";
 
  */
-$factarray["CEME"]  = "Cimitero";
 
-$factarray["MEDI"]	= "Tipo media";
-$factarray["_YART"]	= "Yahrzeit";
-$factarray["FAMS:SLGS:DATE"] = "Data di sigillatura SUG degli sposi";
-$factarray["FAMS:SLGS:PLAC"] = "Luogo di sigillatura SUG degli sposi";
-$factarray["FAMS:SLGS:TEMP"] = "Tempio di sigillatura SUG degli sposi";
 ?>

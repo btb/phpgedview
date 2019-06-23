@@ -222,7 +222,7 @@ $pgv_lang["dec_1st"]="Dez";
 $pgv_lang["edit_source"]="Editar fonte";
 $pgv_lang["edit_shared_note"]		= "Editar nota partilhada";
 $pgv_lang["familybook_chart"]="Álbum de família";
-$pgv_lang["family_of"]="Família de:&nbsp;";
+$pgv_lang["family_of"]="Família de&nbsp;";
 $pgv_lang["descent_steps"]="Máximo de quebras";
 
 $pgv_lang["cancel"]="Cancelar";
@@ -403,7 +403,6 @@ $pgv_lang["rootid"]="Pessoa raiz da Árvore Genealógica";
 $pgv_lang["root_person"]="ID Raiz";
 $pgv_lang["hide_details"]="Esconder Detalhes";
 $pgv_lang["show_details"]="Exibir Detalhes";
-$pgv_lang["person_links"]="Links para gráficos, famílias e parentes próximos desta pessoa. Clique neste ícone para ver a página começando nesta pessoa.";
 $pgv_lang["zoom_box"]="Zoom +/- nesta caixa";
 $pgv_lang["orientation"]="Orientação da página";
 $pgv_lang["portrait"]="Retrato";

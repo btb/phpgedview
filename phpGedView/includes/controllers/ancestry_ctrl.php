@@ -3,7 +3,7 @@
  * Controller for the Ancestry Page
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017	PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019	PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -144,6 +144,7 @@ class AncestryControllerRoot extends BaseController {
 		global $pgv_lang, $TEXT_DIRECTION, $OLD_PGENS;
 		global $PGV_IMAGE_DIR, $PGV_IMAGES, $Dindent;
 		global $SHOW_EMPTY_BOXES, $pidarr, $box_width;
+		global $boxPosn, $columnWidth;
 
 		$person = Person::getInstance($pid);
 		// child
@@ -204,8 +205,10 @@ class AncestryControllerRoot extends BaseController {
 			print "</span>";
 			// display parents recursively
 			print "\r\n<ul style=\"list-style: none; display: block;\" id=\"sosa_$sosa\">";
+			$boxPosn += $columnWidth;		// -- Spacing between adjacent columns (style 1)
 			$this->print_child_ascendancy($parents["HUSB"], $sosa*2, $depth-1);
 			$this->print_child_ascendancy($parents["WIFE"], $sosa*2+1, $depth-1);
+			$boxPosn -= $columnWidth;		// -- Spacing between adjacent columns (style 1)
 			print "</ul>\r\n";
 		}
 		print "</li>\r\n";

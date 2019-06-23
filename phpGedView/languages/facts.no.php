@@ -3,7 +3,7 @@
  * Norwegian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2099  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -441,6 +441,8 @@ $factarray["_GEDF"] = "GEDCOM-fil";
  *		These abbreviations are user-customizable. Just put them into file "extra.xx.php".
  *		The length of these abbreviations is not restricted to 1 letter.
  */
+
+unset($factAbbrev);		// Don't let other languages specify Fact abbreviations for this language
 
 /*-- The following lines have been commented out.  They should serve as examples.
 

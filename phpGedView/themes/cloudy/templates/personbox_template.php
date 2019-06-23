@@ -35,7 +35,7 @@ if (!defined('PGV_PHPGEDVIEW')) {
 
 ?>
 <div id="I<?php print $boxID; ?>links"
-	style="position: absolute; left: 0px; top: 0px; width: <?php print $lbwidth; ?>px; visibility: hidden; z-index: '100';">
+	style="position: absolute; left: <?php print $menuLeftPosn; ?>px; top: 0px; width: <?php print $lbwidth; ?>px; visibility: hidden; z-index: '100';">
 <?php print $personlinks; ?></div>
 <div id="out-<?php print $boxID; ?>" <?php print $outBoxAdd; ?>>
 <!--  table helps to maintain spacing -->

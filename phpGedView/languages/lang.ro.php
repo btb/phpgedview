@@ -190,7 +190,7 @@ $pgv_lang["dec_1st"]				= "Dec";
 
 $pgv_lang["edit_source"]			= "Editează sursa";
 $pgv_lang["familybook_chart"]		= "Diagrama 'Albumul de familie'";
-$pgv_lang["family_of"]				= "Familie din:&nbsp;";
+$pgv_lang["family_of"]				= "Familie din&nbsp;";
 $pgv_lang["descent_steps"]			= "Paşi descendenţi";
 
 $pgv_lang["cancel"]					= "Anulează";
@@ -363,7 +363,6 @@ $pgv_lang["fam_spouse"] 			= "Familie cu soţul/soţia";
 $pgv_lang["root_person"]			= "ID-ul persoanei rădăcină";
 $pgv_lang["hide_details"]			= "Ascunde detaliile";
 $pgv_lang["show_details"]			= "Arată detaliile";
-$pgv_lang["person_links"]			= "Linkuri către diagrame, familii, şi rudele apropiate ale acestei persoane. Daţi click pe această icoană pentru a vedea această pagină, începând de la această persoană.";
 $pgv_lang["zoom_box"]				= "Măriţi sau micşoraţi cutia aceasta.";
 $pgv_lang["orientation"]			= "Orientarea";
 $pgv_lang["portrait"]				= "Portret";

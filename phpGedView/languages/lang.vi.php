@@ -75,7 +75,6 @@ $pgv_lang["fam_spouse"] 			= " Gia đình của chồng/vợ";
 $pgv_lang["root_person"]			= "Nhận Diện của Người Đầu";
 $pgv_lang["hide_details"]			= "Giấu Chi Tiết";
 $pgv_lang["show_details"]			= "Xem Chi Tiết";
-$pgv_lang["person_links"]			= "Những mối liên lạc tới đồ thị, gia đình, và gia quyến của người này. Nhấn vào tượng này đặng xem trang này, bắt đầu bằng người này.";
 $pgv_lang["zoom_box"]				= "Phóng ra/thu nhỏ cái hộp này.";
 $pgv_lang["orientation"]			= "Phương Hướng";
 $pgv_lang["portrait"]				= "Chân Dung";

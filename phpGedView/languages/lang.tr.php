@@ -221,7 +221,7 @@ $pgv_lang["dec_1st"]					= "Ara";
 $pgv_lang["edit_source"]			= "Kaynağı Düzenle";
 $pgv_lang["edit_shared_note"]		= "Paylaşılan Notu Düzenle";
 $pgv_lang["familybook_chart"]		= "Ayrı Ayrı Aile Çizelgesi";
-$pgv_lang["family_of"]				= "Aile:&nbsp;";
+$pgv_lang["family_of"]				= "Aile&nbsp;";
 $pgv_lang["descent_steps"]			= "Derinlik Adımları";
 
 $pgv_lang["cancel"]					= "Vazgeç";
@@ -402,7 +402,6 @@ $pgv_lang["rootid"] 				= "Soyağacı Çizgesi Kök Kişi";
 $pgv_lang["root_person"]		= "Kök Kişi ID";
 $pgv_lang["hide_details"]		= "Detayları Gizle";
 $pgv_lang["show_details"]		= "Detayları Göster";
-$pgv_lang["person_links"]		= "Bu şahsın Çizgelerine, ailesine ve yakın akrabalarına ulaşan bağlantılar. Bu simgeye tıklayıp şahıs ile ilgili sayfaları izleyin.";
 $pgv_lang["zoom_box"]			= "Bu kutuyu yakınlaştır/uzaklaştır.";
 $pgv_lang["orientation"]			= "Yönlendirme";
 $pgv_lang["portrait"]			= "Portre";

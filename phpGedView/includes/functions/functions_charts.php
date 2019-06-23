@@ -3,7 +3,7 @@
  * Functions used for charts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2010  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,30 +38,35 @@ require_once PGV_ROOT.'includes/classes/class_person.php';
  *
  * @param int $sosa
  * @param string $pid optional pid
- * @param string $arrowDirection   direction of link arrow
+ * @param string $arrowDirection   direction of link arrow; "blank" to hide the SOSA number
+ * @param boolean $wideCell		true to make the SOSA cell wider
  */
-function print_sosa_number($sosa, $pid = "", $arrowDirection = "up") {
-	global $view, $pbwidth, $pbheight;
+function print_sosa_number($sosa, $pid='', $arrowDirection='up') {
+	global $view, $pbwidth, $pbheight, $wideSosa;
 	global $PGV_IMAGE_DIR, $PGV_IMAGES;
 
-	if (substr($sosa,-1,1)==".") {
+	if (substr($sosa,-1,1)=='.') {
 		$personLabel = substr($sosa,0,-1);
 	} else {
 		$personLabel = $sosa;
 	}
-	if ($arrowDirection=="blank") {
-		$visibility = "hidden";
+
+	if (isset($wideSosa) && $wideSosa) $sosaWidth = 50;		// If specified, allow more room
+	else $sosaWidth = 15;
+
+	if ($arrowDirection=='blank') {
+		$visibility = 'hidden';
 	} else {
-		$visibility = "normal";
+		$visibility = 'normal';
 	}
-	echo "<td class=\"subheaders center\" style=\"vertical-align: middle; text-indent: 0px; margin-top: 0px; white-space: nowrap; visibility: ", $visibility, ";\">";
+	echo "<td class='subheaders center' style='vertical-align: middle; text-indent: 0px; margin-top: 0px; white-space: nowrap; visibility: {$visibility};'><div style='width: {$sosaWidth}px'>";
 	echo getLRM(), $personLabel, getLRM();
-	if ($sosa != "1" && $pid != "") {
-		if ($arrowDirection=="left") {
+	if ($sosa != '1' && $pid != '') {
+		if ($arrowDirection=='left') {
 			$dir = 0;
-		} elseif ($arrowDirection=="right") {
+		} elseif ($arrowDirection=='right') {
 			$dir = 1;
-		} elseif ($arrowDirection== "down") {
+		} elseif ($arrowDirection== 'down') {
 			$dir = 3;
 		} else {
 			$dir = 2;		// either "blank" or "up"
@@ -70,7 +75,7 @@ function print_sosa_number($sosa, $pid = "", $arrowDirection = "up") {
 		print_url_arrow($pid, "#$pid", "$pid", $dir);
 //		print "&nbsp;";
 	}
-	echo "</td>";
+	echo "</div></td>";
 }
 
 /**
@@ -98,9 +103,14 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 	global $pgv_lang, $view, $show_full, $show_famlink;
 	global $TEXT_DIRECTION, $SHOW_EMPTY_BOXES, $SHOW_ID_NUMBERS, $LANGUAGE;
 	global $pbwidth, $pbheight;
+	global $boxPosn, $columnWidth;
+	global $forceSosa;
 	global $PGV_IMAGE_DIR, $PGV_IMAGES;
 	global $show_changes, $pgv_changes, $GEDCOM;
 	$ged_id=get_id_from_gedcom($GEDCOM);
+
+	$columnWidth += $pbwidth;
+	$savedBoxPosn = $boxPosn;
 
 	$family = Family::getInstance($famid);
 	if (is_null($family)) return;
@@ -135,9 +145,10 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 	print "\n\t<table style=\"width: " . ($pbwidth) . "px; height: " . $pbheight . "px;\" border=\"0\"><tr>";
 	if ($parid) {
 		if ($husb->getXref()==$parid) print_sosa_number($label);
-		else print_sosa_number($label, "", "blank");
+		else if ($forceSosa) print_sosa_number($label, '', 'blank');
 	}
 	else if ($sosa > 0) print_sosa_number($sosa * 2);
+	$boxPosn = $savedBoxPosn;
 	if (isset($newparents) && $husb->getXref() != $newparents["HUSB"]) {
 		print "\n\t<td valign=\"top\" class=\"facts_valueblue\">";
 		print_pedigree_person($newparents['HUSB'], 1, $show_famlink, 2, $personcount);
@@ -151,6 +162,7 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 	$hfams = $husb->getChildFamilies();
 	$hparents = false;
 	$upfamid = "";
+	$boxPosn += $columnWidth;
 	if (count($hfams) > 0 or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
 		print "<td rowspan=\"2\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" alt=\"\" /></td><td rowspan=\"2\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["vline"]["other"]."\" width=\"3\" height=\"" . ($pbheight) . "\" alt=\"\" /></td>";
 		print "<td><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" alt=\"\" /></td><td>";
@@ -165,8 +177,9 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 		if ($hparents or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
 			// husband's father
 			print "\n\t<table style=\"width: " . ($pbwidth) . "px; height: " . $pbheight . "px;\" border=\"0\"><tr>";
-			if ($sosa > 0) print_sosa_number($sosa * 4, $hparents['HUSB'], "down");
-			if (!empty($gparid) and $hparents['HUSB']==$gparid) print_sosa_number(trim(substr($label,0,-3),".").".");
+			if ($sosa > 0) print_sosa_number($sosa * 4, $hparents['HUSB'], 'down');
+			else if (!empty($gparid) and $hparents['HUSB']==$gparid) print_sosa_number(trim(substr($label,0,-3),".").".", '', 'up');
+			else if ($forceSosa) print_sosa_number('1.', '', 'blank');		// That '1.' is a fake number just to make the function happy
 			print "\n\t<td valign=\"top\">";
 			print_pedigree_person($hparents['HUSB'], 1, $show_famlink, 4, $personcount);
 			print "</td></tr></table>";
@@ -182,8 +195,9 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 		// husband's mother
 		print "</tr><tr><td><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" alt=\"\" /></td><td>";
 		print "\n\t<table style=\"width: " . ($pbwidth) . "px; height: " . $pbheight . "px;\" border=\"0\"><tr>";
-		if ($sosa > 0) print_sosa_number($sosa * 4 + 1, $hparents['WIFE'], "down");
-		if (!empty($gparid) and $hparents['WIFE']==$gparid) print_sosa_number(trim(substr($label,0,-3),".").".");
+		if ($sosa > 0) print_sosa_number(($sosa * 4 + 1), $hparents['WIFE'], 'down');
+		else if (!empty($gparid) and $hparents['WIFE']==$gparid) print_sosa_number(trim(substr($label,0,-3),".").".");
+		else if ($forceSosa) print_sosa_number('1.', '', 'blank');		// That '1.' is a fake number just to make the function happy
 		print "\n\t<td valign=\"top\">";
 		print_pedigree_person($hparents['WIFE'], 1, $show_famlink, 5, $personcount);
 		print "</td></tr></table>";
@@ -210,12 +224,12 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 	print "\n\t<table style=\"width: " . ($pbwidth) . "px; height: " . $pbheight . "px;\"><tr>";
 	if ($parid) {
 		if ($wife->getXref()==$parid) print_sosa_number($label);
-		else print_sosa_number($label, "", "blank");
+		else if ($forceSosa) print_sosa_number($label, '', 'blank');
 	}
 	else if ($sosa > 0) print_sosa_number($sosa * 2 + 1);
+	$boxPosn = $savedBoxPosn;
 	if (isset($newparents) && $wife->getXref() != $newparents["WIFE"]) {
 		print "\n\t<td valign=\"top\" class=\"facts_valueblue\">";
-		print_pedigree_person($newparents['WIFE'], 1, $show_famlink, 3, $personcount);
 	} else {
 		print "\n\t<td valign=\"top\">";
 		print_pedigree_person($wife->getXref(), 1, $show_famlink, 3, $personcount);
@@ -226,6 +240,7 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 	$hfams = $wife->getChildFamilies();
 	$hparents = false;
 	$upfamid = "";
+	$boxPosn += $columnWidth;
 	if (count($hfams) > 0 or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
 		print "<td rowspan=\"2\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" alt=\"\" /></td><td rowspan=\"2\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["vline"]["other"]."\" width=\"3\" height=\"" . ($pbheight) . "\" alt=\"\" /></td>";
 		print "<td><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" alt=\"\" /></td><td>";
@@ -240,8 +255,9 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 		if ($hparents or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
 			// wife's father
 			print "\n\t<table style=\"width: " . ($pbwidth) . "px; height: " . $pbheight . "px;\"><tr>";
-			if ($sosa > 0) print_sosa_number($sosa * 4 + 2, $hparents['HUSB'], "down");
-			if (!empty($gparid) and $hparents['HUSB']==$gparid) print_sosa_number(trim(substr($label,0,-3),".").".");
+			if ($sosa > 0) print_sosa_number($sosa * 4 + 2, $hparents['HUSB'], 'down');
+			else if (!empty($gparid) and $hparents['HUSB']==$gparid) print_sosa_number(trim(substr($label,0,-3),".").".");
+			else if ($forceSosa) print_sosa_number('1.', '', 'blank');		// That '1.' is a fake number just to make the function happy
 			print "\n\t<td valign=\"top\">";
 			print_pedigree_person($hparents['HUSB'], 1, $show_famlink, 6, $personcount);
 			print "</td></tr></table>";
@@ -257,8 +273,9 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 		// wife's mother
 		print "</tr><tr><td><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" alt=\"\" /></td><td>";
 		print "\n\t<table style=\"width: " . ($pbwidth) . "px; height: " . $pbheight . "px;\"><tr>";
-		if ($sosa > 0) print_sosa_number($sosa * 4 + 3, $hparents['WIFE'], "down");
-		if (!empty($gparid) and $hparents['WIFE']==$gparid) print_sosa_number(trim(substr($label,0,-3),".").".");
+		if ($sosa > 0) print_sosa_number(($sosa * 4 + 3), $hparents['WIFE'], 'down');
+		else if (!empty($gparid) and $hparents['WIFE']==$gparid) print_sosa_number(trim(substr($label,0,-3),".").".");
+		else if ($forceSosa) print_sosa_number('1.', '', 'blank');		// That '1.' is a fake number just to make the function happy
 		print "\n\t<td valign=\"top\">";
 		print_pedigree_person($hparents['WIFE'], 1, $show_famlink, 7, $personcount);
 		print "</td></tr></table>\n";
@@ -278,6 +295,11 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 function print_family_children($famid, $childid = "", $sosa = 0, $label="", $personcount="1") {
 	global $pgv_lang, $factarray, $pbwidth, $pbheight, $view, $show_famlink, $show_cousins;
 	global $PGV_IMAGE_DIR, $PGV_IMAGES, $show_changes, $pgv_changes, $GEDCOM, $SHOW_ID_NUMBERS, $TEXT_DIRECTION;
+	global $boxPosn, $columnWidth;
+
+	$columnWidth += $pbwidth;
+	$savedBoxPosn = $boxPosn;
+
 	$ged_id=get_id_from_gedcom($GEDCOM);
 
 	$family=Family::getInstance($famid);
@@ -285,11 +307,11 @@ function print_family_children($famid, $childid = "", $sosa = 0, $label="", $per
 	$numchil=$family->getNumberOfChildren();
 	print "<table border=\"0\" cellpadding=\"0\" cellspacing=\"2\"><tr>";
 	if ($sosa>0) print "<td></td>";
-	print "<td><span class=\"subheaders\">".$pgv_lang["children"]."</span>";
+	print "<td colspan='2'><span class=\"subheaders\">".$pgv_lang["children"]."</span>";
     if ($TEXT_DIRECTION == 'ltr')
     	 echo '<span class="font11">&nbsp;&nbsp;', getLRM(), '(';
 	else echo '<span class="font11">&nbsp;&nbsp;', getRLM(), '(';
-	
+
 	if ($numchil==0) {
 		echo $pgv_lang["no_children"];
 	} else if ($numchil==1) {
@@ -342,19 +364,21 @@ function print_family_children($famid, $childid = "", $sosa = 0, $label="", $per
 	$nchi=1;
 	if ((count($children) > 0) || (count($newchildren) > 0) || (count($oldchildren) > 0)) {
 		foreach($children as $indexval => $chil) {
+			$boxPosn = $savedBoxPosn;
 			if (!in_array($chil, $oldchildren)) {
 				echo "<tr>\n";
 				if ($sosa != 0) {
 					if ($chil == $childid) {
 						print_sosa_number($sosa, $childid);
 					} elseif (empty($label)) {
-						print_sosa_number("");
+						print_sosa_number('1.', '', 'blank');
 					} else {
 						print_sosa_number($label.($nchi++).".");
 					}
 				}
 				echo "<td valign=\"middle\" >";
 				print_pedigree_person($chil, 1, $show_famlink, 8, $personcount);
+				$boxPosn += $columnWidth;
 				$personcount++;
 				echo "</td>";
 				if ($sosa != 0) {
@@ -387,11 +411,27 @@ function print_family_children($famid, $childid = "", $sosa = 0, $label="", $per
 							// marriage date
 							$famrec = find_family_record($famid, $ged_id);
 							$ct = preg_match("/2 DATE.*(\d\d\d\d)/", get_sub_record(1, "1 MARR", $famrec), $match);
-							if ($ct>0) print "<span class=\"date\">".trim($match[1])."</span>";
+							if ($ct>0) {
+								echo '<span class="date">&nbsp;&nbsp;&nbsp;';
+    							if ($TEXT_DIRECTION == 'ltr') {
+									echo '∞&nbsp;', trim($match[1]);
+								} else {
+									echo trim($match[1]), '&nbsp;∞';
+								}
+								echo '&nbsp;&nbsp;&nbsp;</span>';
+							}
 							// divorce date
 							$divrec = get_sub_record(1, "1 DIV", $famrec);
 							$ct = preg_match("/2 DATE.*(\d\d\d\d)/", $divrec, $match);
-							if ($ct>0) print "-<span class=\"date\">".trim($match[1])."</span>";
+							if ($ct>0) {
+								echo '<br /><span class="date">&nbsp;&nbsp;&nbsp;';
+    							if ($TEXT_DIRECTION == 'ltr') {
+									echo '∞&nbsp;', trim($match[1]);
+								} else {
+									echo trim($match[1]), '&nbsp;∞';
+								}
+								echo '&nbsp;&nbsp;&nbsp;</span>';
+							}
 						}
 						print "<br /><img width=\"100%\" height=\"3\" src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" alt=\"\" />";
 						// family link
@@ -454,7 +494,7 @@ function print_family_children($famid, $childid = "", $sosa = 0, $label="", $per
    }
    else {
 	   print "<tr>\n";
-	   print_sosa_number($sosa, $childid);
+	   print_sosa_number($sosa, $childid, 'up', true);
 	   print "<td valign=\"top\">";
 	   print_pedigree_person($childid, 1, $show_famlink, 0, $personcount);
 	   $personcount++;
@@ -528,7 +568,7 @@ function print_family_facts(&$family, $sosa = 0) {
 		// -- new fact link
 		if ($view!="preview" && $sosa==0 && PGV_USER_CAN_EDIT) {
 			print_add_new_fact($famid, $indifacts, "FAM");
-			
+
 			// -- new note
 			print "<tr><td class=\"descriptionbox\">";
 			print_help_link("add_note_help", "qm" ,"add_note_lbl");
@@ -537,7 +577,7 @@ function print_family_facts(&$family, $sosa = 0) {
 			print "<a href=\"javascript:;\" onclick=\"return add_new_record('$famid','NOTE');\">" . $pgv_lang["add_note"] . "</a>";
 			print "<br />\n";
 			print "</td></tr>\n";
-			
+
 			// -- new shared note
 			print "<tr><td class=\"descriptionbox\">";
 			print_help_link("add_shared_note_help", "qm" ,"add_shared_note_lbl");
@@ -546,7 +586,7 @@ function print_family_facts(&$family, $sosa = 0) {
 			print "<a href=\"javascript:;\" onclick=\"return add_new_record('$famid','SHARED_NOTE');\">" . $pgv_lang["add_shared_note"] . "</a>";
 			print "<br />\n";
 			print "</td></tr>\n";
-			
+
 			// -- new media
 			print "<tr><td class=\"descriptionbox\">";
 			print_help_link("add_media_help", "qm", "add_media_lbl");
@@ -556,7 +596,7 @@ function print_family_facts(&$family, $sosa = 0) {
 			print "<br />\n";
 			print "<a href=\"javascript:;\" onclick=\"window.open('inverselink.php?linktoid={$famid}&linkto=family', '_blank', 'top=50,left=50,width=400,height=300,resizable=1,scrollbars=1'); return false;\">".$pgv_lang["link_to_existing_media"]."</a>";
 			print "</td></tr>\n";
-			
+
 			// -- new source citation
 			print "<tr><td class=\"descriptionbox\">";
 			print_help_link("add_source_help", "qm", "add_source_lbl");
@@ -584,14 +624,22 @@ function print_family_facts(&$family, $sosa = 0) {
  */
 function print_sosa_family($famid, $childid, $sosa, $label="", $parid="", $gparid="", $personcount="1") {
 	global $pgv_lang, $pbwidth, $pbheight, $view;
+	global $boxPosn, $columnWidth;
+	global $aRootBoxPosn, $aColumnWidth;	// -- Position and horizontal spacing of Parent boxes
+	global $bRootBoxPosn, $bColumnWidth;	// -- Position and horizontal spacing of Children boxes
+	global $forceSosa;						// -- Do empty SOSA numbers have to be printed anyway?
 
 	if ($view != "preview") print "<hr />";
 	print "\r\n\r\n<p style='page-break-before:always' />\r\n";
 	if (!empty($famid)) print"<a name=\"{$famid}\"></a>\r\n";
+	$boxPosn = $aRootBoxPosn;
+	$columnWidth = $aColumnWidth;
 	print_family_parents($famid, $sosa, $label, $parid, $gparid, $personcount);
 	$personcount++;
 	print "\n\t<br />\n";
 	print "<table width=\"95%\"><tr><td valign=\"top\" style=\"width: " . ($pbwidth) . "px;\">\n";
+	$boxPosn = $bRootBoxPosn;
+	$columnWidth = $bColumnWidth;
 	print_family_children($famid, $childid, $sosa, $label, $personcount);
 	print "</td><td valign=\"top\">";
 	if ($sosa == 0) print_family_facts(Family::getInstance($famid), $sosa);

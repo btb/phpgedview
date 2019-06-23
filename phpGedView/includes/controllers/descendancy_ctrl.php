@@ -3,7 +3,7 @@
  * Controller for the Descendancy Page
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017	PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019	PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -190,152 +190,156 @@ class DescendancyControllerRoot extends BaseController {
  * @param string $pid individual Gedcom Id
  * @param int $depth the descendancy depth to show
  */
-function print_child_descendancy(&$person, $depth) {
-	global $pgv_lang;
-	global $PGV_IMAGE_DIR, $PGV_IMAGES, $Dindent;
-	global $personcount;
+	function print_child_descendancy(&$person, $depth) {
+		global $pgv_lang;
+		global $PGV_IMAGE_DIR, $PGV_IMAGES, $Dindent;
+		global $personcount;
+		global $boxPosn, $columnWidth;
 
-	if (is_null($person)) return;
-	//print_r($person);
-	print "<li>";
-	print "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td>";
-	if ($depth==$this->generations) print "<img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["spacer"]["other"]."\" height=\"3\" width=\"$Dindent\" border=\"0\" alt=\"\" /></td><td>\n";
-	else {
-		print "<img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["spacer"]["other"]."\" height=\"3\" width=\"3\" border=\"0\" alt=\"\" />";
-		print "<img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" height=\"3\" width=\"".($Dindent-3)."\" border=\"0\" alt=\"\" /></td><td>\n";
-	}
-	print_pedigree_person($person->getXref(), 1, $this->view!="preview",'',$personcount);
-	print "</td>";
-
-	// check if child has parents and add an arrow
-	print "<td>&nbsp;</td>";
-	print "<td>";
-	$sfamids = $person->getChildFamilies();
-	foreach($sfamids as $famid => $family) {
-		$parents = find_parents($famid);
-		if ($parents) {
-			$parid=$parents["HUSB"];
-			if ($parid=="") $parid=$parents["WIFE"];
-			if ($parid!="") {
-				print_url_arrow($parid.$personcount.$person->getXref(), encode_url("?pid={$parid}&generations={$this->generations}&chart_style={$this->chart_style}&show_full={$this->show_full}&box_width={$this->box_width}"), $pgv_lang["start_at_parents"], 2);
-				$personcount++;
-			}
-		}
-	}
-
-	// d'Aboville child number
-	$level =$this->generations-$depth;
-	if ($this->show_full) print "<br /><br />&nbsp;";
-	print "<span dir=\"ltr\">"; //needed so that RTL languages will display this properly
-	if (!isset($this->dabo_num[$level])) $this->dabo_num[$level]=0;
-	$this->dabo_num[$level]++;
-	$this->dabo_num[$level+1]=0;
-	$this->dabo_sex[$level]=$person->getSex();
-	for ($i=0; $i<=$level;$i++) {
-		$isf=$this->dabo_sex[$i];
-		if ($isf=="M") $isf="";
-		if ($isf=="U") $isf="NN";
-		print "<span class=\"person_box".$isf."\">&nbsp;".$this->dabo_num[$i]."&nbsp;</span>";
-		if ($i<$level) echo ".";
-	}
-	print "</span>";
-	print "</td></tr>";
-	print "</table>";
-	print "</li>\r\n";
-
-	// loop for each spouse
-	$sfam = $person->getSpouseFamilies();
-	foreach ($sfam as $famid => $family) {
-		$personcount++;
-		$this->print_family_descendancy($person, $family, $depth);
-	}
-}
-
-/**
- * print a family descendancy
- *
- * @param string $pid individual Gedcom Id
- * @param Family $famid family record
- * @param int $depth the descendancy depth to show
- */
-function print_family_descendancy(&$person, &$family, $depth) {
-	global $pgv_lang, $factarray;
-	global $GEDCOM, $PGV_IMAGE_DIR, $PGV_IMAGES, $Dindent, $personcount;
-
-	if (is_null($family)) return;
-	if (is_null($person)) return;
-
-	$famrec = $family->getGedcomRecord();
-	$famid = $family->getXref();
-	$parents = find_parents($famid);
-	if ($parents) {
-
-		// spouse id
-		$id = $parents["WIFE"];
-		if ($id==$person->getXref()) $id = $parents["HUSB"];
-
-		// print marriage info
-		print "<li>";
-		print "<img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["spacer"]["other"]."\" height=\"2\" width=\"".($Dindent+4)."\" border=\"0\" alt=\"\" />";
-		print "<span class=\"details1\" style=\"white-space: nowrap; \" >";
-		print "<a href=\"#\" onclick=\"expand_layer('".$famid.$personcount."'); return false;\" class=\"top\"><img id=\"".$famid.$personcount."_img\" src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["minus"]["other"]."\" align=\"middle\" hspace=\"0\" vspace=\"3\" border=\"0\" alt=\"".$pgv_lang["view_family"]."\" /></a>";
-		$marriage = $family->getMarriage();
-		if ($marriage->canShow()) {
-			echo ' <a href="', encode_url($family->getLinkUrl()), '" class="details1">';
-			$marriage->print_simple_fact();
-			echo '</a>';
-		}
-		print '</span>';
-
-		// print spouse
-		print "<ul style=\"list-style: none; display: block;\" id=\"".$famid.$personcount."\">";
+		if (is_null($person)) return;
+		//print_r($person);
 		print "<li>";
 		print "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td>";
-		print_pedigree_person($id, 1, $this->view!="preview",''.$personcount);
+		if ($depth==$this->generations) print "<img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["spacer"]["other"]."\" height=\"3\" width=\"$Dindent\" border=\"0\" alt=\"\" /></td><td>\n";
+		else {
+			print "<img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["spacer"]["other"]."\" height=\"3\" width=\"3\" border=\"0\" alt=\"\" />";
+			print "<img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" height=\"3\" width=\"".($Dindent-3)."\" border=\"0\" alt=\"\" /></td><td>\n";
+		}
+		print_pedigree_person($person->getXref(), 1, $this->view!="preview",'',$personcount);
 		print "</td>";
 
-		// check if spouse has parents and add an arrow
+		// check if child has parents and add an arrow
 		print "<td>&nbsp;</td>";
 		print "<td>";
-		$sfamids = find_family_ids($id);
-		foreach($sfamids as $indexval => $sfamid) {
-			$parents = find_parents($sfamid);
+		$sfamids = $person->getChildFamilies();
+		foreach($sfamids as $famid => $family) {
+			$parents = find_parents($famid);
 			if ($parents) {
 				$parid=$parents["HUSB"];
 				if ($parid=="") $parid=$parents["WIFE"];
 				if ($parid!="") {
-					print_url_arrow($parid.$personcount.$person->getXref(), encode_url("?pid={$parid}&generations={$this->generations}&show_full={$this->show_full}&box_width={$this->box_width}"), $pgv_lang["start_at_parents"], 2);
+					print_url_arrow($parid.$personcount.$person->getXref(), encode_url("?pid={$parid}&generations={$this->generations}&chart_style={$this->chart_style}&show_full={$this->show_full}&box_width={$this->box_width}"), $pgv_lang["start_at_parents"], 2);
 					$personcount++;
 				}
 			}
 		}
-		if ($this->show_full) print "<br /><br />&nbsp;";
-		print "</td></tr>";
 
-		// children
-		$children = $family->getChildren();
-		print "<tr><td colspan=\"3\" class=\"details1\" >&nbsp;&nbsp;";
-		if ($children) {
-			print $factarray["NCHI"].": ".count($children);
-		} else {
-			// Distinguish between no children (NCHI 0) and no recorded
-			// children (no CHIL records)
-			if (strpos($family->getGedcomRecord(), "\n1 NCHI 0")) {
+		// d'Aboville child number
+		$level =$this->generations-$depth;
+		if ($this->show_full) print "<br /><br />&nbsp;";
+		print "<span dir=\"ltr\">"; //needed so that RTL languages will display this properly
+		if (!isset($this->dabo_num[$level])) $this->dabo_num[$level]=0;
+		$this->dabo_num[$level]++;
+		$this->dabo_num[$level+1]=0;
+		$this->dabo_sex[$level]=$person->getSex();
+		for ($i=0; $i<=$level;$i++) {
+			$isf=$this->dabo_sex[$i];
+			if ($isf=="M") $isf="";
+			if ($isf=="U") $isf="NN";
+			print "<span class=\"person_box".$isf."\">&nbsp;".$this->dabo_num[$i]."&nbsp;</span>";
+			if ($i<$level) echo ".";
+		}
+		print "</span>";
+		print "</td></tr>";
+		print "</table>";
+		print "</li>\r\n";
+
+		// loop for each spouse
+		$sfam = $person->getSpouseFamilies();
+		foreach ($sfam as $famid => $family) {
+			$personcount++;
+			$this->print_family_descendancy($person, $family, $depth);
+		}
+	}
+
+	/**
+	 * print a family descendancy
+	 *
+	 * @param string $pid individual Gedcom Id
+	 * @param Family $famid family record
+	 * @param int $depth the descendancy depth to show
+	 */
+	function print_family_descendancy(&$person, &$family, $depth) {
+		global $pgv_lang, $factarray;
+		global $GEDCOM, $PGV_IMAGE_DIR, $PGV_IMAGES, $Dindent, $personcount;
+		global $boxPosn, $columnWidth;
+
+		if (is_null($family)) return;
+		if (is_null($person)) return;
+
+		$famrec = $family->getGedcomRecord();
+		$famid = $family->getXref();
+		$parents = find_parents($famid);
+		if ($parents) {
+
+			// spouse id
+			$id = $parents["WIFE"];
+			if ($id==$person->getXref()) $id = $parents["HUSB"];
+
+			// print marriage info
+			print "<li>";
+			print "<img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["spacer"]["other"]."\" height=\"2\" width=\"".($Dindent+4)."\" border=\"0\" alt=\"\" />";
+			print "<span class=\"details1\" style=\"white-space: nowrap; \" >";
+			print "<a href=\"#\" onclick=\"expand_layer('".$famid.$personcount."'); return false;\" class=\"top\"><img id=\"".$famid.$personcount."_img\" src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["minus"]["other"]."\" align=\"middle\" hspace=\"0\" vspace=\"3\" border=\"0\" alt=\"".$pgv_lang["view_family"]."\" /></a>";
+			$marriage = $family->getMarriage();
+			if ($marriage->canShow()) {
+				echo ' <a href="', encode_url($family->getLinkUrl()), '" class="details1">';
+				$marriage->print_simple_fact();
+				echo '</a>';
+			}
+			print '</span>';
+
+			// print spouse
+			print "<ul style=\"list-style: none; display: block;\" id=\"".$famid.$personcount."\">";
+			print "<li>";
+			print "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td>";
+			print_pedigree_person($id, 1, $this->view!="preview",''.$personcount);
+			print "</td>";
+
+			// check if spouse has parents and add an arrow
+			print "<td>&nbsp;</td>";
+			print "<td>";
+			$sfamids = find_family_ids($id);
+			foreach($sfamids as $indexval => $sfamid) {
+				$parents = find_parents($sfamid);
+				if ($parents) {
+					$parid=$parents["HUSB"];
+					if ($parid=="") $parid=$parents["WIFE"];
+					if ($parid!="") {
+						print_url_arrow($parid.$personcount.$person->getXref(), encode_url("?pid={$parid}&generations={$this->generations}&show_full={$this->show_full}&box_width={$this->box_width}"), $pgv_lang["start_at_parents"], 2);
+						$personcount++;
+					}
+				}
+			}
+			if ($this->show_full) print "<br /><br />&nbsp;";
+			print "</td></tr>";
+
+			// children
+			$children = $family->getChildren();
+			print "<tr><td colspan=\"3\" class=\"details1\" >&nbsp;&nbsp;";
+			if ($children) {
 				print $factarray["NCHI"].": ".count($children);
 			} else {
-				print $pgv_lang["no_children"];
+				// Distinguish between no children (NCHI 0) and no recorded
+				// children (no CHIL records)
+				if (strpos($family->getGedcomRecord(), "\n1 NCHI 0")) {
+					print $factarray["NCHI"].": ".count($children);
+				} else {
+					print $pgv_lang["no_children"];
+				}
 			}
+			print "</td></tr></table>";
+			print "</li>\r\n";
+			$boxPosn += $columnWidth;		// -- Spacing between adjacent columns (style 1)
+			if ($depth>1) foreach ($children as $child) {
+				$personcount++;
+				$this->print_child_descendancy($child, $depth-1);
+			}
+			$boxPosn -= $columnWidth;		// -- Spacing between adjacent columns (style 1)
+			print "</ul>\r\n";
+			print "</li>\r\n";
 		}
-		print "</td></tr></table>";
-		print "</li>\r\n";
-		if ($depth>1) foreach ($children as $child) {
-			$personcount++;
-			$this->print_child_descendancy($child, $depth-1);
-		}
-		print "</ul>\r\n";
-		print "</li>\r\n";
 	}
-}
 
 }
 

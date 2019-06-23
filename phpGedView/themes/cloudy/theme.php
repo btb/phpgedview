@@ -3,7 +3,7 @@
  * Cloudy theme
  *
  * PhpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2010  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -198,7 +198,8 @@ $fanChart = array(
 
 //-- This section defines variables for the pedigree chart
 $bwidth = 225;		// -- width of boxes on pedigree chart
-$bheight = 78;		// -- height of boxes on pedigree chart
+$bheight = 80;		// -- height of boxes on pedigree chart
+$bsosawidth = 20;	// -- width of column containing SOSA numbers and up/down arrow icon
 $baseyoffset = -20;	// -- position the entire pedigree tree relative to the top of the page
 $basexoffset = 10;	// -- position the entire pedigree tree relative to the left of the page
 $bxspacing = 4;		// -- horizontal spacing between boxes on the pedigree chart
@@ -214,6 +215,37 @@ $Dbwidth = 250;		// -- width of DIV layer boxes
 $Dbheight = 78;		// -- height of DIV layer boxes
 $Dindent = 15;		// -- width to indent descendancy boxes
 $Darrowwidth = 30;	// -- additional width to include for the up arrows
+
+// -- global variables for positioning the popup menus on the Ancestry chart
+//    kinda kludgy -- JavaScript doesn't cut it here
+$AncStyle1RootBoxPosn = 60;		// -- Position of the leftmost Person Box (style 1)
+$AncStyle1ColumnWidth = 15;		// -- Spacing between adjacent columns (style 1)
+$AncStyle2aRootBoxPosn = 77;	// -- Position of the leftmost Person Box (style 2 - parents)
+$AncStyle2aColumnWidth = 60;	// -- Spacing between adjacent columns (style 2 - parents)
+$AncStyle2bRootBoxPosn = 79;	// -- Position of the leftmost Person Box (style 2 - children)
+$AncStyle2bColumnWidth = 57;	// -- Spacing between adjacent columns (style 2 - children)
+
+// -- global variables for positioning the popup menus on the Descendancy chart
+//    kinda kludgy -- JavaScript doesn't cut it here
+$DesStyle1RootBoxPosn = 60;		// -- Position of the leftmost Person Box (style 1)
+$DesStyle1ColumnWidth = 15;		// -- Spacing between adjacent columns (style 1)
+$DesStyle2aRootBoxPosn = 112;	// -- Position of the leftmost Person Box (style 2 - parents)
+$DesStyle2aColumnWidth = 95;	// -- Spacing between adjacent columns (style 2 - parents)
+$DesStyle2bRootBoxPosn = 114;	// -- Position of the leftmost Person Box (style 2 - children)
+$DesStyle2bColumnWidth = 57;	// -- Spacing between adjacent columns (style 2 - children)
+
+// -- global variables for positioning the popup menus on the Family Book chart
+//    kinda kludgy -- JavaScript doesn't cut it here
+$FamARootBoxPosn = 37;			// -- Position of the leftmost Person Box (descendant side)
+$FamAColumnWidth = 16;			// -- Spacing between adjacent columns (descendant side)
+$FamBColumnWidth = 6;			// -- Spacing in front of last column (ancestor side)
+
+// -- global variables for positioning the popup menus on the Hourglass chart
+//    kinda kludgy -- JavaScript doesn't cut it here
+$HouARootBoxPosn = 25;			// -- Position of the leftmost Person Box (descendant side)
+$HouAColumnWidth = 16;			// -- Spacing between adjacent columns (descendant side)
+$HouALastBoxAdj  = 32;			// -- Correction to last box position (the actual Root person box)
+$HouBColumnWidth = 16;			// -- Spacing between adjacent columns (ancestor side)
 
 $CHARTS_CLOSE_HTML = true;                //-- should the charts, pedigree, descendacy, etc close the HTML on the page
 $PGV_DXHTMLTAB_COLORS = "#f0f9ff,#c8e7ff";

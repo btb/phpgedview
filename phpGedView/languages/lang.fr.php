@@ -221,7 +221,7 @@ $pgv_lang["dec_1st"]                    = "Déc";
 $pgv_lang["edit_source"]                = "Modifier source";
 $pgv_lang["edit_shared_note"]           = "Modifier note partagée";
 $pgv_lang["familybook_chart"]           = "Livret familial";
-$pgv_lang["family_of"]                  = "Famille de:&nbsp;";
+$pgv_lang["family_of"]                  = "Famille de&nbsp;";
 $pgv_lang["descent_steps"]              = "Niveaux de descendance";
 
 $pgv_lang["cancel"]                     = "Annuler";
@@ -401,7 +401,6 @@ $pgv_lang["rootid"]                     = "Individu racine";
 $pgv_lang["root_person"]                = "Code individu";
 $pgv_lang["hide_details"]               = "Masquer les détails";
 $pgv_lang["show_details"]               = "Afficher les détails";
-$pgv_lang["person_links"]               = "Liens vers les arbres, familles, et parents proches.";
 $pgv_lang["zoom_box"]                   = "Zoom avant/arrière sur cette case.";
 $pgv_lang["orientation"]                = "Orientation";
 $pgv_lang["portrait"]                   = "Portrait";

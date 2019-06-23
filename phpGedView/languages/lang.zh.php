@@ -80,7 +80,6 @@ $pgv_lang["fam_spouse"] = "家庭與配偶:";
 $pgv_lang["root_person"] = "選擇從誰開始顯示：";
 $pgv_lang["hide_details"] = "隱藏詳細資料";
 $pgv_lang["show_details"] = "顯示詳細資料";
-$pgv_lang["person_links"] = "圖表的鏈接, 家庭, 並且這個人員的近親。";
 $pgv_lang["zoom_box"] = "迅速移動/在這個窗口。";
 $pgv_lang["orientation"] = "方向";
 $pgv_lang["portrait"] = "豎向圖";

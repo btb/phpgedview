@@ -177,7 +177,7 @@ $pgv_lang["dec_1st"]			= "joulu";
 
 $pgv_lang["edit_source"]		= "Muokkaa lähdettä";
 $pgv_lang["familybook_chart"]		= "Sukukirjakaavio";
-$pgv_lang["family_of"]			= "Perhe:&nbsp;";
+$pgv_lang["family_of"]			= "Perhe&nbsp;";
 $pgv_lang["descent_steps"]		= "Jälkipolvien lukumäärä";
 $pgv_lang["cancel"]			= "Peruuta";
 
@@ -346,7 +346,6 @@ $pgv_lang["fam_spouse"]		= "Perhe puolison kanssa";
 $pgv_lang["root_person"]		= "Lähtöhenkilön numero";
 $pgv_lang["hide_details"]		= "Piilota yksityiskohdat";
 $pgv_lang["show_details"]		= "Näytä yksityiskohdat";
-$pgv_lang["person_links"]		= "Linkit tämän henkilön kaavioihin, perheisiin sekä lähisukulaisiin. Klikkaa tätä ikonia jos haluat nähdä sivun jossa tämä henkilö on lähtöhenkilö.";
 $pgv_lang["zoom_box"]		= "Suurenna/pienennä";
 $pgv_lang["orientation"]		= "Sivun asento";
 $pgv_lang["portrait"]			= "Pystysuoraan";

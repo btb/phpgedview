@@ -224,7 +224,7 @@ $pgv_lang["dec_1st"]					= "Dez";
 $pgv_lang["edit_source"]				= "Quelle bearbeiten";
 $pgv_lang["edit_shared_note"]			= "Gemeinsame Bemerkung bearbeiten";
 $pgv_lang["familybook_chart"]			= "Familienbuch Diagramm";
-$pgv_lang["family_of"]					= "Familie von:&nbsp;";
+$pgv_lang["family_of"]					= "Familie von&nbsp;";
 $pgv_lang["descent_steps"]				= "Nachfahren Stufen";
 
 $pgv_lang["cancel"]						= "Abbrechen";
@@ -405,7 +405,6 @@ $pgv_lang["rootid"] 					= "Startperson im Stammbaum";
 $pgv_lang["root_person"]				= "ID der Startperson";
 $pgv_lang["hide_details"]				= "Einzelheiten verbergen";
 $pgv_lang["show_details"]				= "Einzelheiten zeigen";
-$pgv_lang["person_links"]				= "Links zu Diagrammen, Familien und nahen Verwandten dieser Person. Klicken Sie auf dieses Symbol, um die Seite mit dieser Person als Ausgangspunkt aufzurufen.";
 $pgv_lang["zoom_box"]					= "Zoom hinein/heraus";
 $pgv_lang["orientation"]				= "Richtung";
 $pgv_lang["portrait"]					= "Hochformat";

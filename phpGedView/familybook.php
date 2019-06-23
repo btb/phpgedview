@@ -5,7 +5,7 @@
  * Set the root person using the $pid variable
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,7 +38,6 @@ $descent    =safe_GET_integer('descent',       0, 9, 5);
 $generations=safe_GET_integer('generations',   2, $MAX_DESCENDANCY_GENERATIONS, 2);
 $box_width  =safe_GET_integer('box_width',     50, 300, 100);
 
-
 // -- size of the boxes
 if (!$show_full) $bwidth = ($bwidth / 1.5);
 $bwidth = (int) ($bwidth * $box_width/100);
@@ -48,18 +47,23 @@ if ($show_full==false) {
 }
 $bhalfheight = (int) ($bheight / 2);
 
+$columnNumber = 0;		// Column number of Person Boxes on the Descendant side
+
 // -- root id
 $pid   =check_rootid($pid);
 $person=Person::getInstance($pid);
 $name  =$person->getFullName();
 
-function print_descendency($pid, $count) {
+function print_descendancy($pid, $count) {
 	global $show_spouse, $dgenerations, $bwidth, $bheight, $bhalfheight;
 	global $TEXT_DIRECTION, $PGV_IMAGE_DIR, $PGV_IMAGES, $generations, $box_width, $view, $show_full, $pgv_lang;
+	global $FamARootBoxPosn, $FamAColumnWidth, $columnNumber, $boxPosn;
+
 	if ($count>=$dgenerations) return 0;
+	$columnNumber = 0;		// Reset to leftmost column
 	print "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n";
 	print "<tr>";
-	print "<td width=\"".($bwidth-2)."\">\n";
+	print "<td width='{$bwidth}'>\n";
 	$numkids = 0;
 	$famids = find_sfamily_ids($pid);
 	if (count($famids)>0) {
@@ -68,51 +72,58 @@ function print_descendency($pid, $count) {
 			$famrec = find_family_record($famid, PGV_GED_ID);
 			$ct = preg_match_all("/1 CHIL @(.*)@/", $famrec, $match, PREG_SET_ORDER);
 			if ($ct>0) {
-			print "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n";
-			for($i=0; $i<$ct; $i++) {
-				$rowspan = 2;
-				if (($i>0)&&($i<$ct-1)) $rowspan=1;
-				$chil = trim($match[$i][1]);
-				print "<tr><td rowspan=\"$rowspan\" width=\"$bwidth\" style=\"padding-top: 2px;\">\n";
-				if ($count < $dgenerations-1) {
-					$kids = print_descendency($chil, $count+1);
-					if ($i==0) $firstkids = $kids;
-					$numkids += $kids;
-				}
-				else {
-					print_pedigree_person($chil);
-					$numkids++;
-				}
-				print "</td>\n";
-				$twidth = 7;
-				if ($ct==1) $twidth+=3;
-				print "<td rowspan=\"$rowspan\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" width=\"$twidth\" height=\"3\" alt=\"\" /></td>\n";
-				if ($ct>1) {
-					if ($i==0) {
-						print "<td height=\"".($bhalfheight+3)."\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["spacer"]["other"]."\" width=\"3\" alt=\"\" /></td></tr>\n";
-						print "<tr><td height=\"".($bhalfheight+3)."\" style=\"background: url('".$PGV_IMAGE_DIR."/".$PGV_IMAGES["vline"]["other"]."');\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["spacer"]["other"]."\" width=\"3\" alt=\"\" /></td>\n";
-					}
-					else if ($i==$ct-1) {
-						print "<td height=\"".($bhalfheight+4)."\" style=\"background: url('".$PGV_IMAGE_DIR."/".$PGV_IMAGES["vline"]["other"]."');\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["spacer"]["other"]."\" width=\"3\" alt=\"\" /></td></tr>\n";
-						print "<tr><td height=\"".($bhalfheight+4)."\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["spacer"]["other"]."\" width=\"3\" alt=\"\" /></td>\n";
+				$columnNumber = 0;		// Reset to leftmost column
+				print "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n";
+				for($i=0; $i<$ct; $i++) {
+					$rowspan = 2;
+					if (($i>0)&&($i<$ct-1)) $rowspan=1;
+					$chil = trim($match[$i][1]);
+					print "<tr><td rowspan=\"$rowspan\" width=\"$bwidth\" style=\"padding-top: 2px;\">\n";
+					if ($count < $dgenerations-1) {
+						$kids = print_descendancy($chil, $count+1);
+						if ($i==0) $firstkids = $kids;
+						$numkids += $kids;
 					}
 					else {
-						print "<td style=\"background: url('".$PGV_IMAGE_DIR."/".$PGV_IMAGES["vline"]["other"]."');\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["spacer"]["other"]."\" width=\"3\" alt=\"\" /></td>\n";
+						$boxPosn = $FamARootBoxPosn + $columnNumber * ($bwidth + $FamAColumnWidth);
+						print_pedigree_person($chil);
+						$numkids++;
 					}
+					print "</td>\n";
+					$twidth = 7;
+					if ($ct==1) $twidth+=3;
+					print "<td rowspan=\"$rowspan\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" width=\"$twidth\" height=\"3\" alt=\"\" /></td>\n";
+					if ($ct>1) {
+						if ($i==0) {
+							print "<td height=\"".($bhalfheight+3)."\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["spacer"]["other"]."\" width=\"3\" alt=\"\" /></td></tr>\n";
+							print "<tr><td height=\"".($bhalfheight+3)."\" style=\"background: url('".$PGV_IMAGE_DIR."/".$PGV_IMAGES["vline"]["other"]."');\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["spacer"]["other"]."\" width=\"3\" alt=\"\" /></td>\n";
+						}
+						else if ($i==$ct-1) {
+							print "<td height=\"".($bhalfheight+4)."\" style=\"background: url('".$PGV_IMAGE_DIR."/".$PGV_IMAGES["vline"]["other"]."');\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["spacer"]["other"]."\" width=\"3\" alt=\"\" /></td></tr>\n";
+							print "<tr><td height=\"".($bhalfheight+4)."\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["spacer"]["other"]."\" width=\"3\" alt=\"\" /></td>\n";
+						}
+						else {
+							print "<td style=\"background: url('".$PGV_IMAGE_DIR."/".$PGV_IMAGES["vline"]["other"]."');\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["spacer"]["other"]."\" width=\"3\" alt=\"\" /></td>\n";
+						}
+					}
+					print "</tr>\n";
 				}
-				print "</tr>\n";
-			}
-			print "</table>\n";
+				print "</table>\n";
 			}
 		}
-		print "</td>\n";
-		print "<td width=\"$bwidth\">\n";
+		if ($numkids > 0) {
+			print "</td>\n";
+			$columnNumber ++;		// Advance to next column on the right
+			print "<td width=\"$bwidth\">\n";
+		}
 	}
-	// NOTE: If statement OK
+	//-- add offset divs to account for no descendants;  makes things line up better
 	if ($numkids==0) {
 		$numkids = 1;
-		$tbwidth = $bwidth+16;
 		for($j=$count; $j<$dgenerations; $j++) {
+			$tempWidth = $bwidth + 16;
+			echo "<div style='height: {$bheight}px; width: {$tempWidth}px; visibility: hidden;'><br /></div>\n";
+			$columnNumber ++;		// Advance to next column on the right
 			print "</td>\n<td width=\"$bwidth\">\n";
 		}
 	}
@@ -129,6 +140,7 @@ function print_descendency($pid, $count) {
 			}
 		}
 	}
+	$boxPosn = $FamARootBoxPosn + $columnNumber * ($bwidth + $FamAColumnWidth);
 	print_pedigree_person($pid);
 	// NOTE: If statement OK
 	if ($show_spouse) {
@@ -270,7 +282,7 @@ function print_descendency($pid, $count) {
 	return $numkids;
 }
 
-function max_descendency_generations($pid, $depth) {
+function max_descendancy_generations($pid, $depth) {
 	global $generations;
 	if ($depth >= $generations) return $depth;
 	$famids = find_sfamily_ids($pid);
@@ -280,7 +292,7 @@ function max_descendency_generations($pid, $depth) {
 		$ct = preg_match_all("/1 CHIL @(.*)@/", $famrec, $match, PREG_SET_ORDER);
 		for($i=0; $i<$ct; $i++) {
 			$chil = trim($match[$i][1]);
-			$dc = max_descendency_generations($chil, $depth+1);
+			$dc = max_descendancy_generations($chil, $depth+1);
 			if ($dc >= $generations) return $dc;
 			if ($dc > $maxdc) $maxdc = $dc;
 		}
@@ -291,7 +303,10 @@ function max_descendency_generations($pid, $depth) {
 
 function print_person_pedigree($pid, $count) {
 	global $generations, $SHOW_EMPTY_BOXES, $PGV_IMAGE_DIR, $PGV_IMAGES, $bheight, $bhalfheight;
+	global $FamAColumnWidth, $FamBRootBoxPosn, $FamBColumnWidth, $bwidth, $boxPosn;
+
 	if ($count>=$generations) return;
+
 	$famids = find_family_ids($pid);
 	$hheight = ($bhalfheight+3) * pow(2,($generations-$count-1));
 	foreach($famids as $indexval => $famid) {
@@ -304,6 +319,11 @@ function print_person_pedigree($pid, $count) {
 			print "<td rowspan=\"2\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" width=\"7\" height=\"3\" alt=\"\" /></td>\n";
 		}
 		print "<td rowspan=\"2\">\n";
+		$boxPosn = $FamBRootBoxPosn + $count * ($bwidth + $FamAColumnWidth);
+		if ($generations == ($count + 1)) {
+			// No connector lines in front of last column
+			$boxPosn = $boxPosn - $FamAColumnWidth + $FamBColumnWidth;
+		}
 		print_pedigree_person($parents["HUSB"]);
 		print "</td>\n";
 		print "<td rowspan=\"2\">\n";
@@ -317,6 +337,11 @@ function print_person_pedigree($pid, $count) {
 			print "<td rowspan=\"2\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" width=\"7\" height=\"3\" alt=\"\" /></td>\n";
 		}
 		print "<td rowspan=\"2\">\n";
+		$boxPosn = $FamBRootBoxPosn + $count * ($bwidth + $FamAColumnWidth);
+		if ($generations == ($count + 1)) {
+			// No connector lines in front of last column
+			$boxPosn = $boxPosn - $FamAColumnWidth + $FamBColumnWidth;
+		}
 		print_pedigree_person($parents["WIFE"]);
 		print "</td>\n";
 		print "<td rowspan=\"2\">\n";
@@ -330,6 +355,8 @@ function print_person_pedigree($pid, $count) {
 function print_family_book($pid, $descent)
 {
 	global $generations, $dgenerations, $pgv_lang, $firstrun;
+	global $FamBRootBoxPosn, $boxPosn;
+
 	if ($descent==0) return;
 		$famids = find_sfamily_ids($pid);
 		if (count($famids)>0 || empty($firstrun)) {
@@ -343,10 +370,11 @@ function print_family_book($pid, $descent)
 				//-- descendancy
 				print "<td valign=\"middle\">\n";
 				$dgenerations = $generations;
-// $dgenerations = max_descendency_generations($pid, 0);
-				print_descendency($pid, 1);
+// $dgenerations = max_descendancy_generations($pid, 0);
+				print_descendancy($pid, 1);
 				print "</td>\n";
 				//-- pedigree
+				$FamBRootBoxPosn = $boxPosn;
 				print "<td valign=\"middle\">\n";
 				print_person_pedigree($pid, 1);
 				print "</td>\n";
@@ -380,11 +408,11 @@ if (PGV_USE_LIGHTBOX) {
 // ==========================================================================================
 
 if ($view=="preview") {
-	print "<h2 style=\"text-align: center\">".$pgv_lang["familybook_chart"].":&nbsp;&nbsp;&nbsp;".PrintReady($name)."</h2>";
+	print "<h2 style=\"text-align: center\">".$pgv_lang["familybook_chart"]."&nbsp;&nbsp;&nbsp;".PrintReady($name)."</h2>";
 } else {
 	print "<!-- // NOTE: Start table header -->";
 	print "<table><tr><td valign=\"top\">";
-	print "<h2>".$pgv_lang["familybook_chart"].":<br />".PrintReady($name)."</h2>";
+	print "<h2>".$pgv_lang["familybook_chart"]."<br />".PrintReady($name)."</h2>";
 }
 ?>
 

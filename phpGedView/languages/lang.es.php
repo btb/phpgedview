@@ -223,7 +223,7 @@ $pgv_lang["dec_1st"]				= "Dic";
 $pgv_lang["edit_source"]			= "Editar fuente";
 $pgv_lang["edit_shared_note"]		= "Modificar nota compartida";
 $pgv_lang["familybook_chart"]		= "Diagrama Libro Familiar";
-$pgv_lang["family_of"]				= "Familia de:&nbsp;";
+$pgv_lang["family_of"]				= "Familia de&nbsp;";
 $pgv_lang["descent_steps"]			= "Pasos de descendencia";
 
 $pgv_lang["cancel"]					= "Cancelar";
@@ -404,7 +404,6 @@ $pgv_lang["rootid"] 				= "Persona inicial para el Árbol de Ascendientes";
 $pgv_lang["root_person"]			= "ID persona raíz";
 $pgv_lang["hide_details"]			= "Ocultar detalles";
 $pgv_lang["show_details"]			= "Mostrar detalles";
-$pgv_lang["person_links"]			= "Vínculos a informes y familiares cercanos relacionados con esta persona.";
 $pgv_lang["zoom_box"]				= "Aumentar/Disminuir registro.";
 $pgv_lang["orientation"]			= "Orientación";
 $pgv_lang["portrait"]				= "Natural";
