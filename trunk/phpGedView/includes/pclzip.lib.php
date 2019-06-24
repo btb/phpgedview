@@ -1841,6 +1841,7 @@ if (!defined('PGV_PHPGEDVIEW')) {
     $v_memory_limit = ini_get('memory_limit');
     $v_memory_limit = trim($v_memory_limit);
     $last = strtolower(substr($v_memory_limit, -1));
+    $v_memory_limit = substr($v_memory_limit, 0, -1);
 
     if($last == 'g')
         //$v_memory_limit = $v_memory_limit*1024*1024*1024;
