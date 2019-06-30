@@ -9,6 +9,7 @@
 =====================================================================
 
 Version 4.3.1
+ - Changed: Remove useless "Open links in new tab/window" option in modules/googlemap/placecheck.php (David Smart)
  - Fixed: Quick-and-dirty fix to force acceptance of incorrectly formed autocomplete requests --permanent fix requires more research-- (canajun2eh)
  - Changed: Minor change in behaviour of "language" flag icons (canajun2eh)
  - Fixed: "Non well formed numeric value encountered" error in pclzip.lib.php line 1850 (canajun2eh)
