@@ -283,7 +283,8 @@ while (true) {
 	}
 
 	// check for script injection
-	if (preg_match('~[<>"\%{};]~', $requestURI) || preg_match('~sleep~i', $requestURI)) {
+//	if (preg_match('~[<>"\%{};]~', $requestURI) || preg_match('~sleep~i', $requestURI)) {
+	if (preg_match('~[<>\%{};]~', $requestURI) || preg_match('~sleep~i', $requestURI)) {
 		$quitReason = 'Script injection detected';
 		break;
 	}

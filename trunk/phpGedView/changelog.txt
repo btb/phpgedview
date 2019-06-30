@@ -9,6 +9,7 @@
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Quick-and-dirty fix to force acceptance of incorrectly formed autocomplete requests --permanent fix requires more research-- (canajun2eh)
  - Changed: Minor change in behaviour of "language" flag icons (canajun2eh)
  - Fixed: "Non well formed numeric value encountered" error in pclzip.lib.php line 1850 (canajun2eh)
  - Changed: Pop-up menus in Charts boxes are now positioned properly and consistently on LTR pages -- RTL will be done later (canajun2eh)
