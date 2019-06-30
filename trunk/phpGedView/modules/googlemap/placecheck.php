@@ -4,7 +4,7 @@
  * and other common errors.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,6 @@ loadLangFile("googlemap:lang, googlemap:help_text");
 
 $action   =safe_POST     ('action'                                              );
 $gedcom_id=safe_POST     ('gedcom_id', array_keys(get_all_gedcoms()), PGV_GED_ID);
-$openinnew=safe_POST_bool('openinnew'                                           );
 $state    =safe_POST     ('state',     PGV_REGEX_UNSAFE,              'XYZ'     );
 $country  =safe_POST     ('country',   PGV_REGEX_UNSAFE,              'XYZ'     );
 
@@ -46,8 +45,6 @@ if (!PGV_USER_GEDCOM_ADMIN) {
 	exit;
 }
 print_header($pgv_lang["placecheck"].' - '.$GEDCOM);
-
-$target=$openinnew ? "target='_blank'" : "";
 
 echo "<div align=\"center\" style=\"width: 99%;\"><h1>", $pgv_lang["placecheck"], "</h1></div>";
 
@@ -64,12 +61,6 @@ echo "<td class='optionbox'><select name='gedcom_id'>";
 foreach (get_all_gedcoms() as $ged_id=>$gedcom) {
 	echo '<option value="', $ged_id, '"', $ged_id==$gedcom_id?' selected="selected"':'', '>', htmlspecialchars($gedcom), '</option>';
 }
-echo "</select></td></tr>";
-//Option box for 'Open in new window'
-echo "<tr><td class='descriptionbox'>{$pgv_lang["open_link"]}</td>";
-echo "<td class='optionbox'><select name='openinnew'>";
-echo "<option value='0' ", $openinnew?" selected='selected'":"", ">{$pgv_lang["same_win"]}</option>";
-echo "<option value='1' ", $openinnew?" selected='selected'":"", ">{$pgv_lang["new_win"]}</option>";
 echo "</select></td></tr>";
 //Option box to select top level place within Gedcom
 echo "<tr><td class='descriptionbox'>", $pgv_lang['placecheck_top'], "</td>";
@@ -137,7 +128,7 @@ echo "</td>";
 echo "</tr>";
 echo "<tr>";
 echo "<td colspan='2'>";
-echo "<input type='submit' value='{$pgv_lang["show"]}' $target><input type='hidden' name='action' value='go'>";
+echo "<input type='submit' value='{$pgv_lang["show"]}'><input type='hidden' name='action' value='go'>";
 echo "</td>";
 echo "</tr>";
 echo "</form>";
@@ -181,12 +172,12 @@ case 'go':
 		}
 	}
 	$place_list=preg_grep('/'.$filter.'/', $place_list);
-	
+
 	//sort the array, limit to unique values, and count them
 	$place_parts=array();
 	usort($place_list, "stringsort");
 	$i=count($place_list);
-	
+
 	//calculate maximum no. of levels to display
 	$x=0;
 	$max=0;
@@ -196,7 +187,7 @@ case 'go':
 		if ($parts>$max) $max=$parts;
 	$x++;}
 	$x=0;
-	
+
 	//scripts for edit, add and refresh
 	?>
 	<script language="JavaScript" type="text/javascript">
@@ -205,7 +196,7 @@ case 'go':
 		window.open('module.php?mod=googlemap&pgvaction=places_edit&action=update&placeid='+placeid+"&"+sessionname+"="+sessionid, '_blank', 'top=50, left=50, width=680, height=550, resizable=1, scrollbars=1');
 		return false;
 	}
-	
+
 	function add_place_location(placeid) {
 		window.open('module.php?mod=googlemap&pgvaction=places_edit&action=add&placeid='+placeid+"&"+sessionname+"="+sessionid, '_blank', 'top=50, left=50, width=680, height=550, resizable=1, scrollbars=1');
 		return false;
@@ -213,7 +204,7 @@ case 'go':
 	function showchanges() {
 		window.location='<?php echo $_SERVER["REQUEST_URI"]; ?>&show_changes=yes';
 	}
-	
+
 	var helpWin;
 	function helpPopup(which) {
 		if ((!helpWin)||(helpWin.closed)) helpWin=window.open('module.php?mod=googlemap&pgvaction=editconfig_help&help='+which, '_blank', 'left=50, top=50, width=500, height=320, resizable=1, scrollbars=1');
@@ -223,15 +214,15 @@ case 'go':
 	function getHelp(which) {
 		if ((helpWin)&&(!helpWin.closed)) helpWin.location='module.php?mod=googlemap&pgvaction=editconfig_help&help='+which;
 	}
-	
+
 	function closeHelp() {
 		if (helpWin) helpWin.close();
 	}
-	
+
 	//-->
 	</script>
 	<?php
-	
+
 	//start to produce the display table
 	$cols=0;
 	$span=$max*3+3;
@@ -280,9 +271,9 @@ case 'go':
 		while ($z<$parts) {
 			if ($levels[$z]==' ' || $levels[$z]=='')
 				$levels[$z]="unknown";// GoogleMap module uses "unknown" while GEDCOM uses , ,
-	
+
 			$levels[$z]=rtrim(ltrim($levels[$z]));
-	
+
 			$placelist=create_possible_place_names($levels[$z], $z+1); // add the necessary prefix/postfix values to the place name
 			foreach ($placelist as $key=>$placename) {
 				$row=
@@ -297,7 +288,7 @@ case 'go':
 			if ($row['pl_id']!='') {
 				$id=$row['pl_id'];
 			}
-	
+
 			if ($row['pl_place']!='') {
 				$placestr2=$mapstr_edit.$id."&amp;level=".$level.$mapstr3.$mapstr5.$pgv_lang["placecheck_zoom"].$row['pl_zoom'].$mapstr6.$row['pl_placerequested'].$mapstr8;
 				if ($row['pl_place']=='unknown')
@@ -349,15 +340,15 @@ case 'go':
 		}
 		$x++;
 	}
-	
+
 	// echo final row of table
 	echo "<tr><td colspan=\"2\" class=\"list_label\">", $pgv_lang['placecheck_unique'], ": ", $countrows, "</td></tr></table><br /><br />";
-	break;	
+	break;
 default:
 	// Do not run until user selects a gedcom/place/etc.
 	// Instead, show some useful help info.
 	echo "<p>", $pgv_lang['placecheck_text'], "</p><hr />";
-	break;	
+	break;
 }
 
 //echo footers
