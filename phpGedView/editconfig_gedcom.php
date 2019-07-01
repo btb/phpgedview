@@ -3,7 +3,7 @@
  * UI for online updating of the GEDCOM config file.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1847,8 +1847,10 @@ print "&nbsp;<a href=\"javascript: ".$pgv_lang["editopt_conf"]."\" onclick=\"exp
 		<td class="descriptionbox wrap width20"><?php print_help_link("GEONAMES_BIAS_help", "qm", "GEONAMES_BIAS"); print $pgv_lang["GEONAMES_BIAS"]; ?></td>
 		<td class="optionbox">
 			<select name="NEW_GEONAMES_BIAS" size="10" tabindex="<?php $i++; print $i; ?>" onfocus="getHelp('GEONAMES_BIAS_help');">
-				<option value=""><?php print $pgv_lang["GEONAMES_BIAS_no_preference"]; ?></option>
 				<?php
+					echo '<option value=""';
+					if ($GEONAMES_BIAS == '') echo ' selected="selected"';
+					echo '>', $pgv_lang["GEONAMES_BIAS_no_preference"], '</option>';
 					foreach (getCountryNames() as $countryCode => $countryName) {
 						print "<option value=\"".$countryCode."\"";
 						if ($countryCode == $GEONAMES_BIAS) print " selected=\"selected\"";
